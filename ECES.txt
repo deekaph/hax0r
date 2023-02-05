@@ -1,0 +1,661 @@
+EC Council Certified Encryption Specialist ECES
+
+MODULE 1
+
+RSA came out in 1977
+	- used in SSL certificates
+	- is crackable within 6 months with standard hardware 
+		- shorter with cloud/power computers
+		- but certificates are usually good for a year
+
+WEP
+	- 104 bit key, 24 bit initialization vector (IV)
+	- peope who designed WEP didn't know that the the IV was supposed to be USE ONCE to be secure
+		- they recycled IVs
+		
+CRYPTOGRAPHY = "SECRET WRITINGS"
+
+Definition: "The science of altering communication so that it cannot be understood without having the key"
+
+Mono Alphabetic Substitution
+	- simply substitutes one letter for another
+	Examples:
+		- Caesar Cipher
+			- originally shift any letter 3 to the right (+3)
+			- the "key" is the amount to shift
+		- Atbash Cipher
+			- Hebrew code which substitutes the first letter of the alphabet for the last and the second letter for the second to the last (reverses the alphabet)
+			- used by Hebrew scribes copying the book of Jeremiah
+			- A becomes Z, B becomes Y, C becomes X, etc
+		- Affine Cipher
+			- single substitution alphabet cipher in which each letter in the alphabet is mapped to the same numeric value permuted with some relatively simple mathematical function and then converted back to a letter
+			- basic formulat is: ax + b (mod M)
+				- "mod" basically means divide by M and just use the remainder
+				- M is the size of the alphabet; English is 26
+				- x represents the plain text letter's numeric value
+				- b is the shift
+				- a is some multiple (in Caeser cipher it's "1")
+					- so Caesar would be 1x +3 (mod 26)
+		- Rot13 Cipher
+			- "rotate by 13 characters)
+			- is used in windows registry
+
+Weaknesses of Single Substitution
+	- literacy rates have risen since they were invented
+	- all languages have a certain number and word frequency
+		- in English the words "the" and "and" are the two most common three letter words
+		- the most common single letter words are "I" and "a"
+		- if you see two of the same letters together in a word, it's most likely either "ee" or "oo"
+	- all single alphabet ciphers preserve the underlying letter and word frequency and are vulnerable to Cryptanalysis
+	
+Multi-Alphabet Substitution
+	- rather than single number, you rotate through various keys
+	- eg: +1 -1 -2 ... ACAT = BBCA
+		- the key adds 1 letter to the first letter, then subtracts 1 from the second, then adds two to the thir letter then starts over for the forth letter
+	- these ciphers counter the effects of letter and word frequency patterns making them harder to break than single substitution ciphers
+	- are usually too hard to break for a human using pen and paper
+	- examples
+		Cipher Disk
+			- invented by Leon Alberti in 1466
+			- poly-alphabetic, each turn of the disk produced a new cipher
+			- literally a disc that was turned to encrypt plain text (little orphan annie crypt)
+		Vigenere Cipher
+			- invented in 1553 by Biovan Battista Bellaso
+			- misattributed to Blaise de Vigenere and so is known as the Vigenere cipher even though Vigenere did not realy invent it just popularized it
+			- perhaps most widely known poly-alphabet cipher
+			- a method of encrypting alphabetic text by using a series of different mono-alphabet ciphers
+			- is basically a grid with the alphabet going down rows and across columns
+				- take the first letter of the encrypted word, find it on the row, then go across the columns to the first letter of the keyword
+			- the longer the keyword the more alphabets are used to encrypt the message and thus the stronger the encryption
+			- Friedrich Kasiski was first person to publish a successful general attack on Vigenere cipher
+				- basically tried to guess the length of the key (eg 5 letters) and then broke the message down into (5) different substitution ciphers and then used frequency analysis on those					
+			- other attacks are based on known plaintext
+			- Gronsfeld Cipher:
+				- variant of the Vignenere cipher
+				- uses 10 different alphabets corresponding to the digitns 0-9
+				- was widely used throughout Europe
+				- the numbers can be picked at random which is more secure but harder to remember, or the numbers might have some significance to the sender and recipient
+			Playfair Cipher
+				- invented in 1854 by Charles Wheatstone and named after Lord Playfair who promoted it's use
+				- is more complex as it encrypts two letters rather than one
+				- uses a 5x5 table containing a keyword or phrase
+				- to generate the key table one would first fill in the spaces in the table with the letters of the keyword (dropping duplicate letters) then fill the remaining spaces with the rest of the alphabet in order
+				- the letter "Q" was often omitted
+				- to encrypt you would break the message into groups of 2 letters
+					- eg "CheeseBurger" = "CH EE SE BU RG ER"
+				- then map them out on the key table
+				- if both letters are the same (or only one letter is left), then add "X" after the first letter.
+				- Encrypt the new pair and continue
+				- if the letters appear on the same row of your table, replace them with the letters to their immediate right
+				- if the letters appear on the same columb of your table, replace them with the letters immediately below
+				- complex and cumbersom, it is not any more secure than other classic ciphers as Vigenere teaching us complexity does not automatically equal security
+			Polybius Cipher (Polybius Square)
+				- invented by Greek historian Polybius (c. 200 to 118 BCE)
+				- used Greek alphabet
+				- each letter is represented by two numbers
+				- the X and Y coordinates of the letter on the grid
+				- basically cartesian coordinates mapping the alphabet to a grid
+			ADFGVX Cipher
+				- first cipher used by the German Army in WW1
+				- invented by Colonel Fritz Nebel 
+				- transposition cipher which used
+					- a modified Polybius square
+					- a single columnar transposition
+					- a 36 letter alphabet
+				- is actually an extension of an earlier cipher called ADFGX
+			Homophonic Substitution
+				- was one of the earlier attempts to make substitution ciphers more robust by masking the letter frequencies
+				- plaintext letters map to more than one cipher text symbol
+				- having a single character of plain text map to more than one character of cipher text makes it more difficult to analyze
+				- further complicating this by using symbols rather than characters can make this even more difficult to analyze
+				- "nomenclator" combined a codebook that had a table of homophonic substitutions
+				- originally the codebook only used the names of people, thus the name "nomenclator"
+					- eg "Mr. Smith" could be "XX" and "Mr. Jones" could be "XYZ"
+			Null Ciphers
+				- essentially the message is hidden in unrelated text
+				- the sender and recipient have prearranged to use some pattern taking certain letters from the message
+				- so using the pattern 3, 20, 22, 27, 32, 48
+					"We are having breakfast at noon at the Cafe. Woudl that be okay?"
+						becomes
+							"attack"
+				- like spies used to use to publish orders in classified ads
+			Book Ciphers
+				- been around since there were books
+				- both parties agree to use a particular book as the basis
+				- simplest implementation is to send coordinates for words:
+					- 3, 3, 10 means page 3 line 3 10th word
+				- specifies words with corrdinates to write out messages
+				- there are numerous variations
+					- you can combine book ciphers with Vigenere and use the book coordinates to denote the keyword for the Vigenere cipher
+	
+Transposition Ciphers
+	Rail Fence Cipher
+	- take a message you want to encrypt and alter each word on a different row
+		"Attackatdawn" is
+			A t c a d w
+			t a k t a n
+				- next you write down the text reading from left to right thus producing "Atcadwtaktan"
+				- to decrypt the recipient must write it out on rows:
+				- then the recipient reconstructs the original message. 
+				- most texts use two rows as examples but this can be done with any number of rows
+	Vernam Cipher
+		- a type of one time pad
+		- the plain text is somehow altered by a random string of data so that the resulting cipher text is truly random
+		- Gilbert Vernam (1890 to 1960) proposed a stream cipher that would be used with teleprinters
+		- combines a character by character prepared key that was stored on a paper tape with the characters of the plain text to produce the cipher text
+		- the recipient would again apply the key to get the plain text
+		- in 1919 Vernam patented his idea (US Patent 1,310,719)
+		- in his method he used the binary XOR (exclusive OR) operation applied to the bits of the message
+
+Enigma Machine		
+	- the Germans made use of an electromechanical rotor-based cipher system known as The Enigma Machine
+	- multiple variations of it
+	- the chink in its armor was that every single German message ended with the same two words: "HEIL HITLER" 
+		- so they knew what the last two words had to be and then reverse engineered the entire message
+		- Germans changed keys every 24 hours so they had to crack it daily
+		- was all classified until 1990
+			- once it was revealed Historians estimated that breaking the enigma shortened the war by two years
+	- was basically a poly substitution alphabet cipher
+	- designed so that the person typing it in or receiving it didn't need to know cryptography, they just entered the key and it was automatically encrypted/decrypted
+
+Scytale (pronounced "skit-a-lee")
+	- a cylinder tool used by the Greeks (often attributed to the Spartans)
+	- the writer wraps parchment around the rod
+	- the recipient uses a rod of the same diameter as the one used to create the message
+	- requires both parties to have the same size rod and leather 'key'
+
+Key Space
+	- "how many possible keys could there be for this algorithm?"
+		- a Caesar cipher has a keyspace of 26 because that's how many times it could shift
+		- you could brute-force it by just trying shift once, then shift twice, etc
+		
+		
+-----------------------------------------
+
+MODULE 2 : SYMMETRIC ENCRYPTION & HASHES
+
+Symmetric Key Cryptography: the same key is used to decrypt what is encrypted.
+	- faster than asymmetric, but have the issue of exchanging keys
+	
+Information Theory Cryptography Concepts
+	Diffusion
+		- changes one character in the plain text multiple characters in the ciphertext
+		- unlike historical algorithms where each plain text character only affects one cipher text character
+	Confusion
+		- attempts to make the relationship between the statistical frequencies of the cipher text and the actual key as complex as possible
+		- this occurs by using a complex substitution algorithm
+	Avalanche
+		- means that a small change yields large effects in the output (like an avalanche)
+		- this is Fiestel's variation of Claude Shannon's concept of diffusion
+			- Fiestel's ideas are used in many of the block ciphers we explore
+		Obviously a high avalanche impact is desirable in any cryptographic algorithm
+		- ideally a change in one bit in the plain text would affect all the bits of the cipher text
+			- this would be a "complete avalanche"
+	Entropy
+		- the amount of information in a given message
+		- the difference between what is known and what is unknown, or new information
+		- sometimes described as the number of bits required to communicate information
+		- another way to describe information entrop, used in many texts, is the measure of uncertainty in a message
+	Hamming Distance
+		- the number of characters (or bits) that are different between two strings
+		- can be expressed mathematically as h(x,y)
+	Hamming Weight
+		- closely related to Hamming distance
+		- compares the string to a string of all 0's
+			- ie, it is how many 1's are in the binary representation of a message
+			- some sources call this "population count" (or "pop count")
+			
+Kerckhoff's Principle
+	- modern cryptography is not based on keeping the algorithm secret
+	- in 1883 Auguste Kerkhoff posed what is now known as Kerckhoff's principle:
+		"A cryptosystem should be secure even if everything about the system, except the key, is publically known."
+	Modern cryptography is based on mathematics
+		- when an algorithm is published, various cryptographers work to test it for flaws
+		- without that rigerous peer review, it is almost impossible to know if the algorithm is truly secure
+		- it is not at all uncommon for unscrupulous (or simply misinformed) vendors to tout a new 'unbreakable encryption' that has a 'secret algorithm'
+		- "Secret Cryptography" is usually a sign that the person making the claim has little or no knowledge of cryptography
+
+Transposition: swapping of blocks of cipher text
+	- ie "I like ice cream" transposed every 3 letter sequence (or block) with the next:
+		"ikeI I creiceam"
+	- All modern block cipher algorithms use both substitution and transposition
+	- the combination of substitution and transposition increases the security and resultant ciphertext
+	
+Binary Math
+	- symmetric ciphers often involve binary math, specifically using the XORmethod with a key
+	- there are several mathematicaly operations that can be done on binary numbers but there are three primary operations we are concerned with:
+		AND ('binary and')
+			- Binary AND asks if there is a one in BOTH the first and second number
+			- numbers are compared one digit at a time
+		OR ('binary or')
+			- asks if there is a 1 in the first number or the second or both
+			- each piece compared one at a time
+		XOR ('binary exclusive or')
+			- one or the other but NOT both
+			- XOR is important because it's reversible
+			- if you XOR A with B you get C, and if you do C with B you get A
+			
+Two Types of Symmetric Algorithms:
+	Block Ciphers
+		- encrypt the data in blocks
+		- a 64 bit block is common although some (like AES) use larger blocks
+		- AES uses 128bit block
+	- Stream Ciphers
+		- encrypts data as a stream, one bit at a time
+
+Symmetric Block Cipher Algorithms
+	01 - Feistel Network
+		- larger block sizes increase security
+		- larger key sizes increase security
+		- if the round function is secure then more rounds increase security
+			- round function F is applied to 1 of the halves
+			- "round function" means a function performed with each iteration
+			- details of the round function F can vary with different implementations
+			- usually these are relatively simple functions to allow for increased speed of the algorithm
+			- the output of each round function F is then XOR'd with the other half
+			- this process is repeated a given number of times
+			- main difference between cryptography algorithms is the exact nature of the round function F and the number of iterations
+		- named after its inventor, German born physicist and cryptographer Horst Feistel
+		- forms the basis for most block ciphers, making it one of the most influential developments in symmetric block ciphers
+		- also known as the Feistel Cipher
+		UNBALANCED FEISTEL CIPHER
+			- uses a modified structure where L0 and R0 are not equal lengths
+			- L0 might be 32bits and R0 could be 64 bits making a 96bit block of text
+			- this is used in Skipjack
+	02 - DES (Data Encryption Standard)
+		- selected by the National Bureau of Standards as an official Federal Information Processing Standard (FIPS) for the US in 1976
+		- is now considered outdated and not recommended for use
+		- was the premier block cipher for many years
+		- many cryptography textbooks and courses used this as the basic Processing Standard (FIPS) for the us
+		- uses a 56bit key applied to a 64 bit block 
+			- there is actually a 64 bit key generated by 8 bits are just left for error correction
+		- DES is a Feistel cipher with 16 rounds and a 48bit round key for each round
+			- its general functionality follows the Feistel method of dividing the 64bit block into 2 halves (32bits each, is NOT an unbalanced Feistel cipher)
+			- applying the round function to one half then XOR'ing that output with the other half
+		- the actual algorithm:
+			"To generate the round keys, the 56bit key is split into two 28 bit halves and those halves are circularly shifted after each round by one or two bits"
+				- ie, the halves are first subjected to a round function, then the keys are shifted by 1 or 2 bits each time, so they can be used in the next round as a different key
+				- then 48 bits from those two halves are selected and permuted to form the round key
+					- this means there is a different round key for each round
+					- but is related to the previous round key, in fact, derrived from the previous round key
+		- uses EIGHT S-boxes
+			- S-boxes are substitution boxes and look up tables
+			- each item  passed into the box is substituted with the item that matches it in the lookup table
+			- very common tactic in symmetric key algorithms
+			- each one of the DES S-boxes takes in 6 bits and produced 4 bits
+			- the middle 4 bits of the 6 bit input are used to lookup the 4 bit replacement
+		The Round Function works:
+			- expaand the 32bit half that was input to 48bits by replicating some bits
+			- XOR the resultant 48 bits with the 48bit round key and split the result into eight 6 bit sections
+			- pass each of these 6 bit portions through a different S-box
+			- each S-box produces a 4bit output, giving a total of 32 output bits
+			- transpose the output bits
+			- this is done for each of the 16 rounds of DES
+	03 - 3DES
+		- when it became obvious that DES was no longer secure due to the short key length the US federal govt began a contest seeking a replacement
+			- would take a few years so they decided on 3DES for the meantime
+			- is just DES run with three different keys
+				- sometimes only actually two different keys, where the 3rd key was the 1st one again
+				- this is called the "key bundle"
+				- each key is a standard 56 bit DES key
+		- there is a variation of DES that uses a technique called KEY WHITENING
+			- this is just an XOR of a key with the text either before the round function, after the round function, or both
+	04 - AES
+		- is the replacement for DES (bigger key) chosen in 2001 after a 5 year process involving 15 competing algorithms
+		- aka "Rijndael block cipher"
+		- designated as Federal Information Processing Standard (FIPS) 197
+		- can have three different key sizes: 128, 192 and 256 bits
+		- referred to as AES128, AES192, and AES256.
+			- all three operate on a block size of 128 bit
+			- in 128 you have 10 rounts
+			- in 192 bit you have 12 rounds
+			- in 256 you have 14 rounds
+		- developed by two Belgian cryptographers, Joan Daemen and Vincent Rijmen (Rij-Dae'l)
+		- is NOT based on a Feistel network unlike DES/3DES
+		- uses a substitution-permutation matrix rather than a feistel network
+		- operates on a 4x4 column-major order matrix of bytes called the STATE	
+			- "Column Major Order" means that to build the grid you start at the top of column 1 and fill the grid (sequentially) and then when you get to the bottom you go to the top of the second column and continue on 
+		- versions of AES with a larger block size have additional columns in the state
+		HOW IT WORKS:
+			1. Key Expansion: round keys are derived from the cipher key using Rijndael's key schedule
+			2. Initial Round: Each byte of the state is combined with the round key using bitwise XOR
+			3. Rounds:
+				- SubBytes - a non-linear substitution step
+					- is basically a cleverly designed lookup table
+					- each byte is mapped to a different byte based on a function in this field
+					- tables are designed as such that there are no fixed points, ie, no byte is substituted with itself (you don't start with a 15 and end up with a 15)
+					- there are no opposite fixed points, ie all the bits flip (0101 doesn't become 1010)
+				- ShiftRows - A transposition step where each row of the state is shifted cyclically a certain number of steps
+					- ie, you take the second row and shift it one to the left.
+					- first row is not shifted
+					- 3rd row shifted 2 to the left
+				- MixColumns - a mixing operation which operates on the columns of the state combining the four bytes in each column
+				
+				- AddRoundKey
+			4. Final Round (no MixColumns):
+				- SubBytes
+				- ShiftRows
+				- AddRoundKey
+	05 - Blowfish
+		- designed in 1993 by Bruce Schneier
+		"Blowfish is unpatented and will remain so in all countries. The algorithm is hereby placed in the public domain and can be freely used by anyone."
+			- is common in open-source projects because of this
+		- Was intended as a replacement for DES
+		- like DES it is a 16 round Feistel cipher working on 64 bit blocks
+		- unlike DES it can have varying key size ranges from 32 to 448 bits
+	06 - Serpent
+		- was a finalist in the AES contest
+			- was not chosen it processes in parallel and the contest was in 2001 before multicore processing
+		- designed by Ross Anderson, Eli Biham and Lars Knudsen
+		- block size of 128 bits
+		- can have key size of 128, 192 or 256 bits
+		- substitution-permutation network
+		- uses 32 rounds working with a block of four 32-bit words
+			- each round applies one of eight 4 bit to 4bit S-boxes 32 times in parallel
+			- designed so that all operations can be executed in parallel
+	07 - Twofish
+		- was also one of the 5 finalists in the contest to replace DES
+		- uses a block size of 128 bits and key sizes up to 256bits
+		- is a Feistel cipher
+		- designed by Bruce Schneier, John Kelsey, Doug Whiting, David Wagner, Chris Hall and Niels Ferguson
+	08 - Skipjack
+		- developed by the NSA 
+		- designed for the clipper chip
+		- chip with built-in encryption
+		- the decryption key was to be kept in a key escrow in case law enforcement needed to decrypt data without the computer owner's cooperation making it highly controversial (and flawed)
+		- uses 80 bit key to encrypt or decrypt 64 bit data blocks
+		- is an unbalanced Feistel network algorithm with 32 rounds
+	09 - IDEA (International Data Encryption Algorithm)
+		- designed to replace DES
+		- block cipher
+		- designed by James Massey and Xuejia Lai and published in 1991
+		- operates on 64 bit blocks with a 128 bit key
+		- consists of a series of eight identical transformations (each round) and an output transformation
+	10 - CAST
+		CAST-128
+			- can use either 12 or 16 rounds on a 64 bit block
+			- key sizes are in 8 bit increments ranging from 40 bits to 128 bits (but only in 8 bit increments)
+			- the 12 round version is used with key sizes less than 80 bits
+			- the 16 round version is used with key sizes of 80 bits or longer
+			- has eight S-boxes, each 32 bits in size
+		CAST-256
+			-candidate for the AES contest based on CAST-128
+			- used in some versions of PGP
+			- created by Carlisle Adams and Stafford Tavares
+	11 - TEA (Tiny Encryption Algorithm)
+		- created by David Wheeler and Roger Needham and presented in 1994
+		- is simple and has easy to implement code
+		- is a Feistel cipher that uses 64 rounds (but can be implemented with less or more rounds)
+	12 - SHARK
+		- invented by a team including Vincent Rijmen, Joan Daemen, Bart Preneel, Antoon Bosselaers and Erik De Win
+		- uses 64 bit block with 128 bit key and operates in six rounds
+		- has some similarities to the Rijndael cipher including the use of S-boxes that are based on GF(2^8)
+		- GF is "GALOIS FIELD" defined by a particular prime number to some power
+		- original paper is at: http://www.cosic.esat.kuleuven.be/publications/carticle-55.pdf
+	13 - GOST (pronounced "ghost")
+		- DES-like algorithm developed by the soviets in the 70s
+		- was classified by was released to the public in 1994
+		- uses a 64 bit block and a key of 256 bits
+		- is a 32 round Feistel cipher
+		- is achronym for "Gosudarstvennyy standart" which translates to "state standard"
+		- official designation is GOST 28147-89
+		- meant as an alternative to the US DES algorithm and has some similarities
+	14 - McGuffin
+		- block cipher created in 1994 by Bruce Schneier and Matt Blaze at the Fast Software Encryption workshop
+		- is an alteration of DES
+		- rather than divide by halves, 48 bits of the 64 bit block are subjected to the round function
+		1. the 64 bit block is divided into 4-16 bit words
+		2. the rightmost 3 are XOR'd with the subkey
+		3. then fed through 8 S-boxes, each of which compresses from 8 to 2 bits
+		4. the resulting 16 bits is recombined and XOR'd with the leftmost words of the data block
+		5. the data block is then rotated into the rightmost position of the resulting data block
+		
+Electronic Codebook (ECB)
+	- the most basic encryption mode
+	- the message is divided into blocks and each block is encrypted separately
+	- the weakness with this mode is the same plain text always equals the same cipher text
+	- this gives attackers a place to begin analyzing the cipher to attempt to derive the key ("known plaintext attack")
+Cipher-Block Chaining (CBC)
+	- each block of plaintext is XOR'd with the previous ciphertext block before being encrypted
+	- this means there is significantly more randomness in the final ciphertext
+	- much more secure than electronic codebook mode and is the most common
+		1. plaintext block for round i
+		2. ciphertext produced in i-1
+		3. pseudo plaintext
+		4. round function
+Propagating Cipher-Block Chaining (PCBC)
+	- designed to cause small changes in the ciphertext to propagate indefinitely when decrypting as well as when encrypting
+		- this method is sometimes called plaintext cipher-block chaining
+		- a variation on the CBC mode of operation
+		- has not been formally published as a federal standard
+Cipher Feedback (CFB)
+	- in CFB mode the previous ciphertext block is encrypted
+	- the ciphertext produced is XOR'd back with the plaintext to produce the current ciphertext block
+	- essentially it loops back on itself, increasing the randomness resultant ciphertext
+Output Feedback (OFB)
+	- makes a block cipher into a synchronous stream cipher
+	- generates keystream blocks which are then XOR'd with the plaintext blocks to get the ciphertext
+Counter (CTR)
+	- used to turn a block cipher into a stream cipher much like OFB mode
+	- generates the next keystream block by encrypting successive values of a counter
+	- the counter can be any simple function which produces a sequence which is guaranteed not to repeate for a long time
+
+Initialization Vector (IV)
+	- fixed size input to a cryptographic primitive that is random or pseudorandom
+	- some cryptographic methods require the IV only to be non-repeating truly random
+		- in that case the IV is commonly called a nonce (number used once), and the methods are described as stateful as opposed to randomized
+	- in block ciphers using Electronic Code Book (ECB) mode, encryption of the same plaintext with the same key results in the same ciphertext
+	- use of an initialization vector that is XOR'd with the first block of plaintext or included in front of the plaintext prior to encryption solves this provlem
+
+SYMMETRIC STREAM CIPHERS
+	- random key is XOR'd with stream of plaintext
+	- sometimes called a STATE CIPHER
+	- Synchronous Stream Cipher
+		- a stream of peudo-random digits is generated independently
+		- that stream of digits (the key is also called the key stream) is then combined with the plaintext (to encrypt) or the ciphertext (to decrypt)
+	- Self-synchronizing Stream Ciphers, a method using several fo the previous ciphertext digits to compute the key stream
+	- sometimes called "Asynchronous Stream Ciphers" or "Ciphertext Autokey (CTAK)"
+	
+RC4
+	- symmetric stream cipher created by Ron Rivest in 1987
+	- RC stands for Ron's Cipher
+	- most widely used software stream cipher
+	- used identically for encryption and decryption as the data stream is simply XOR'd with the key
+	- uses a variable length key from 1 to 256 bytes
+		- the key constitutes a state table used for subsequent generation of pseudo-random bytes and then to generate a pseudo-random stream which is XOR'd with the plaintext to produce the ciphertext
+	- RC4 generates a PSEUDORANDOM STREAM OF BITS
+	- to generate the key stream, the cipher makes use of a secret internal state which consists of two parts:
+		1. a permutation of all 256 possible bytes
+		2. two 8 bit index pointers (i and j)
+	- the permutation is initialized with a variable length key typically between 40 and 256 bits using the key-scheduling algorithm
+		- then the stream of bits is generated using the pseudo-random generation algorithm (PRGA)
+FISH
+	- published by the German engineering firm Seimans in 1993
+	- FISH (FIbonacci SHrinking) cipher is a software-based stream cipher using the Lagged Fibonacci generator along with a concept borrowed from the shrinking generator ciphers
+PIKE
+	- not really an algorithm but an improvement on FISH (play on words, Pike is a type of fish)
+	- published by Ross Anderson
+	- Anderson showed that Fish was vulnerable to known plaintext attacks
+	- PIKE is both faster and stronger than FISH
+	
+Hash Function
+	- a hash function H is a function that takes a variable-size input m and returns a fixed-size string
+	- the resulting value is called the Hash Value H or the "Digest"
+		- expressed as: h = H(m)
+	- other properties a good Hash function should have include:
+		- the input can be of any length
+		- the output has a fixed length
+		- H(x) is relatively easy to compute for any 
+		- H(x) is one-way
+		- H(x) is collision-free
+	- a hash function H is said to be one-way if it is hard to invert
+		- "hard to invert" means that a given hash value h, it is computationally infeasible to find some input x that H(x)=h
+		- a collision refers to a situation where two different inputs yield the same output
+Hash Salt
+	- in relation to hashing, the term salt refers to random bits that are used as one of the inputs to the hash
+	- salt data complicates dictionary attacks that use pre-encryption of dictionary entries
+	- the salt is intermixed with the message that is to be hashed
+		- renders attacks like Rainbow Tables ineffective
+	- for best security, the salt value is kept secret and separate from the password database
+MD5
+	-128 bit hash that is specified by RFC1321
+	- designed by Ron Rivest in 1991 to replace MD4
+	- in 1996 a flaw was found in the design of MD5
+		- which it was not clearly a fatal weakness, cryptographers began recommending the use of other algorithms such as SHA-1
+		- is not collision resistant
+	- input message is broken into 512 byte chunges at 16-21 bit integers
+	- the message is padded with 0's if needed to reach 512 byte chunks
+	- the length of the message before padding is then appended as the last 64 bits of the message
+	- the algorithm operates on a 128-bit state, divided into four 32 bit words denoted A,B, C, D
+		- they are initialized to an initial variable
+	- the algorithm consists of 4 stages or rounds, each of which consists of 16 similar operations
+	- those operations are a non-linear function F, a modular operation, and a shift
+MD6
+	- uses a Merkle Tree like structure to allow for immense parallel computation of hashes
+	- was submitted to the NIST SHA-3 competition
+	0 on July 1 2009, Rivest posted a comment at NIST that MD6 is not yet ready to be a candidate for SHA-3 because of speed issues and other concerns
+
+Secure Hash Algorithm (SHA)
+	- most widely used hash algorithm today
+	- several versions of SHA and all versions are considered secure and collision free
+	SHA-1: a 160 bit hash function that resembles the earlier MD5 algorithm, designed by the NSA to be part of the Digital Signature Algorithm
+	SHA-2: actually two similar hash function swith different block size known as SHA-256 and SHA-512
+		-they differ in the word size
+		- SHA-256 uses 32 byte (256 bit) words
+		- SHA-512 uses 64 byte (512 bit) words
+		- these are also truncated versions of each standardization known as SHA-224 and SHA-384
+	SHA-3:
+		- the Keccack algorithm was chosen as SHA-3 in October 2012
+		- the corresponding standards for each version of SHA have been
+			FIPS PUB 128 (original SHA)
+			FIPS PUB 180-1 (SHA-1)
+			FIPS PUB 180-2 (SHA-1, SHA-256, SHA-384, SHA-512)
+			FIPS PUB 180-3 (SHA-1, SHA-256, SHA-384, SHA-512)
+			
+FORK-25
+	- uses 512 bit blocks and implements preset constants that change after each repetition
+	- each block is hashed into a 256 bit block through four brances that divides each 512 block into sixteen 32 bit words that are further encrypted rearranged
+	- because the four brances are used in parallel, whereas SHA-256 use serial rounds, FORK-256 is hard to analyze
+	- it is still in analysis phase and not yet in widespread use
+	
+RIPEMD-160
+	- RACEIntegrity Primitives Evaluation Message Digest is a 160 bit hash algorithm
+	- develoiped by Hans Dobbertin, Antoon Bosselaers and Bart Preneel
+	- there exist 128, 256, and 320 bit versions of this algorithm called RIPEMD-128, RIPEMD-256 and RIPEMD-320 
+	- these all replace the original RIPEMD which was found to have collision issues
+	- not following any standard security policies or guidelines
+
+Tiger
+	- 192 bit hash function
+	- designed by Ross Anderson and Eli Biham in 1995
+	- designed using the Merkle-Damgard construction (or paradigm)
+		- a method to build collision resistant cryptographic hash functions from collision resistant one way compression functions
+		- the Merkle-Damgard construction was described in Ralph Merkle's Ph.D dissertation in 1979
+	- the one-way compression function operates on 64 bit words maintaining 3 words of state and processing 8 words of data
+	- there are 24 rounds using a combination of operation mixing with XOR and addition/subtration, rotates and S-box lookups, and a fairly intricate key scheduling algorithm for deriving 24 round keys from the 8 input words
+	
+Blake
+	- created by Jean-Philippe Aumasson, Samuel Neves, Zooko Wilcox-O'Hearn and Christian Winnerlein
+	- BLAKE2 is based on BLAKE
+		- intended to replace MD5 and SHA1
+		- shown to be faster than MD5 or SHA1-3
+	- BLAKE-256 and BLAKE-224 use 32 bit words and produce digest sizes of 256 and 224 bits
+	- BLAKE-512 and BLAKE-384 use 64 bit words and produce digest sizes of 512 bits and 384 bits
+	- used by FreeBSD ports package management tool
+	- WireGuard 
+	- Libgcrypt
+	- OpenSSL
+	
+Haval
+	- unlike MD5, can produce hashes of different lengths: 128, 160, 192, 224, and 256 bits
+	- also enables users to specify the number of rounds (3, 4, 5) to be used to generate the hash
+	- invented by Yuliang Zheng, Josef Pieprzyk and Jennifer Seberry in 1992
+
+Whirlpool
+	- designed by Vincent Rijmen and Paulo S.L.M. Barreto
+	- was chosen as part of the NESSIE project and has been adopted by the International Organization for Standardization (ISO) as a standard
+	- is interesting because it is a modified block cipher
+		- it is a common practice to create a hashing algorithm from a block cipher
+		- in this case, the Square cipher (precursor to Rijndael) was used as the basis
+		- whirlpool produces a 512 bit digest and can take in inputs up to 2^256 bits in size)
+	- is not patented and can be used free of charge
+
+Skein
+	- one of the five finalists in the NIST hash function competition
+	- entered as a candidate to become the SHA-3 standard but lost to Keccak
+	- created by Bruce Schneier, Stefan Lucks, Niels Ferguson, Doug Whiting, Mihir Bellare, Tadayoshi Kohno, Jon Callas and Jesse Walker
+	
+NTLM - Windows Hashing
+	- LanManager (LM): outdated
+		- limited to 14 characters
+		- converted to upper case before hashing
+		- null padded to 14 bytes (if under)
+		- split into two 7 byte halves
+		- these are used to create two seperate DES keys
+		- each of these are used to encrypt a constant ASCII string KGS!@#$%
+			- yielding two 8 byte ciphertext strings
+			- these are then concatenated to form a 16 byte LM hash which is not actually a true hashing algorithm
+		- NT HASH
+			- uses MD4 on the password (in Unicode) so it is an actual hash function
+	- NTLM v1
+		- server authenticates client by sending a random 8 byte number as the challenge
+		- the client performs an operation involving the challenge and a secret shared between the client and server
+		- the shared secret is one of the hashed passwords discussed above
+		- the result is a 24 byte value that is sent to the server
+		- the server verifies it is corect
+	- NTLM v2
+		- the client sends two responses to the 8 byte challenge from the server
+		- each is a 16 byte HMAC hash of the server challenged and an HMAC of the users password (HMAC uses MD5)
+			- HMAC = "Hashing Message Authentication Codes"
+		- the second response also includes the currentt ime, an 8 byte random value, and the domain name
+
+MAC & HMAC
+	a MAC function is used to add a secret key to protect integrity
+		- Hash Message Authentication Code (HMAC)
+		- CMAC = Cipher Message Authentication Code
+		- Cipher Block Chaining Message Authentication Code (CBC-MAC)
+		- Galois Message Authentication Code (GMAC) is a variation of Galois Counter Mode (GCM) used only for authentication
+		- CCM is Counter with CBC MAC
+
+Key Stretching
+	- refers to the processes used to take a key that might be a bit weak and make it stronger usually by making it longer
+	- PBKDF2 = Password-Based Key Derivation Function 2
+		- part of the PKCS #5 v2.01
+		- applies some function (like a hash or HMAC) to the password or passphrase along with Salt to produce a derived key
+		- Bcrypt : used with passwords, essentially uses a derivation of the Blowfish algorithm converted to a hashing algorithm to hash a password and add Salt to it
+		
+CrytoBench : an app that allows you to see the output of a number of hashes
+	- youc an enter any text you wish to encrypt, select the algorithm you wish to use, and then enter a key
+
+S-Box (Substitution Boxes)
+	- come in two types and can refer to either:
+		Substitution Box
+			- substitutes input bits for output bits
+		Permutation Box
+			- transposes the bits (also called a P-box)
+	"S-Box design is uaully the most important task while designing a new cipher. This is because an S-box is the only nonlinear element of the cipher upon which the whole cryptographic strength of the cipher depends. New methods of attacks are constantly being developed by researchers, so S-box design should always be one step ahead of those pursuits to ensure cipher's security"
+		- Anna Grocholewska-Czurylo, in her paper "Cryptographic Properties of Modified AES-Like S-Boxes"
+	Strict Avalanche Criteria (SAC)
+		- an important feature of an S-box 
+		- ie an S-box should give us a lot of diffusion
+	Balance
+		- is also important
+		- means that 1's and 0's come out roughly equal number of times randomly distributed
+	Bit Independence Criterion (BIC)
+		- states that output bits 'j' and 'k' should change independently when any single input bit 'i' is inverted, for all 'i', 'j' and 'k'
+		- the output bits change independently of each other
+	S-Box Design
+		Pseudo-random number generator for each entry in the S-box
+			- however, you will not be able to predict whether or not your S-box actually fulfills the three criteria outlined for an effective S-box
+			- relies upon heavy testing
+		Human-made method that was used in DES
+			- details are not public information
+			- the actual S-boxes for DES are public but the methodology in designing them is not
+		Mathematical-based
+			- generate the values for an S-box using math
+			- used in AES
+			
+-----------------------------------------------------
+
+
+21:53 left off

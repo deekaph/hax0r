@@ -1,0 +1,1215 @@
+CHFI v10
+started 2 Dec 2022
+
+MODULE 1
+ Computer Forensics refer to a set of methodological procedures and techniques that help identify, gather, preserve, extract, interpret, document and present evidence from computing equipment such that any discovered evidence is acceptable during a legal and/or administrative proceeding.
+ 
+Objectives:
+	- To track and prosecute the perpetrators of cyber crime
+	- To gather evidence of cyber crimes in a forensically sound manner
+	- To estimate the potential impact caused by the incident on the victim and determine the intent of the perpetrators
+	- To minimize the tangible and intangible losses to the organization
+	- To protect the organization from the similar incidents in the future
+	
+The Need for Computer Forensics:
+	- ensure the overall integrity and continue existence of IT systems and network infrastructure within the organizations
+	- to extract, process, and interpret the factual evidence such that it proves the attacker's actions in court
+	- to efficiently track down perpetrators from different parts of the world
+	- to protect the organization's financial resources and valuable time
+
+A Cybercrime is defined as ANY ILLEGAL ACT involving a computing device, network, it's systems or its applications
+
+Insider/Internal Attack:
+	- Performed on a corporate network or on a single computer by an entrusted person (insider) who has authorized access to the network
+	- such insiders can be former or current employees, business partners or contractors
+
+External Attack:
+	- occurs when an attacker from outside the organization tries to gain unauthorized access to its computing systems or informational assets
+	- these attackers exploit security loopholes or social engineering techniques to infiltrate the network
+	
+Impact of Cybercrimes:
+	- loss of confidentiality, integrity and availability of information stored in organizational systems
+	- theft of sensitive data
+	- sudden disruption of business activities
+	- loss of customer or stakeholder trust
+	- substantial reputational damage
+	- huge financial losses
+	- penalties arising from the failure to comply with regulations
+	
+Cybercrime Investigation:
+	- the investigation of any crime involves the meticulous collection of clues and forensic evidence with attention to detail
+	- invevitably at least one electronic device will be found during the investigation, such as a computer, cell, printer or fax
+	- the electronic device acquired from the crime scene might contain valuable evidence and play a major role in solving the case
+	- therefor the information contained in the device must be investigated in a forensically sound manner in order to be accepted by the court
+		- civil, criminal, administrative
+	- processes such as collection of data, analysis, and presentation differ depending upon the type of case
+
+ALWAYS HAVE A PROCEDURE AND FOLLOW IT PRECISELY
+	- once it's in court the opposition will try to poke holes in the evidence procedurally
+
+CIVIL VS CRIMINAL
+
+Civil cases are brought for violation of contracts and lawsuits where a guilty outcome generally results in monetary damages to the plaintiff
+
+Criminal cases are generally brought by law enforcement agencies in response to a suspected violation of law. where a guilty outcome may result in monetary damages, imprisonment, or both.
+
+CRIMINAL CASES: burden of proof beyond a reasonable doubt
+	- investigators must follow a set of standard forensic processes accepted by law in the respective jurisdiction
+	- investigators, under a court's warrant, have the authority to forcibly seize computing devices
+	- a formal investigation report is required
+	- LEAs are responsible for collecting and analyzing evidence
+	- punishments are harsh and include fine, jail or both
+	- standard of proof needs to be very high
+	- it is difficult to capture certain evidence - eg GPS device evidence
+	
+CIVIL CASES: based upon the preponderance of evidence
+	- investigators try to show the opposite party some proof to support the claims and induce settlement
+	- searching of the devices is generally based on mutual understanding and provides a wider time window to the opposite party to hide the evidence
+	- the initial reporting of the evidence is generally informal
+	- the claimant is responsible for the collection and analysis of evidence
+	- punishments include monetary compensation
+	- poorly documented or unknown chain-of-custody for 
+	- sometimes evidence can be in third party control
+
+ADMINISTRATIVE INVESTIGATION: generally involes an agency or government performing inquiries to identify facts with reference to its own management and performance
+	- non-criminal in nature and are related to misconduct or activities of an employee that include but are not limited to:
+		- violation of org's policies, rules and protocols
+		- resource misuse or damage or theft
+		- threatening or violent behavior
+		- improper promotion or pay raises
+	- any violation may result in diciplinary action such as demotion, suspension, revocation, penalties and dismissal
+	- for situations like promotions, increments, transfers, etc, admin. investigations can result in positive outcomes like modifications to existing policies, rules or protocols
+
+
+DIGITAL EVIDENCE: "any information of probative value that is either stored or transmitted in a digital form"
+	- may be found while examining digital storage media, monitoring the network traffic, or making duplicate copies of digital data found during a forensics investigation
+	- is circumstantial and fragile in nature, which makes it difficult for a forensic investigator to trace criminal activities
+	
+***
+LOCARD'S EXCHANGE PRINCIPLE: "anyone or anything entering a crime scene takes something of the scene with them and leaves something of themselves behind when they leave."
+***
+
+
+Types of Digital Evidence:
+
+VOLATILE DATA:
+	- data that are lost as soon as the device is powered off
+		- RAM
+		- system time, logged-on user(s), open files, network information, process information, process-to-port mapping, process memory, clipboard contents, service/driver information, command history, etc
+
+NON-VOLATILE DATA:
+	- permanent data stored on secondary storage devices such as hard disks and memory cards
+		- HDDs
+		- hidden files, slack space, swap file, index.dat files, unallocated clusters, unused partitions, hidden partitions, registry settings, event logs, etc
+		
+SOURCES OF POTENTIAL EVIDENCE:
+	User-Created Files - created intentionally by the user
+		- address books
+		- database files
+		- media (images, graphics, audio, video, etc)
+		- documents (spreadsheets, presentations, pdfs, etc)
+		- internet bookmarks, favorites
+	User-Protected Files - created intentionally and effort made to obfuscate/secure
+		- compressed files
+		- misnamed file extensions
+		- encrypted files
+		- password protected files
+		- hidden files
+		- steganography
+	Computer Created Files - created without their knowledge
+		- backup files
+		- log files
+		- configuration files
+		- printer spool files
+		- cookies
+		- swap files
+		- system files
+		- history files
+		- temporary files
+	Sources include:
+		- hard drive, thumb drive, memory card, smart card, dongle, biometric scanner, answering machine, digital camera, surveillance cameras, RAM and volatile storage
+
+
+***
+RULES OF EVIDENCE : usually taken care of by the attourney
+1. Understandable : evidence must be clear and understandable to the judges
+2. Admissible : evidence must be related to the fact being proved
+3. Authentic : evidence must be real and appropriately related to the incident
+4. Reliable : there must be no doubt about the authenticity or veracity of the evidence
+5. Complete : evidence must prove the attacker's actions or their innocence
+
+BEST EVIDENCE RULE: "the court only allows the original evidence of a document, photograph or recording at the trial rather than a copy, however, the duplicate can be accepted as evidence provided the court finds the party's reasons for submitting the duplicate to be genuine."
+	- principle underlying is that the original evidence is considered the best evidence
+	
+US FEDERAL RULES OF EVIDENCE
+
+Rule 102: Purpose
+	"These rules should be construed so as to administer every proceeding fairly, eliminate unjustifiable expense and delay, and promote the development of evidence law to the end of ascertaining the truth and securing a just determination."
+
+Rule 103: Rulings on Evidence
+	(a) Preserving a Claim of Error
+		- A party may claim error in a ruling to admit or exclude evidence only if the error affects a substantial right of the party, and:
+			- if the ruling admits evidence, a party, on the record (a) timely objects or moves to strike and (b) states the specific ground, unless it was apparent from the context; or
+			- if the ruling excludes evidence, a party informs the court of its substance by an offer of proof, unless the substance was apparent from the context
+	(b) No Need to Renew an Objection or Offer of Proof
+		- Once the court rules definitively on the record - either before or at trial - a party need not renew an objection or offer of proof to preserve a claim of error for appeal.
+	(c) Court's Statement About the Ruling; Directing an Offer of Proof
+		- The Court may make any statement about the character or form of the evidence, the objection made, and the ruling. The court may direct that an offer of proof be made in question-and-answer form.
+	(d) Preventing the Jury from Hearing Inaccurate Evidence
+		- to the extent practicable, the court must conduct a jury trial so that inadmissible evidence is not suggested to the jury by any means
+	(e) a court may take notice of a plain error affecting a substantial right, even if the claim of error was not properly preserved.
+	
+Rule 1001: Definitions
+	Writings and Recordings
+		: consist of letters, words, or numbers or their equivalent, set down by handwriting, typewriting, printing, photostating, photographing, magnetic impulse, mechanical or electronic recording, or aother forms of compilation
+	Photographs
+		: include still photographs, x-ray films, video tapes, and motion pictures.
+	Original
+		: an original of a writing or recording is the writing or recording itself or any counterpart intended to have the same by a person executing or issuing it
+	Duplicate
+		: a duplicate is a counterpart produced by the same inpression as the original, or from the same matrix, or by photography, including enlargements and miniatures, or by mechanical or electronic re-recording, or by chemical reproduction, or by other equivalent techniques that accurately reproduce the original.
+		
+Rule 105: Limited Admissibility
+	When evidence that is admissible as to one party or for one purpose but not admissible as to another party or for another purpose is admitted, the court, upon request, shall restrict the evidence to its proper scope and instruct the jurty accordingly.
+	
+Rule 801: Hearsay Rule
+	Hearsay is a statement, other than one made by the declarant while testifying at the trial or hearing, offered in evidence to prove the truth of the matter asserted.
+		- it is not admissible except as provided by these rules or by other rules prescribed by the Supreme Court pursuant to statuatory authority or by Act of Congress
+
+Rule 801: Statements That Are Not Hearsay
+	- prior statement by witness
+	- admission by party-opponent
+	
+Rule 1002: Requirement of Original
+	- to prove the content of a writing, recording or photograph, the original writing recording or photograph is required except as otherwise provided in these rules or by Act of Congress
+	
+Rule 1003: Admissibility of Duplicates
+	- a duplicate is admissible to the same extent as the original unless
+		- a genuine question is raised as to the authenticity of the original, or
+		- in the circumstances it would be unfair to admit the duplicate in lieu of the original
+		
+Rule 1004: Admissibility of Other Evidence of Contents
+	The original is not requires and other evidence of the contents of a writing, recording or photographi is admissible if:
+		- Originals are lost or destroyed. All originals are lost or have been destroyed, unless the proponent lost or destroyed them in bad faith
+		- Original is not obtainable. No original can be obtained by any available judicial process or procedure
+		- Original is in prossession of the opponent. At the time when the original was under the control fo the party against whom offered party was put on notice, by the pleadings or otherwise, that the contents would be a subject of proof at the hearing, and that party does not produce the original at the hearing.
+		- Collateral matters. The writing, recording or photograph is not closely related to a controlling issue.
+		
+***
+SCIENTIFIC WORKING GROUP ON DIGITAL EVIDENCE (SWGDE)
+
+Principle 1:
+	In order to ensure that the digital evidence is collected, preserved, examined, or transferred in a manner safeguarding the accuracy and relaibility of hte evidence, law enforcement and forensic organizations must establish and maintain an effective quality system
+
+Standards and Criteria 1.2:
+	All agencies that seize and/or examine digital evidence must maintain an appropriate SOP document. All elements of an agency's policies and procedures concerning digital evidence must be clearly set forth in this SOP document, which must be issued under the agency's management authority.
+
+Standards and Criteria 1.2:
+	Agency management must review the SOPs on an annual basis to ensure their continued suitibility and effectiveness.
+	
+Standards and Criteria 1.3:
+	Procedures used must be generally accepted in the field or supported by data gathered and recorded in a scientific manner.
+
+
+THE ASSOCIATION OF CHIEF POLICE OFFICERS (ACPO) PRINCIPLES OF DIGITAL EVIDENCE
+
+Principle 1:
+	No action taken by law enforcement agencies or their agents should change data held on a computer or storage media which may subsequently be relied upon in court.
+	
+Principle 2: 
+	In exceptional circumstances, where a person finds it necessary to access original data held on a computer or storage media, that person must be competent to do so and be albe to explain their actions and the impact of those actions on the evidence in court
+	
+Principle 3:
+	An audit trail or other record of all processes applied to computer based electronic evidence should be created and preserved. An independent third party should be able to examine those processes and achieve the same result.
+	
+Principle 4:
+	The person in charge of the investigation (the case officer) has overall responsibility for ensuring the law and these principles are adhered to
+	
+
+FORENSIC READINESS
+	Refers to an organization's ability to optimally use digital evidence in a limited period of time and with minimal investigation costs
+Benefits:
+	- fast and efficient investigation with minimal disruption to the business
+	- provides security from cybercrimes such as intellectual property theft, fraud or extortion
+	- offers structured storage of evidence that reduces the cost and time of an investigation
+	- improves law enforcement interface
+	- easy identification of evidence related to the potential crimes
+	- appropriately uses evidence for positive outcomes of any legal prosecution
+	- helps the organization use the digital evidence in its own defense
+	- prevents attackers from covering their tracks
+	- limits the cost of regulatory or legal requirements for disclosure of data
+	- averts similar attacks in the future
+
+FORENSICS READINESS PLANNING
+	Refers to a set of processes to be followed to achieve and maintain forensic readiness
+1. Identify the potential evidence required for an incident
+2. Determine the sources of evidence
+3. Define a policy that determines the pathway to legall extract electronic evidence with minimal disruption
+4. Establish a policy to handle and store the acquired evidence in a secure manner
+5. Identify if the incident requires full or formal investigation.
+6. Create a process for documenting the procedure.
+7. Establish a legal advisory board to guide the investigative process
+8. Keep an incident response team ready to review an incident and preserve the evidence.
+
+
+INCIDENT RESPONSE
+1. Is a process of responding to incidents that may have occurred due to security breach in the system or network.
+2. The goal is to handle the incidents in a way that minimizes the damage and reduces recovery time and costs.
+3. It is performed by the Computer Incident Response Team (CIRT) of an organization, which is responsible for identifying how a breach occurred, how to locate the method of breach, and how to mitigate the breach.
+4. Incident response processes differ across organizations according to their business and operating environment.
+
+
+COMPUTER FORENSICS AS A PART OF INCIDENT RESPONSE PLAN
+- organizations often include computer forensics as part of incident response plan to track and prosecute the perpetrators af an incident
+
+Role of Computer Forensics in Incident Response
+	- Prepare for incidents in advance to ensure the integrity and continuity of network infrastructure
+	- Determine the exact cause, nature and impact of the incident
+	- Generate a timeline for the incident that helps correlate different incidents
+	- Identify and track the perpetrators of the crime or incident
+	- Extract, process, and interpret the factual evidence so that it proves the attackers actions in the court
+	- Protect the organization from similar incidents in the future
+	- Minimize the tangible and intangible losses to the organization or an individual
+	
+NEED FOR A FORENSIC INVESTIGATOR
+	Cybercrime Investigation: 
+		Forensic investigators, by virtue of their skills and experience, help organization and law enforcement agencies investigate and prosecute the perpetrators of cybercrimes
+	Sound Evidence Handling:
+		If a technically inexperienced person examines the evidence, it might become inadmissible in a court of law
+	Incident Handling and Response:
+		Forensic investigators help organizations maintain forensics readiness and implement effective incident handling and response
+
+
+ROLES AND RESPONSIBLITIES OF A FORENSICS INVESTIGATOR
+	- determine the extent of any damage done during the crime
+	- recovers data of investigative value from computing devices involved in the crimes
+	- gathers evidence in a forensically sound manner
+	- ensures that the evidence is not damaged in any way
+	- creates an image of the original evidence without tampering with it to maintain its integrity
+	- guides the officials carrying out the investigation; at times, the forensic investigator may be required to produce the evidence and describe the procedure involved in its discovery
+	- reconstructs the damaged disks or other storage devices and uncovers the information hidden on the computer
+	- analyzes the evidence data found
+	- prepares the analysis report
+	- updates the organization about various attack methods and data recovery techniques and maintains a record of them
+	- addresses the issue in a court of law and attempts to win the case by testifying in court
+
+CODE OF ETHICS
+	Refers to the principles used to describe the expected bahavior of an investigator while handling a case
+	
+Computer Forensic Investigator should:
+	- perform investigations based on well-known standard procedures
+	- perform assigned tasks with high commitment and dilligence
+	- act with utmost ethical and moral principles
+	- examine the evidence carefully within the scope of the agreement
+	- ensure the integrity of the evidence throughout the investigation process
+	- act in accordance with federal statues, state statutes, and local laws and policies
+	- testify honestly before any board, court or trial proceedings
+
+Computer Forensic Investigator should NOT:
+	- refuse any evidence because that may cause failure in the case
+	- expose confidential matters without authorized permission
+	- take on assignments beyond their skills
+	- perform actions that significantly leads to a conflict of interest
+	- present the training, credentials or association membership in a wrong way
+	- provide personal or prejudiced opinions
+	- reserve any evidence relevant to the case
+
+ACCESSING COMPUTER FORENSICS RESOURCES:
+	Associations offering computer forensic information:
+		Computer Technology Investigators Network (http://www.ctin.org)
+		High Technology Crime Investigation Association (http://htcia.org)
+	Journals of Forensic Investigators
+	Actual Case Studies
+
+COMPUTER FORENSICS: LEGAL ISSUES
+	- You have to follow the law for whatever jurisdiction you're in.
+	- Digital evidence is fragile in nature which makes it susceptible to changes during the course of investigation process and might render it inadmissible in a court of law
+	- Legal systems differ across jurisdictions,  which makes the task of an investigator difficult as different legal systems have different rules for acquiring, preserving, investigating and presenting the digital evidence in the court.
+	- Every legal system has a slightly different approach towards the issues related to authenticity, reliability and completeness
+	- The approach of investigation differs and evolves with changes in technology, and the legal systems might not address the technological advances
+	
+LEGAL COMPLIANCE
+1. Gramm-Leach-Bliley Act (GLBA) : financial institution
+2. Federal Information Security Modernization Act of 2014 (FISMA) : federal systems
+3. Health Insurance Portability and Accountability Act of 1996 (HIPAA) : anybody that maintains healthcare information
+4. Electronic Communications Privacy Act : makes digital communications the same expectations as voice communications
+5. General Data Protection Regulation (GDPR) : Big EU regulations 
+6. Data Protection Act 2018
+7. Payment Card Industry Data Security Standard (PCI DSS) : a standard not a law that deals with payment processing systems
+8. Sarbanes-Oxley Act (SOX) of 2002 : any publicly traded company, deals with accuracy of accounting processes
+	
+
+===========================================================================
+
+MODULE 2: COMPUTER FORENSICS INVESTIGATION PROCESS
+
+
+Examination/Investigation Goals
+	-  investigators should have a clear idea about the goals of the examination prior to conducting the investigation
+	- they should have an in-depth technical understanding of the inner workings of what is being examined
+	- they should have the capability to take a systematic approach to examine evidence based on the request made
+	
+Hypothesis Formulation/Criteria
+	- if the client has asked you a question, THINK ABOUT IT. How do you prove (hypothesis) or disprove (null hypothesis).
+		- for example if you were asked to check for Dropbox installation on the suspect hard drive, consider:
+			- operating system installed, as artifacts to be examined for dropbox installation differs for each OS
+			- previous research as it can help you if it is available for the given question
+		- based on the above considerations, establish a form of reasoning that would assist you to form a hypothesis
+		- for the given example, the hypothesis could be as follows:
+			- OS is Win10
+			- Dropbox is said to be installed on the system if its artifacts are located in directors C:\Users\Admin\AppData\Roaming or c:\Program files
+			
+Experimental Design
+	- after Hypothesis Formulation, frame an experiment to test the hypothesis
+	- the test system should have an environment like that of the suspect machine to yield accurate results
+	
+
+Tool Selection
+	- digital forensics tools include the following:
+		- software or hardware
+		- commercial or open-source
+		- designed for specific purposes or with broader functionality
+	- It is better to consider commercial tools that have a greater market value than open source tools
+	- Using tools designed for specific purposes will allow a diverse and in-depth investigation to take place
+	- using multiple tools validates the findings thus enhancing reliability of the evidence
+	
+Results, Review and Evaluation
+	- review your results from different points of view and communicate findings to the client with realistic expectations about why and how you arrived at your results
+	
+Conclusion and Opinion Formulation
+	- conclusion is JUDGEMENT based on the FACTS
+	- opinion is JUDGEMENT or believe WITHOUT CERTAINTY or PROOF. It is solely based on science and/or experience.
+	- if you are supposed to testify at a trial, you must be prepared to explain how you arrived at your CONCLUSION or OPINION.
+	
+
+IMPORTANCE OF THE FORENSIC INVESTIGATION PROCESS
+	- as digital evidence is fragile in nature, following strict guidelines and thorough forensic investigation process that ensures the integrity of the evidence is critical to prove a case in the court of law
+	- the forensics investigation process to be followed should comply with local laws and established precedents. Any breach/deviation may jeopardize the complete investigation.
+	- the investigators must follow a repeatable and well-documented set of steps such that every iteration of analysis provides the same findings; else, the findings of the investigation can be invalidated during the cross examination in court
+	
+SETTING UP A COMPUTER FORENSICS LAB
+
+A Computer Forensics Lab (CFL) is a location that houses instruments, software, and hardware tools and forensic workstations required for conducting a computer-based investigation with regard to the collected evidence.
+
+1. Planning and budget considerations:
+	- number of expected cases
+	- type of investigation
+	- manpower
+	- equipment and software requirement
+2. Physical & Structural design considerations
+	- lab size
+	- access to essential services
+	- space estimation for work area and evidence storage
+	- HVAC
+3. Work Area Considerations:
+	- workstation requirement
+	- ambience
+	- internet, network and communications lines
+	- lighting systems and emergency power
+4. Physical Security considerations:
+	- Electronic sign-in
+	- intrustion alarm systems
+	- fire suppression system
+	- surveillance
+5. Human Resource considerations
+	- number of required personnel
+	- training and certification
+6. Forensic lab licensing
+	- ASCLD/LAB accreditation
+	- ISO/IEC 17025 accreditation
+
+
+STEPS TO ENSURE QUALITY ASSURANCE
+1. Arrange formal, documented trainings
+2. Validated equipment and document it
+3. Conduct annual proficiency test for investigators
+4. Follow appropriate standards and/or controls in casework
+5. Have policies and procedures in place for effective forensic investigations.
+6. Attain ASCLD/LAB and/or ISO/IEC 17025 accreditation
+7. Perform quality audits and quality management system review
+8. Ensure physical plant security
+9. Assure health and safety
+10. Review, update and document policy and standards.
+
+FIRST RESPONDER BASICS
+	- the person who arrives at a crime scene first
+	- first response to any security incident can be done by one to three different groups of individuals who hold different skillsets and might perform different tasks based on the type and severity of the incident:
+		- first response by non-forensics staff
+		- first response by system/network admins
+		- first response by laboratory forensic staff
+	- under no circumstances should anyone except QUALIFIED FORENSIC ANALYSTS make any attempts to collect or recover data from any computer system or device that holds electronic information
+	- Any attemps to recover data by untrained persons could either compromise the integrity of the files or result in the files be inadmissible in administrative or legal proceedings
+	
+CHAIN OF CUSTODY: a legal document that demonstrates the progression of evidence as it travels from the original evidence location to the forensic laboratory
+
+The chain of custody administers the collection, handling, storage, testing and disposition of evidence and safeguards against tampering with or substitution of evidence.
+
+Chain of custody documentation should list all the people involved in the collection and preservation of evidence and their actions with a stamp for each activity.
+
+The chain of custody document contains the complete information about the obtained evidence, such as the following:
+	- case number
+	- name and title from whom it was received
+	- address and telephone number
+	- location from where the evidence was obtained
+	- date/time of evidence
+	- item number/quantity/description of items
+	
+ORIGINAL EVIDENCE SHOULD NEVER BE USED FOR ANALYSIS
+
+============================================
+
+GO BACK AND DO THE FUZZING LAB FROM MODULE 2 (45min)
+
+
+==============================================================================================================
+	
+Module 2 Labs: Go play with Paraben once you get a demo license
+
+Recovery: Easus
+Creating an image: RDrive Image
+Autopsy : GUI for The Sleuth Kit (TSK) - lots of fun
+
+
+==============================================================================================================
+
+Module 3 :
+
+Tracks : Clusters : Sectors
+
+Sector is smallest writable unit of storage physically on the disk platter
+A file that is bigger than 512 bytes will occupy more than one sector
+Can't do a partial sector write
+
+SSDs can hold on to data better than spinners when their aging sectors get retired
+
+SLACK SPACE:
+	- "The storage area of a disk between the end of a file and the end of a cluster"
+	- If the file size is less than the cluster size, a full cluster is still assigned to that file
+		- The remaining space is known as slack space
+	-
+
+CLassic Header for a Jpeg in hex: FF D8 FF
+
+=================================================
+
+MODULE 4: Acquisition
+
+Order of Volatility
+	According to RFC 3227...
+	1. Registers and cache
+	2. Routing table, process table, kernel statistics and memory
+	3. Temporary system files
+	4. Disk or other storage media
+	5. Remote logging and monitoring data that is relevant to the system in question
+	6. Physical configuration and network topology
+	7. Archival media
+
+Logical acquisition: when you only grab what you're absolutely certain you need
+	- eg outlook .pst or .ost files
+Sparse acquisition: only collects fragments of unallocated data to get deleted files.
+
+Bit-stream image: sector by sector copy.
+	- deleted, unpartitioned space, everything
+	- Disk to image file: copies disk to an image file
+	- Bit-stream disk to disk: copying one disk right over to another
+
+Formats
+	RAW: dd format
+		- universally compatible
+	Proprietary: eo1 (encase) file	
+		- can get more info
+	Advanced Forensics Format (AFF)
+		- blend of both
+
+Sanitization of Target Media
+	- you can zero out a drive
+	- or use a brand new shrink-wrapped drive
+	
+Belkasoft Live RAM capture 
+	- saves files in .mem format
+	
+dd :
+	- linux util
+		- dd if=/dev/fmem of=<file_name.dd> bs=1MB
+	- you can pipe this right across a nc listener
+	- md5sum the both to make sure of the integrity
+	
+OSX:
+	osxpmem or MacQuisition
+		- same process just different tools
+		
+WRITE PROTECTION OF THE EVIDENCE MEDIA
+	- write blockers perserve and protect the evidence contained in it
+	
+AccessData FTK Imager
+	- industry standard
+	
+Powershell has a cmdlet:
+	Get-FileHash
+	
+qemu-img : to convert image files
+
+=================================================================
+
+Windows Forensics
+
+# get date/time printed to terminal 
+time /t
+date /t
+
+# who's logged in
+pslogged on
+
+# see the sessions
+net sessions
+
+# show open files and directories
+net file
+
+# see nearby resolver cache
+nbstat -c 
+
+# view processes from cli
+tasklist /svc
+
+pslist
+listdlls
+net share
+net use
+dir /o:d
+
+# detecting externally connected devices (needs to be installed from tools)
+devcon listclass usb 
+
+
+
+Print Spool Files
+	- Print Spooler creates a temp folder containing print tasks with .SPL and .SHD extension files
+	- When a suspect/insider prints sensitive data from a  machine the investigator should analyze Spool files to gather details such as owner, document, printer, format, number of copies and print method
+	- Windows printing process suports two data types:
+		- RAW : SPL file consists of data to be printed
+		- EMF - SPL file consists of the metadata and can be printed on any printer
+	Default path is C:\Windows\System32\spool\PRINTERS
+	
+	
+Thumbnail cache:
+c:\users\[user profile]\AppData\Local\Microsoft\Windows\Explorer
+	- cache files are stored as "thumbcache_***.db" where *** is pixel dimensions
+	- the database files that contains information such as original filename, date and times, and EXIF data serve as a potential source of graphical evidence
+	- the thumbnails of deleted files also remain in the thumbcache database files and can be extracted using tools such as "thumbcache viewer"	and "thumbs viewer"
+	
+Volume Shadow Copy
+	- is a windows feature that creates and maintains snapshots of the disk volumes
+	- block level snapshots of any alterations ont he system are generated
+	- called "shadow copies"
+	- canned using forensic tools like "internet evidence finder (IEF)" and investigators can analyze a specific copy of interest to find evidence
+	- shadow copies have:
+		- historical version of the registry hives
+		- databases such as sqlite
+		- several other artifacts
+	- To find extra data there are tools like "Report Viewer" that give the investigator the details about the shadow copy and where the data fragment came from
+	
+
+Some Registry keys that will probably be on the test:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+Microsoft Security ID (SID)
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\WindowsNT\CurrentVersion\ProfileList
+View your sid: PSGETSID
+
+# devices (usb) that are connected leave footprints in the MountedDevices key
+	- if the device is assigned the drive letter F: the value will be "\DosDevices\F:"
+	HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR\
+	- if you export that key as a text file the export will show you the last time the device was connected to the system
+	# Cross refference to 
+	HKEY_LOCAL_MACHINE\System\MountedDevices
+
+NTUSER.DAT info is stored:
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\{GUID}\Count
+	- below the UserAssist key there are GUIDs ie {CEBFF5CD-ACE2-4F4F-9178-9926F41749EA}
+		- each GUID records values pertaining to specific objects the user has accessed on the system such as shortcut files, control panel applets and programs
+		- values are encoded with ROT-13 encryption (Caesar Cipher)
+			- each letter is replaced with the leter 13 after it on the alphabet
+
+MRU Lists (Most Recently Used)
+	- Applications maintain their MRU
+	HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+	- MRU list has two sections
+		- numbered value names contain the names of the files accessed
+		- MRUListEx key: maintains the order in which the files are accessed
+	
+EXIF data can include
+	- device model
+	- serial number
+	- image gps metadata
+	- ISo, focal length, aperature
+	- GPS timestamps
+	
+SHELLBAGS
+	- where windows stores the view preferences of the folders: size, position, location, icon size and list type etc
+	- stored in registry keys
+	HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\BagMRU
+	HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\Bags
+	HKEY_CURRENT_USER\Software\Classes\LocalSettings\Software\Microsoft\Windows\Shell\Bags
+	HKEY_CURRENT_USER\Software\Classes\LocalSettings\Software\Microsoft\Windows\Shell\BagMRU
+	- there is a shellbacks explorer tool "SBE" (non native)
+	
+Types of Logon Events
+	2 - Interactive: a user logged on to this computer
+	3 - Network : a user or computer logged on from the network
+	4 - Batch : is used by batch servers where process may be executing on behalf of a user without their direct intervention
+	5 - Service : a service was started by the Service Control Manager
+	7 - Unlock : this workstation was unlocked
+	8 - NetworkCleartext : a user logged on to this computer from the network, the password was passed to the authentication package in its unhashed form
+	9 - NewCredentials : a caller cloned its current token and specified new credentials for outbound connections
+	10 - RemoteInteractive : a user logged in remotely using Terminal Services or RDP
+	11 - CachedInteractive : a user logged in with network credentials that were stored locally on the computer
+
+Windows Forensic tool OSForensics
+
+===============================================================================
+
+MODULE 8: NETWORK FORENSICS
+
+
+Legal Criteria For Admissibility of Logs as Evidence
+	- Certain standards and regulations such as Rederal Information and Security Management Act of 2002 (FISMA),
+		- HIPAA and PCI DSS, Sarbanes-Oxley Act (SOX) of 2002, and Gramm-Leach-Bliley Act require organizations to review and manage logs in a forensically sound manner
+
+1. Logs must be created consistently with the event under investigation
+2. Log files must be stored in a secure location to prevent tampering
+3. Logs must be maintained as a routine business practice
+4. Random compilations of data are not permissible
+5. Logs instituted after the commencement of the incident do not qualify under the business exception
+6. Maintain logs regularly to use them as evidence
+
+	- A "custodial or other qualified witness" must testify to the accuracy and integrity of the logs. This process is known as authentication.
+	- The custodian need not be the programmer who wrote the logging software; however, he or she must be able to offer testimony on what sort of system is used, where the relevant software came from and how and when the records are produced
+	- A custodian or other qualified witness must also offer testimony as the reliability and integrity of the hardware and software platform used, including the logging software.
+	- A record of failures or security breaches on the machine creating the logs will tend to impeach the evidence
+	- If an investigator claims that a machine has been penetrated, log entries from that point are inherently suspected.
+	
+	
+Guidelines to Ensure Log File Credibility and Usability:
+
+1. Log Everything: Configure the server log settings to record every field available in log files as it can play a major role as evidence.
+2. Synchronize Time: synchronize the computers' clocks to accurately correlate actions and activities logged on different computers on the network
+3. Use Multiple Sensors: Employ multiple sensors (firewall, IDS, etc) to record logs and combine the logs to strengthen the value of each. Two or more devices recording the same information helps in proving log credibility.
+4. Continuously monitor network devices for unavailability or powered off state to determine whether a missing log was not generated or had been intentionally deleted.
+5. Ensure system's Integrity: Stay up to date with service packs and hot fixes, and audit all changes in the binary files and windows system directory to ensure their integrity.
+6. Control aceess to log file: Set proper permissions on log files to secure them and to ensure their credibility
+
+- centralized log management
+- hashed and signed with asymmetric key
+- three tiers : log generation, log analysis and storage, log monitoring
+
+Event Correlation
+1. The process of relating a set of events that have occurred in a predefined interval of time
+2. It includes analysis of events to determine how it could add up to become a bigger event
+3. It is usually performed on a log management platform after identifying logs having similar properties
+4. In general the event correlation process is implemented iwth the help of an event correlator software.
+
+Steps:
+1. Event aggregation
+2. Event masking
+3. Event filtering
+4. Root cause analysis
+
+Same Platform Correlation: ie an org that only runs Windows on their servers may collect event log entries and perform trend analysis diagonally
+
+Cross-Platform Correlation: clients may use Windows as well as linux based firewall and email gateway
+
+Cross-Platform has greater integrity
+
+
+Prerequisites of Event Correlation:
+
+Transmission of data
+	- transmitting log data from one security device to another until it reaches a consolidation point in the automated system
+	- to have secure transmision and reduce the risk of exposure during transmission the data must be encrypted and authenticated
+	
+Normalization
+	- after the data is gathered it must be formatted again from different log formats to a single or polymorphic logg that can be easily inserted into the database
+
+Data Reduction
+	- After collecting the data, repeated data must be removed so that the data can be correlated more efficiently
+	- Removing unnecessary data can be done by compressing and deleting repeated data and combining similar events into a single event and then sending the data to the correlation engine
+	
+
+Cisco Router Log Severity Levels
+
+0 - Emergency - System unusable messages
+1 - Alert - Immediate Action required messages
+2 - Critical - 
+3 - Error
+4 - Warning
+5 - Notification
+6 - Information 
+7 - Debugging
+
+Details found in Cisco router logs:
+1. Event ID
+2. Date
+3. Time
+4. Identifier
+5. Protocols supplied
+6. Source IP address
+7. Destination IP address
+
+Juniper networking devices run on the company's proprietary Junos OS
+	- router stores logs in the default message file
+	- in M-, MX- and T-series routers, the log files are stored in /var/log locations
+	- in J-series routers, the log file location is /cf/var/log
+	Command to be used to view the logs:
+		user@my-device > show log messages
+	the OS complies with syslog severity level standards
+	
+Juniper log entry details:
+1. Date & Time
+2. Router name and ID
+3. Status
+4. Message
+
+
+DISPLAY FILTERS IN WIRESHARK
+1. Display filtering by Protocol : arp, http, tcp, udp, dns, ip 
+2. Monitoring specific ports: 
+	tcp.port==23
+	ip.addr==192.168.1.100 machine
+	ip.addr==192.168.1.100 && tcp.port=23
+3. Filtering Multiple IP addresses
+	ip.addr==10.0.0.4 or ip.addr==10.0.0.5
+4. Other filters
+	ip.dst==10.0.1.50 && frame.pkt_len > 400
+	ip.addr==10.0.1.12 && icmp && frame.number > 15 && frame.number <30
+	ip.src=205.153.63.30 or ip.dst==205.153.63.30
+
+FTP Response codes
+	530 : bad
+	230 : logged in
+
+Filters:
+	http
+	http.request.method == POST      : credentials usually sent via POST
+	arp.duplicate-address-detected   : will look for arp poisoning attempts (duplicate IPs different macs)
+	
+=====================================================
+
+Module 9
+
+Web Attack investigation Methodology:
+	- conduct individual interviews to obtain information on a security attack targeting any web application
+	- locate the servers or other devices that are involved in the security attack, take them offline, and perform seizure in a forensically sound manner
+	- follow the process of forensic image acquisition and duplication
+	- collect logs from the web server, application server, database server, web application firewall, local system events, SIEM tool, and IDS, along with application and server configuration files
+	- use encryption and checksum to verify and protect the integrity of log files
+	- analyze the working copies of collected logs to look for suspicious entries and correlate the data to build a chain of events unfolding the whole attack scenario
+	- trace the attacking IP to identify the perpetrator of the attack. This task is generally very difficult as attackers often use proxies and anonymizers to hide their identity
+	- document every step of the investigation such documentation is essential for any legal proceedings
+	
+
+Web Application Firewall (WAF)
+1. WAFs deployed to inspect, filter and block the incoming and outgoing HTTP traffic on web apps
+2. WAF provides a security layer that protects web applications from malicious traffic
+3. WAF is either appliance-based or cloud-based and is deployed through a proxy placed ahead of the web applications
+4. It is a rule-based filter that monitors and analyzes the traffic before it reaches the web application
+
+Benefits of WAF:
+1. WAF implementation secures existing and productive web applications
+2. WAFs act as a reverse proxy between the client and web server and inspect every HTTP request for common web attacks
+3. WAF comes with real-time alerting and extensive logging capabilities
+4.  WAF provides cookies protection with encryption and signature methodology
+5. WAV can detect data validation issues by performing an in-depth testing of characters, character length, range of value, etc
+
+Limitations of WAF:
+	- WAF should not be considered a replacement for proper application security measures such as user authentication and input filtering
+	- the functionality of WAF is different from that of Next-Generation Firewalls (NGFWs). WAF inspects traffic-based on a particular protocol unlike NGFW, which can alter changes in an existing network
+	- WAF does not provide complete security from all web attacks because it can not read database commands
+	- The deployment of WAF does not ensure security from false positives
+	
+WAF tool: ModSecurity
+	- free, cross-platform WAF module supported by web servers like nginx, apache and IIS
+	- allows real-time HTTP traffic monitoring, logging and analysis which helps in the quick detection and mitigation of web-baswed intrusions
+	- ModSecurity can be deployed as embedded or as a reverse proxy
+	- comes with OWASP ModSecurity Core Rule Set, whcih aims to protect web servers against OWASP's top 10 security vulnerabilities and other common web attacks
+	- this tool also allows administrators to write customized rules based on their environment
+	
+Detecting Web Attacks on Windows-based Servers:
+	- review file shares to ensure their purpose:
+		net view <ip address>
+	- verify the users using open sessions
+		net session
+	- check if sessions have been opened with other systems
+		net use
+	- analyze the NetBIOS over TCP/IP activity:
+		nbtstat -S
+	- find if TCP and UDP ports have unusual listening:
+		netstat -na
+	- find scheduled and unscheduled tasks on the local host:
+		schtasks
+	- check for the creation of new accounts in the admin group:
+		Start>run>lusrmgr.msc
+	- check for unusual network services
+		net start
+	- check file space usage to find any sudden decrease in free space
+		dir
+
+Investigation XSS attacks
+	- common XSS attacks use HTML tages such as <script></script><IMG>,<INPUT>, and <BODY>
+	- attackers use various obfuscation techniques to avoid detection by application firewalls and IDSP/IPS systems
+		- hex encoding
+		- in-line comment
+		- char encoding
+		- toggle case
+		- replaced keywords
+		- white-space manipulation
+	- for example, all the scripts below have the same meaning:
+		<script>alert("XSS")</script>
+		<sCRipT>alert("XSS")</ScRiPt>   (toggle case)
+		%3cscript%3ealert("XSS")%3c/script%3e>    (hex encoding)
+		%253cscript%253ealert(1)%253c/script%253e  (double encoding)
+	- investigators can use regex search to find HTML tags, other XSS signature words and their hex equivalents in webserver logs, IDS logs, WAF logs and SIEM tool alerts to check for XSS attacks.
+	- use "search expressions" in forensic tools to identify different obfuscation methods
+	
+Investigating SQL Injection Attacks
+	- look for SQL injection incidents in the following locations
+		- IDS log files
+		- web server log files
+		- WAF log files
+		- SIEM triggered alerts
+	- SQL injection attack signature in Webserver log files may look like:
+		10:23:45 10.0.0.7 HEAD GET /login.asp?username=blah' or 1=1 -
+		10:23:45 10.0.0.7 HEAD GET /login.asp?username=blah' or ) 1=1 (--
+		10:23:45 10.0.0.7 HEAD GET /login.asp?username=blah' or exec master..xp_cmdshell 'net user test testpass --
+	- basic injection code (authentication bypass)
+		'or 1=1
+			- tells the server that the expression is always true
+		
+Command Injection Attack
+	- command injection uvlnerability allows attackers to gain complete control of the host OS running the web server, enabling them to execute system-level commands within a web application environment
+	- While examining log files for command injection attack, investigators should look for common command injection vectors given below that help attackers attach a shell operator to an input string:
+	`shell_command` 		asks the command line to execute the command provided
+	$(shell_command)		""
+	| shell_command			asks the command line to run the command and return its output, can be used to chain multiple commands together
+	|| shell_command && shell_command 		""
+	; shell_command			a semicolon acts as a command separator, asks the command line to run a series of commands sequentially
+	command > target_file	allows the attacker to save the output of the command in the target_file or overwrite its contents
+	command < target_file 	allows attackers to execute the command
+	command >> target_file	allows attackers to append the output of the mentioned command to the target_file contents
+	- operator				allows attackers to add additional operations to the command
+	
+	
+MODULE 9 : LAB
+
+Detecting XSS, SQL injection, Directory  traversal, command injection, XML external entity, brute force
+
+Encoding Table:
+
+%20		Space
+%22		"
+%3A		:
+%3C		<
+%3E		>
+%2F		/	
+%26		&
+%3B		;
+%3D		=
+%2C		,
+%27		'
+%2D		-
+
+HTTP status code:
+	200 = request made to the server has been processed
+	302 = URL redirection
+	
+	
+================================================================
+
+MODULE 10: Dark Web Forensics
+
+When TOR is installed on a win machine it uses port 9150/9151 for establishing connection via Tor nodes
+
+When investigators test for the active network connections on the machine by using the netstat -ano, they will be able to identify whereer Tor was used on the machine
+
+Tor leaves a Registry footprint
+	- forensic investigators can obtain the path from where the TOR browser is executed in the registry ke:
+	HKEY_USERS\<SID>\Software\Mozilla\Firefox\Launcher
+
+Extract last execution date and time of the Tor browser:
+	- on a suspect machine, the investigator analyzes the "state" file located in the path where the Tor browser was executed:
+		\Tor Browser\Browser\TorBrowser\Data\Tor
+
+Artefacts: Prefetch Files
+
+When Tor is uninstalled or if it is installed in a location other than the desktop (in windows) it will be difficult for investigators to know whether it was used or the location where it is installed
+	- examining the prefetch files will help investigators in obtaining this information
+	-located in: c:\Windows\Prefetch
+	- using tools like WinPrefetchView investigators can obtain metadata related to the browser which includes
+		- browser created timestamps
+		- last run timestamps
+		- number of times the browser was executed
+		- tor browser execution directory
+		- filename
+		
+Memory Dump Analysis : Bulk Extractor
+	- helps process memory dumps to privide useful information such as URLs browsed, email IDs, PII
+	
+=============================================
+
+MODULE 11: Database Forensics
+
+Forensicf examination of a databasse might allow a forensic investigator to:
+	- examine the MAC attributes of tables that could verify the actions of the attacker
+	- determine the transactions occurred within a database system or applications that indicate evidence of fraudulent activities
+	- recover the deleted rows
+	- retrace the DDL and DML operations performed by the attacker
+	
+Data Storage in SQL Server
+	- the SQL server stores data and logs in Primary Data Files (MDF), Secondary Data Files (NDF) and Transaction Log Data Files (LDF)
+	- MDF is the starting point of the database; it stores user data and database objects
+	- NDF is optional and spreads data across multiple databases
+	- LDF stores log related information that can be ussed to recover databases. These are divided into smaller parts called "virtual log files"
+	- these files are combined to form a database
+	- each data file (excluding log files) contains multiple data pages (basic storage units with a storage capacity of 8KB)
+	The data pages are divided into:
+		1. Page Header - presents the page ID, page type, etc
+		2. Data Rows - Store the actual data
+		3. Offset Table - Points to the location of the actual data
+		
+Database Evidence Repositories
+	- SQL Server data is stored natively within the SQL server and externally in the Windows machien hosting the server
+	- the main sources of evidence for an examiner include:
+		SQL Server
+			-Volatile Database
+			-Primary Data File and Active Transaction Logs
+			-Database plan cache
+		Windows Operating System
+			-Windows logs
+			-SQL Server Trace files
+			-SQL Server error
+
+ApexSQL : useful for collecting volatile Database data
+	- includes user login session and transactions
+	- use audit application to track the login history
+
+Collection using SQLCMD
+	Connect to a server with the command
+		sqlcmd -S <machinename> -e -s"," -E
+	To create a text file (after being connected)
+		:out E:\path\filename.txt
+	To determine the locations of the transaction log files
+		sp_helpdb
+		go
+	Go collect them directly using explorer to the location specified in the output of the previous command
+	Get the MDF and LDF files
+	
+Step 1: Examine the windows logs to obtain information related to the SQL Server authentication, startup and shutdown instances, and the IP addressses of client connections
+
+Step 2: Examine the error logs to see the records of user defined events (such as user logins)
+
+Step 3: Examine the Trace files to identify any suspicious activity
+
+Step 4: Examine the Active Transaction logs
+	dbcc log(moviescope, 3)
+	
+Step 5: Examine the Data Page to find the object ID where the data has been modified
+	dbcctraceon(3604)dbccpage(moviescope,1,154,1)
+	- the PAGE HEADER contains information regarding the data page such as the type of page, partition ID, and ojbect ID
+	
+Step 6: View the Object to find the name of the object/table in the database whose data was modified
+	Select * from sysobjects where id = 21575115
+	- The object User_Profile has been modified
+	
+Step 7: Gather the Object Schema (table) associated with the object is collected
+
+Step 8: View the Modified Record
+
+Step 9: Identify the Data Type
+
+Step 10: Compare the Row Logs and note down the hex values of RowLog Contents and convert them to their equivalent decimal values
+
+
+Database Forensics using ApexSQL DBA
+
+Step 1: Collecting Volatile Database Data
+	- such as user login sessions and user transactions
+
+Step 2: Examine the Database Transaction Log File
+
+
+
+Internal Architecture of MySQL 
+
+================================================
+
+Dynamic Malware analysis: Pre-Execution Checklist
+	- create a fresh baseline of the forensic workstations
+	- take a snapshot of the registry keys, file system, running processes, and event log files
+	- list all windows services, device drivers and startup programs
+	- install tools that will capture the changes performed by the malware on system resources such as registry, file system, processes, etc as well as the network properties
+	- Generate hash values of the OSs and the tools
+	- run the malware on the forensic workstations
+	
+Monitoring Host Integrity
+	- upon creating the baseline image, run the malware on the windows forensic workstation for a certain time period
+	- take the second snapshot of the workstation and compare it with the baseline to detect all changes made in the file systems and registries
+	- use tools like WhatChanged Portable that scans for modified files and registry entries and lists them in text file format
+	
+Observing Runtime Behavior
+	- executing the malware on a workstation and observing its operations in real-time to understand its intent and functionality
+	- you can learn about the behavioral characteristics of the malware by monitoring its activities on the system and the network
+	- runtime behavior analysis of malware can be done in two ways:
+	1. system behavior analysis
+	2. network behavior analysis
+	
+System Behavior Analysis:
+	- involves monitoring the changes on the OS resources upon malware execution.
+		- monitoring registry artifacts
+		- monitoring processes
+		- monitoring services and startup folders
+		- examining event logs
+		- monitoring API calls
+		- monitoring device drivers
+		- monitoring files and folders
+
+Network Behavior Analysis:
+	- involves tracking the malware's networking activities.
+		- monitoring IP addresses
+		- looking for connected ports
+		- examining the DNS entries
+
+
+System Behavior Analysis: Monitoring Processes
+	- some malware also use PEs (Portable Executable) to inject themselves into various processes (such as explorer.exe or web browsers)
+	- process monitoring after the execution of the malware on the workstation helps in identifying the processes the malware initiates or takes over
+	- use process monitoring tools like Process Monitor to scan for suspicious processes created by the malware
+
+Monitoring Startup Programs
+	- check startup program entires in the registry
+	- check automatically loaded drivers c:\windows\System32\drivers
+	- check boot.ini or bcd (bootmgr) entries
+	- Check startup windows services
+	- Check startup folders
+	- or just run "autoruns" tool
+
+Event Logs:
+	- event ID 4688: Process Creation
+		- after malware execution, look for event ID 4688 on Event Viewer that shows malicious process name, its path and the time of execution
+	- event ID 5156: Outbound Network Connection
+		- look for event 5156 at the same time that shows an outbound network connection between the malicious process and forensic workstaion, along with the destination address and port 
+	- event ID 4660: Object Deletion
+		- once installed the malware might attempt to delete files or folders that would trigger event ID 4660 on Event Viwewer
+	- Event 4663: Object Access
+		- review 4663 to get more information about the object accessed, modified or deleted by the malware
+	- event 7040: Service Start Type Change
+		- windows protection services being disabled on its own such a swindows firewall, defender or any other anvirus program is a good indicator of malware on the system
+	- event 4657: Registry Key Value Modification
+		- you should also review 4657 to detect any changes in the registry made by the malware
+	
+Monitoring the API Calls
+	- malicious programs often make use of the Windows APIs to access OS information such as file systems threads registry and kernel
+	- API call monitoring helps in understanding a malware's interaction with the OS and might provide valuable information regarding its system and network level activities
+	- use tools like "API Monitor" to intercept API calls made by the malware during runtime
+
+Monitoring Device Drivers
+	- malware gets installed along with the device drivers downloaded from untrusted sources and use them as a shield to avoid detection
+	- you must scan for suspicious device drivers and verify if they are genuine and downloaded from the publisher's original site
+	- Run> msinfo32 > Software Environment > System Drivers
+	
+Monitoring Files and Folders
+	- you can use files and folder integrity monitoring tools to examine file system and folder activity in real-time on an infected system
+		- sigverif
+			- checks the integrity of critical files that have been digitally signed by MS
+			- Run > sigverif
+		- FCIV
+			- command line utility that computes MD5 or SHA1 cryptographic hashes for files
+			- download FCIV at docs.microsoft.com
+		- Tripwire Enterprise
+			- enterprise class system integrity verifier that scans and reports critical system files for changes
+
+netstat -anb
+	- will show all open ports and associated binaries
+
+================================================
+Lab1:
+
+Magic hex header number for executable is : 0x010B
+
+Function Calls: 
+	"CreateMutexW" 
+		- used by malicious programs to ensure that only one instance of the malware is running on the target machine; prevents it from double-infection
+	"GetFileAttributesExW", "GetFileAttributesW", "GetFileSize" and "GetFileType"
+		- indicates will try to retrieve information about the type, size and attributes of specific files from the filesystem
+	"GetModuleFileNameA" and "GetModuleFileNameW"
+		- indicates it might try to copy or modify files using any running process on the target
+	"GetProcAddress"
+		- cals functions from other DLLs implicityly
+	
+Lab2:
+
+DidierStevenSuite
+
+python pdfid.py /tmp/Infected.pdf
+	- suspicious elements include:
+		/JS
+		/JavaScript
+		/OpenAction
+			- indicates that it might execute an action when opened which is sus for a PDF
+			
+python pdf-parser.py /tmp/Infected.pdg
+	- object 1 refs object 5 which is an Action that calls Javascript that contains a stream
+
+# so now use PDF stream to see what it does (Windows Util)
+
+Load PDFStreamDumper
+Go to object 5 and view the stream
+	- human readable function "util.printf(%4500.4500f", 0);" can be used to gather system info
+	
+# using oledump to view Word macro hints:
+python oledump.py /tmp/Infected.docx
+
+# the "M" next to the string (string 8 i this example) shows that it's a macro
+# to view the hexdump of the sus strings:
+python oledump.py -s 8 /tmp/Infected.docx > output.txt
+
+# shows some sketchy url to grab an exe
+# to get a much more clear view 
+python olevba.py -c /tmp/Infected.docx
+
+(shows sketchy things like AutoOpen, YKPZZS = Shell, URLDownloadToFileA)
+
+# to show all the sus elements
+python olevba.py -a /tmp/Infected.docx
+
+# to look at its coding in-depth to gather more information (back in windows) use OffVis
+	- load the infected.docx in OffVis and then select "BinaryFormatDetectionLogic" from the Parser dropdown box and hit "Parse"
+	- scroll through the hex and find recognizable strings, double click to see where it is in the stream on the right
+
+
+===============================================================
+
+Mobile Forensics Module 15
+
+
+*#06#
+	- to bring up IMEI (International Mobile Equipment Identifier) 
+	
+==========================================================
+
+Other IoT Attacks
+
+Sybil Attack: attacker uses multiple forged identities to create a strong illusion of traffic congestion, effecting communication between neighboring nodes and networks
+
+Exploit Kits: uses a malicious script to exploit poorly patched vulnerabilities in an IoT device
+
+MiTM: pretending to be the legitimate sender who intercepts all the communication between sender and recever and hijacks the comms
+
+Replay Attack: intercepting legitimate messages from a valid communication and continuously sends the intercepted message to the target device to perform a DOS attack
+
+Forged Malicious Device: attackers replace authentic IoT devices with malicious devices if they have physical access
+
+Side Channel Attack: attackers extract information about encryption keys by observing the emissions of signals or "side channels" of IoT devices
+
