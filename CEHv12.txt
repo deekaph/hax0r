@@ -2150,16 +2150,4 @@ Cryptoanalysis Tools:
 	CryptoBench (addario.org)
 	
 	
-	=======================================================
-	
-AREAS TO WORK ON:
 
-Difference between XML and Cross-site scripting
-	OBJ-5.2: This scenario is a perfect example of the effects of a cross-site scripting (XSS) attack. If your website's HTML code does not perform input validation to remove scripts that may be entered by a user, then an attacker can create a popup window that collects passwords and uses that information to compromise other accounts further. A cross-site request forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they are currently authenticated. An XSS will allow an attacker to execute arbitrary JavaScript within the victim's browser (such as creating pop-ups). A CSRF would allow an attack to induce a victim to perform actions they do not intend to perform.
-	
-Cross Site Request Forgery
-SOAP
-hashing/encryption algorithm lengths (128 bit fixed output etc)
-symmetric vs asymmetric encryptions
-
-Cyber Kill Chain
