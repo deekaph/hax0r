@@ -1,0 +1,999 @@
+CERTIFIED THREAT INTELLIGENCE ANALYST
+Started 18 Dec 2022
+
+DATA: in its raw form exists in huge volume, defines an object or individual, does not include any context and is unprocessed
+	- for example "128" is data because it has no context - part of IP? Someone's age? phone number?
+INFORMATION: Interconnected bunch of raw data providing meaningful information, which states facts about human queries and knowledge.
+INTELLIGENCE: Analyzed and interpreted information providing broader in depth knowledge of the subject that supports decision making and response actions
+
+Intelligence-Led Security Testing (Background and Reasons)
+	- provides contextual intelligence at every stage of testing that guides the security professionals to make appropriate decisions:	
+		How should the testing be conducted?
+		What attack methods should be simulated?
+		Where should they focus their resources?
+	- It provides an effective and structured approach to test the critical IT resources of an org to remediate and mitigate risk beforehand
+	- it simulates existing and current minute threats giving the organization the current threat scenario includings strengths, risks and vulnerabilities.
+	
+Cyber Threat Intelligence (CTI)
+	"The Collection and Analysis of Information about threats and adversaries and drawing patterns that provide an ability to make knowledgable decisions for the preparedness, prevention and response actions against various cyber attacks."
+		- helps the org to identify and mitigate various business risks by converting unknown threats into known threats and helps in implementing various adversaries and proactive defense strategies.
+		
+There are KNOWNS and UNKNOWNS
+	There are three stages in achieving the intelligence called:
+	- unknown unknowns
+	- known unknowns
+	- known knowns
+	
+Characteristics of Threat Intelligence
+	- collects data from multiple sources such as open source and commercial data feeds, internal and external sources
+	- creates customized and prioritized alerts basedon the IT infrastructure of the organization
+	- helps in identifying INITIAL INDICATORS OF COMPROMISE (IOC) and gradually pivots on to identify related indicators and artifacts to assess the possibility of an attack
+	- provides an ability to implement new protection strategies to prevent upcoming attacks
+	- provides an understanding of active campaigns that include the 5W's of security threats
+	- provides insight into the probability of risks and its impact on business
+	- recommends various remediation and risk mitigation solutions
+
+Benefits of Cyber Threat Intelligence
+	- providing greater insight into cyber threats
+	- preventing data loss by identifying the causes of data leakage
+	- guiding in incident response
+	- conducting data analysis to identify the exploitable data
+	- providing actionable strategic and tactical choices
+	- conducting threat analysis for detecting advanced threats
+	- sharing threat information to spread awareness
+	- identifying IoCs
+	- discovering tactics, techniques and procedures (TTPs) for possible attacks
+	
+Enterprise Objectives for Threat Intelligence Programs
+	1. enhanced and automated incident prevention
+	2. automation of security automations and remediation activities
+	3. guidance to cyber security activities
+	4. improved risk management
+	5. improved incident detection
+	
+Threat Intelligence wheel:
+	Identify and Protect
+		1. Awareness of Threats and Vulnerabilities
+		2. Thwart Attacks
+		3. Prepared Assessment
+	Detect
+		1. Rapid Detection of Attacks
+		2. Early Discovery of Attack
+		3. Detection of Hidden Intrusion
+	Respond
+		1. Suppress the Impact of Attack
+		2. Reduce the Duration of Attack
+		3. Enhanced Incident Response
+	Recover
+		1. Rapid and Efficient Recovery
+		2. Meet Compliance Requirements
+		3. Prioritization of Security Investments
+		
+To thwart these threats, it is important for the organizations to incorporate and leverage ACTIONABLE THREAT INTELLIGENCE to strengthen their current security posture.
+
+Continually strengthening our security posture.
+
+Types of Threat Intelligence:
+	Strategic
+		- high level information on changing risks
+		- consumed by high-level executives and management
+		- long term use
+		- high level
+	Operational
+		- information on specific incoming attack
+		- consumed by security managers and network defenders
+		- short to intermediate term use
+		- high level
+	Tactical
+		- information on attackers tactics, techniques and procedures (TTPs)
+		- consumed by IT service and SOC managers & administrators
+		- long term use
+		- low level
+	Technical
+		- information on specific indicators of compromise (IoCs)
+		- consumed by SOC staff and IR teams
+		- short term
+		- low level
+		
+Strategic Threat Intelligence
+	- strategic threat intelligence provides high-level information regarding cyber security posture, threats and its impact on business
+	- used by high-level executives
+	- focused on high-level business strategies
+	- collected from OSINT, CTI ventors adn ISAO/ISACs
+	- used by management to take strategic business decisions and to analyze the effect
+	
+Tactical Threat Intelligence
+	- provides information related to TTPs used by threat actors to perform attacks
+	- it is consumed by cyber security pros such as IT service managers, security operations managers, administrators, architects, etc.
+	- the collection  sources include campaign reports, malware, incident reports, attack group reports, human intelligence, etc
+	- it is generated in the form of a forensic report that includes highly technical information such as campaigns, techniques, tools, etc
+	- helps cyber security pros to understand how the adversaries are expected to perform the attack on the organization, tthe technical capabilities and goals of the adversaries along with their attack vectors
+	
+Operational Threat Intelligence
+	- provides information about specific threats against the organization
+	- it is consumed by security managers or heads of incident response, network defenders, security forensics and fraud detection teams
+	- it is collected from sources such as humans, social media, chat rooms, etc
+	- it is generally in the form of a report that contains identified malicious activities, recommended courses of actions and warnings of emerging attacks
+	- it helps orgs understand the possible threat actors along with their intention, capability and opportunity to attack, vulnerabile IT assets and the impct of the attack if it is successful
+	- it helps IR and forensics teams in deploying security assets with the aim of identifying and stopping  upcoming attacks, improving the capability of detecting attacks at an early stage and reducing its damage on IT assets
+
+Technical Threat Intelligence
+	- provides information about an attackers resources such as command and control channels, tools, etc used to perform the attack
+	- consumed by SOC staff and IR teams
+	- has a shorter lifespan compared to tactical threat intelligence and mainly focuses on a specific IOC
+	- the indicators of technical threat intelligence are collected from active campaigns, attacks that are performed on other organizations or data feeds proided by external third-parties
+	- examples of technical threat intelligence include specific IP addresses and domains used by malicious endpointts, phishing email headers, hash checksums of malware, etc
+	- it improves detection mechanism by adding identified indicators to the defensive systems such as IDS/IPS, firewalls, endpoint security systems, etc
+	
+Threat Intelligence Informed Risk Management
+	- helps orgs to understand various aspects of the threat environment such as nature of threats, identification of vulnerabilities, etc so they can develop appropriate security solutions tailored to their needs to reduce the risk.
+	
+Threat Intelligence Risk Management:
+	FRAME:
+		Threat Intelligence is used to understand the direction and operations needed to perform risk management
+	ASSESS:
+		.. used to identify, assess and track potential threats and vulnerabilities
+	RESPOND:
+		.. used to evaluate and implement course of action after the identification of risks
+	MONITOR:
+		.. used to monitor the ongoing threat changes to provide real-time support to security decisions and practices
+		
+Phases of Escalation Involved in the Incident Response Management
+	Phase 1: Pre-planning
+		- using CTI, security analysts can find out the answers to:
+			- which hacker groups would target the org and what are their reasons?
+			- which are the different assets they are targeting?
+			- what are the various capabilities that adversaries possess?
+			- what are the possible attack scenarios?
+	Phase 2: Event
+		- operational and tactical threat intelligence helps in providing context to the alerts generated by an organizations security mechanisms such as SIEM, SOC and other tools
+		- information can be used to determine an event that can escalate into a security incident
+	Phase 3: The Incident
+		- after an incident has taken place in the network, operational threat intelligence can be used by the security analysts to gain more insight into the techniques, operations, actor's objectives and past incidents.
+		- operational threat intelligence helps to obtain knowledge about the threat using the threat triangle that includes information regarding threat actors capability, intent and opportunity
+	Phase 4: Breach
+		- organization considers it essential to report an incident when it escalates into a breach
+		- strategic and operational threat intelligence helps in providing answers to the following questions:
+			- what happened?
+			- how and what was the reason behind occurence of the breach?
+			- what are the essential steps that need to be taken to avoid such a breach in the future?
+			
+Enhanced Incident Response by Establishing SOPs for Threat Intelligence
+	- Threat Intelligence usually consists of indicators of threats such as IP addresses, URLs, domain names, malware hashes and filenames
+	- Standard Operating Procedures (SOPs) play an important role in improving incident response
+	- To Establish SOPs, it is necessary to obtain answers to the following questions about each indicator:
+	
+IP ADDRESSES
+	- which network devices are more critical than others?
+	- is there a specified way to determine if those critical devices are sending or receiving traffic to/from suspicious IP addresses?
+	- is there any documented process that can assist in performing such research?
+	- does the org have in-depth understanding on the security technologies to carry out research under pressure?
+DOMAIN NAMES
+	- does the analyst have the capability to view and monitor domain traffic?
+	- does the analyst have the capability to view the whois database for those domains for information regarding registrations?
+	- is there any documented process that can assist in performing such research?
+	- does the or have in-depth understanding on the security technologies to carry out research under pressure?
+	
+URLS
+	- is it possible for the analyst to view suspicious URLs and the end users who accessed them?
+	- is there any documented process that can assist in performing such research
+	- does the org have in depth understanding on security technologies to carry out research under pressure?
+
+MALWARE HASHES AND FILENAMES
+	- can the analyst view an endpoint to determine if a specific filename or malware hashes exist on any of the endpoints?
+	
+
+What Do Organizations and Analysts Expect?
+	- it is important for an org to extract TIMELY AND ACCURATE INTELLIGENCE to ensure preparedness in case of any data breach
+	- organizations and analysts need to identify the MOTIVE BEHIND THE HUMAN BEHAVIOR that effects the security of the org
+	They utilize threat intelligence to extract the following information:
+		- Who is the possible adversary?
+		- What are the common behavioral characteristics?
+		- What is the motive behind the exploitation?
+		- What are the adversary's TTPs?
+		- Who are the possible threat actors and are they dramatically changing the TTPs? Why?
+		
+Responsibilities of Cyber Threat Analyst
+	- collect up to date and accurate data from the dark web, intelligence feeds, intelligence sources, etc
+	- analyze the collected data and understand the technical aspect of security
+	- identify business risks and refine the information into intelligence that is disseminated to higher-level business executives
+	- identify, monitor, assess and defend against various attacks performed by both internal and external threat actors
+	- stay ahead of the adversary by understanding latest attack TTPs
+	- extract threat intelligence that includes contextual information, IoCs, TTPs, consequences and actionable intelligence about evolving threats
+	- understand the motive of the adversaries by analyzing the characteristics and habits of threat actors
+	- guide organizations in building effective defense and mitigation strategies
+	- collaborate with IT, incident handling, and SOC teams by generating timely threat reports
+	
+Threat Intelligence Use Cases:
+	Alarms, Events and Alerts Prioritization
+		- allows the analysts to prioritize the level of threats that are reported for reviews by the security teams
+	Incident Response
+		- threat intelligence solutions help Incident Response (IR) teams, forensics teams, and threat detection groups to analyze complex threats easily and more quickly
+	Investigation and Mitigation
+		- threat intelligence solutions help IR teams or security teams to uncover the possible effects of related threats and help to prevent the network from damage
+	Fusion Analysis
+		- threat intelligence fusion analysis is performed to create a more complete picture of threats and risks posed by an attack to the organization, where intelligence is gathered from different sources and source types to create a single threat report.
+
+
+Threat Intelligence Life Cycle
+	1. Planning and Direction
+		- define intelligence requirements
+		- make a collection plan
+		- form an intelligence team
+		- send requests for data collection
+		- plan and set requirements for other phases
+	2. Collection
+		- collect required data that satisfies intelligence goals
+		- sources can include:
+			- OSINT, HUMINT, IMINT, MASINT, etc
+	3. Processing and Exploitation
+		- process raw data for exploitation
+		- convert processed data into usable format for data analysis
+	4. Analysis and Production
+		- combine information from phase 3 into a single entity
+		- include facts, findings and forecasts
+		- analysis should be
+			- objective
+			- timely
+			- accurate
+			- actionable
+		- perform confidence-based analysis
+	5. Dissemination and Integration
+		- deliver the intelligence to the intended consumers at different levels
+			Strategic: High-level business strategies
+			Tactical: TTPS
+			Operational: Specific Threats
+			Technical: IoCs
+			
+
+Threat Intelligence Strategy
+	- the organizations develop the intelligence strategy based on their business requirement and risk level
+	Components considered while developing an intelligence strategy are the following:
+	1. Threat Intelligence Requirement Analysis
+	2. Intelligence and Collection Planning
+	3. Asset Identification
+	4. Threat Reports
+	5. Threat Trending
+	6. Intelligence Buy-In
+
+Threat Intelligence Requirement Analysis
+	- plays in important role in obtaining GOOD QUALITY INFORMATION suitable for the organization
+	- is performed to obtain relevant and most critical information before proceeding further
+	- avoids the chance of getting irrelevant information and hence avoids waste of time, finding irrelevant information
+	
+Intelligence and Collection Planning
+	- the information collection planning is a systematic process carried out to meet intelligence requirements
+	- this process uses all the available collection capabilities so that it can meet the priority requirements of the decision makers
+	
+Threat Intelligence Strategy
+	Asset Identification
+		- an org has to plan for classifying the assets based on the identification of the critical assets
+		- the identification of the assets should be performed based on the risk level and the sensitivity of the assets
+	Threat Reports
+		- are the statistics and researches related to the cyber-attacks that have occurred around the world
+		- it is proof that supports the intelligence strategy
+	Threat Trending
+		- threat trends are usesd to estimate and plan the future
+	Intelligence Buy-In
+		- getting approval and gain buy-in from the higher management to implement
+
+Threat Intelligence Capabilities
+	Orgs should possess required capabilities and must have enough system requirements to execute and manage the newly developed intelligence strategies
+		The Following components are required to meet the intelligence capabilities:
+			1. Incident Response: 
+				- a team should be in place to handle the security incidents that have occurred, thereby reducing the risk of asset damage
+			2. Automated Response:
+				- orgs should develop automated IR systems to avoid delay in handling the incidents
+			3. Intelligence Architecture:
+				- an effective intelligence architecture has to be developed for incident detection and response
+			4. Indicator of Compromise:
+				- orgs can easily detect the cyber-attacks and respond in time by monitoring for the IoCs
+
+Capabilities to Look for in a Threat Intelligence Solution:
+1. Automate data collection process
+2. Provide informed analysis and prediction
+3. Create personalized content
+4. Deliver significant insights
+5. Disseminate understandable intelligence
+6. Integrate with security controls. 
+7. Enhance patch management
+8. Prioritize events and provide contextual awareness
+9. Detect and fix security incidents
+10. Pivot on a single indicator and find related events
+11. Capable of building new protections and preventing evolving threats
+12. Ability to extract high-value actionable intelligence 
+
+
+Threat Intelligence Maturity Model
+	Maturity Level 0: vague where to start
+	Maturity Level 1: prepare for CTI
+		- filter and aggregate TI data
+		- consume TI
+		- use tactical TI to enhance endpoint security devices
+		- use SIEM to correlate internal data with external feeds
+	Maturity Level 2: increasing CTI capabilities
+		- generate actionable TI
+		- automate TI analysis tasks
+		- describe who, why and how aspects of specific threats
+		- expand threat knowledge by joining communities
+		- understand IoCs by converting data into knowledge
+	Maturity Level 3: CTI program in place
+		- establish TI processes and workflows
+		- generate strategic and tactical TI
+		- integrate TI with endpoint security devices such as SIEM, ID/IPS, firewalls, etc
+		- use TI to support incident response activities
+	Maturity Level 4: well-defined CTI program
+		- efficient and matured threat intelligence program
+		- generate and consume strategic and tactical TI
+		- assist in proactive threat hunting
+		- use TI to define security processes and architectures
+		
+Threat Intelligence Frameworks: Collective Intelligence Framework (CIF)
+	- CIF is a cyber threat intelligence management system that allows you to combine known malicious threat information from many sources and use that information for incident response, detection and mitigation
+	- CIF helps you to parse, normalize, store, post process, query, share and produce data sets of threat intelligence
+
+Threat Intelligence Frameworks: CrowdStrike Cyber Threat Intelligence Solution
+	- an effective security strategy is multi-layered, enabling a security team to effectively predict and understand the cyber threats that imperil an organizations key assets
+	- empowering an org to anticipate who may attack next and how allows security teams to focus on prioritizing resources so they can respond effectively to impending cyber attacks
+	
+Threat Intelligence Frameworks: NormShield Threat and Vulnerability Orchestration
+	- NormShield is a unified platform to perform continuous vulnerability scans, automatically detect threats and manage and automate vulnerability management process with NormShield workflow engine
+	
+Threat Intelligence Frameworks: MISP - Open Source Threat Intelligence Platform
+	- MISP is open source for sharing, storing and correlating indicators of compromise (IoCs) of targeted attacks, threat intelligence, financial fraud information, vulnerability information or even counter-terrorism information
+	- it uses the IoCs and informatin to detect and prevent attacks or threats against ICT infrastructures, organizations or people
+	
+Threat Intelligence Frameworks: TC Complete
+	- (Security operations and Analytics platform) is built on the ThreatConnect Platform providing not only the ability to orchestrate your security functions but also the confidence that you are basing your tasks and decisions on vetter, relevant threat intelligence
+	
+Threat Intelligence Frameworks: Yeti
+	- Yeti is an open, distributed, machine and analyst-friendly threat intelligence repository developed for incident responders
+	- it is a platform meant to organize observables, indicators of compromise, TTPs and knowledge on threats in a single, unified repository
+
+Threat Intelligence Frameworks: ThreatStream
+	- speeds detection of threats by uniting the security solutions under one platform and providing tools to operationalize threat intelligence
+	- it collects threat intelligence data from hundreds of sources such as STIX/TAXII feeds, open source threat feeds, commercial threat intelligence providers, etc
+	
+	
+===============================================
+
+MODULE 2
+
+Advanced Persistent Threat Lifecycle
+1. Preparation
+	- define target
+	- research target
+	- organize team
+	- build or attain tools
+	- test for detection
+2. Initial Intrusion
+	- deployment of malware
+	- establishment of outbound connection
+3. Expansion
+	- expand access
+	- obtain credentials 
+4. Persistence : maintain access
+5. Search and Exfiltration
+6. Cleanup : remain undetected
+
+CYBER KILL CHAIN
+1. Reconnaissancec
+2. Weaponization
+3. Delivery
+4. Exploitation
+5. Installation
+7. Command & Control 
+8. Actions on Objectives
+
+Adversary Behavioral Identification
+	Digital Communications"
+		1. Internal Reconnaissance
+			- nmap
+			- nessus
+			- wireshark
+			- netcat
+			- ping
+			- netdiscover
+		2. Use of PowerShell
+			- Get-ExecutionSummary
+		3. Unspecified Proxy Activities
+			- cyber ghost VPN, betternet unlimited free, TOR, hide all IP, easy hide IP
+	4. Use of CLI
+		- processed named to look like legit processes
+		- random names of processes
+		- use of powershell, python, perl
+		- use of wget or curl
+		- user management commands like useradd or net user
+	5. HTTP User Agent
+		- detect using wireshark, useragentstring.com, UA blacklists
+	6. Command and Control Server
+		- LAMP servers from Azure/AWS, Icce ix builder
+	7. Use of DNS Tunneling
+		- in creating a DNS tunnel a threat actor will set up a tunnel client that will send a request on port 53 to a DNS tunnel server. T
+		- the DNS tunnel server can use this newly created tunnel to direct C2 callbacks over the TXT field of the DNS response message
+		- if malicious DNS tunneling goes unobserved it creates significant risk, with companies leaving themselves open to data exfiltration, C&C activity and other hazards
+			- to detect: channelize domain detection
+			- enumerate the queries to determine if excccessive
+			- filter for average domain length
+			- classify channelized traffic flows as either malicious or normal
+	8. Use of Web Shells
+		- disable potentially dangerous PHP funcctions such as: exec(), shell_exec(), etc
+		- make sure that unauthorized users do not have access to these scripts
+		- use escapeshellarg() and escapeshellcmd() to make sure that script ccan noot be injected into shell commands
+		- if your web app uses upload forms make sure they are secure and that they only allow whitelisted file types to be ul'd
+		- never trust user input (sanitize your inputs)
+		- do not blindly use code that you may find on online forums or websites
+		- in WP blogs, avoid installing third party plugins if you don't need them. If you do, make sure it's reputable and frequently updated
+		- disable PHP execution in sensitive directories like images or uploads
+		- lock-down web server's user permissions
+	9. Data Staging
+		- preporatory to exfiltration
+		- monitor for maliccious file transfers
+		- use file integrity monitoring
+		- monitor event logs
+		- can for abnormal storage patterns on hosts and servers 
+		
+Indicators of Compromise
+	- clues, artifiacts, and pieces of forensic data that is found on a network or OS of an org that indicates a potential intrusion or malicious activity
+	- IoCs are not themselves intelligence, but are a good source of information about threats that serve as data points in the intelligence process
+	- the security analysts need to perform continuous monitoring of IoCs to effectively and efficiently detect and respond to the evolving cyber threats
+	- helps to detect data breaches, malware intrusion attempts and other threat activities
+	- assists analysts in knowing "what happened"
+	= helps improve response time as well as upgrade the detetion rate of the threats
+	- provides security analysts with data feeds that can be fed into the organizations auto-response mechanism
+	- helps answer:
+		- does the file consist of malicious content
+		- is the org network compromised
+		- how did the network get infected
+		- what is the history of a specific IP address
+	EMAIL INDICATORS
+	NETWORK INDICATORS
+	HOST-BASED INDICATORS
+	BEHAVIOURAL INDICATORS
+	
+Key Indicators of Compromise:
+1. Unusual Outbound Network Traffice
+2. Unusual Activity Through Privileged User Account
+3. Geographical Anomalies
+4. Multiple Login Fails
+5. Inccrease in Database Read Volume
+6. Large HTML Response Size
+7. Multiple Requests for the Same File
+8. Mismatched Port-Application Trafficc
+9. Suspicious Registry or System File Changes
+10. Ususual DNS Requests
+11. Unexpected Patching of Systems
+12. Signs of DDOS Activity
+13. Bundles of Data in Wrong Places
+14. Web Traffice with Superhuman Behavior
+
+THE PYRAMID OF PAIN
+	- represents the types of indicators that the analyst must look out to detect the activities of an adversary as well as the amount of pain that the adversary needs to adapt to pivot and continue with the attack even when the indicators at each level are being denied
+	- it consists of six types of IoCs that are arranged in increasing order of the impact on the adversary and effort of the analyst respectively
+	- the IoC on the bottom of the pyramid will have less impact on the adversary, whereas IoC placed on the top would not only have a huge impact but woudl also require vast amount of effort by the analyst for its disclosure
+	
+(From top to bottom)
+1. TTPs : TOUGH
+2. Tools : Challenging
+3. Host/Network Artifacts : Annoying
+4. Domain Names : Simple
+5. IP Addresses : Easy
+6. Hash Values : Trivial
+	
+	
+===================================================================
+
+MODULE 3 : Requirements, Planning, Direction and Review
+
+Identifying and Prioritizing Threats
+	- conducct brainstorming sessions to identify the critical threats and adversaries that may target the organization
+	- rate the threats based on impact : 1 (none) to 5 (high)
+	- rate the possibility of these threats (1) not likely to (5) extremely possible
+Identify and Prioritizing Assets, Data and Incidents
+	- identify based on impact of threats
+	- identify and prioritize valuable data within the organization
+	- analyze and identify security incidents in the last few years
+Discuss on Prioritized List
+	- discuss list of assets against the potential impact of identified threats
+	- involve all the business stakeholders, IT pros, and security members
+	- prioritize the operational efforts in accordance with a proioritized list
+
+Assess The Organization's Current Security Pressure Posture
+	- represents various elements or drivers that put pressure on an org to enhanve the existing seucirty program or to develop a new security program
+	- assess the current security policies, strategies and infrastructure can help the org to mitigate existing internal threats, security loopholes, etc
+	
+To assess the security posture, answer:	
+	1. How attractive is the org to adversaries?
+	2. How muhc pressure is the org facing from its customers on their security posture?
+	3. How much pressure is the org facing from its regulatory and legal requirements?
+	4. What are the various organizational factors that lead to the need for security?
+
+Evaluate organization's current security team's structure and competencies to determine threat intelligence capabilities
+	Threat Intelligene
+		- is there a procedure to monitor and report the threat intelligence?
+		- is sharing of TI indicators done across all the security platforms?
+		- are there any relationships established with peers, industry partners and government?
+		- are intelligencce collection sources, techniques and strategies reviewed, assessed and updated on a regular basis?
+		- is context provided to intelligence information knowledge on external indicators enhanced by internal threat data?
+	Security Operations
+		- is there any procedure for assessing and prioritizing threats?
+		- are there any escalation methods to identify and mitigate potential threats and security vulnerabilities?
+		- are the seccurity rules repeatedly defined and updated based on the incoming threat intelligence?
+		- are threat detection controls techniques and strategies reviewed, assessed and updated on a regular basis?
+		- is the preexisting security infrastructure such as SIEM or firewall used to gather internal intelligence?
+	Incident Response
+		- is there an established procedure for IR
+		- is there an assessment of impact and potential of security incidents performed after they are escalated from security operations
+		- is there a formal reporting procedure in which disclosure to specified individuals is defined, developed and followed
+		- whether security incident management controls, techniques and strategies reviewed, assessed and updated on a regular basis?
+		- is threat intelligence used to make an effective IR function?
+	Vulnerability Management
+		- whether a formal vulnerability management policcy exists in the organization?
+		- are the efforts made to patch the vulnerabilities documented, traced, analyzed and communicated?
+		- does the organization have well-defined roles and responsibilities to perform penetration tests?
+		- is there a formal process that defines a guideline for starting and managing penetration testing?
+		- whether vulnerability management controls, techniques and policies reviewed, assessed and updated on a regular basis?
+		- is vulnerability management performed in all the areas of security within the organization?
+	
+Understand Organization's Current Security Infrastructure and Operations
+	Consider the following security controls to understand the organizations current security infrastructure and operations:
+		SIEM
+			- performs real-time SOC functions like identifying, monitoring, recording, auditing and analyzing security incidents
+			- provides security by tracking suspicious end user behavior activities within a real-time IT environment
+		NGFW
+			- have the capability of detecting and blocking the advanced attacks by incorporating certain rules or policies at the application level
+			- helps in data leakage protection (DLP), user identity-related control, URL blocking, application control, SSL and SSH inspection, and network access control
+		Gateway
+			- is a node in the network that routes the traffic from a workstation to external command and control server
+			- helps in identification of installed malware such as RATs on system present on the network
+		IDS/IPS
+			- helps in increasing the security of network by monitoring traffic and inspecting data packets for suspicious
+			- identifies the possible violations of security policy inccluding unauthorized access, as well as misuse
+		Endpoint Solutions
+			- protects the devices that are onnected to the network from outside the firewall or perimeter with an ultimate goal of protecting the organizational network from attacks
+			- helps in reducing data breaches
+			
+THREAT INTELLIGENCE REQUIREMENT CATEGORIES
+	Production Requirements
+		- should be complete and include information abut the short-term requirements that right away head to the top of the priority list
+		- questions to be answered before analyzing production requirements:
+			- what will be the deliverable to the intelligencec customer/consumer
+			- what are the vulnerabilities that are being exploited around the world that the orgs cannot identify or protect?
+	Intelligence Requirements
+		- consist of KNOWN UNKNOWNS about questions that the intelligence function needs to answer in order to provide knowledge and judgement based decisions
+		- question to be answered before analyzing intelligence requirements:
+			- what must be collected in order to fulfill production intelligence?
+	Collection Requirements
+		- focus on either external or internal sources
+		- the collection requirements focusing on external sources include threat actors, while the ccollection requirements focusing on the internal sources include information on attack surfaces of an org
+		- question to be answered before analyzing collection requirements:
+			- which data or observation results are required to fulfill intelligence requirements?
+			
+BUSINESS NEEDS AND REQUIREMENTS (Business units, internal stakeholders and 3rd parties)
+	Business Unit Needs
+		- Business Units: what are the needs and requirements of each business unit
+	Risk Management
+		- How threat intelligence helps in inproving the risk management process
+	Internal Audit
+		- what are the needs for feeding the threat intelligence into the security mechanisms and controls in order to support various internal audit functions?
+	Legal and Compliance
+		- check whether the legal issues, ccontractual obligations and compliance obligations are met
+	IT
+		- decide how to leverage threat intelligence to provide protection to critical IT assets of the org
+	
+	Internal Stakeholder Needs
+		Business Executives
+			- What are the requirements of various business exceutives to provide protection to their business assets?
+		Management
+			- what are the needs of the high-level management to ensure the protection of all the confidential and critical information
+		End Users
+			- identify how to protect all the personal information and data of end users
+		CIO
+			- what are the requirements off the CIO who is directly responsible for providing security to the orgs IT assets
+		CISO/Seccurity Analyst/Security Manager
+			- responsible for ensuring that all the requirements gathered are met
+			
+	Third-Part Needs
+		Third Party Contractors
+			- what are the relevant threats across various business relationships like third-party contractors
+		Suppliers
+			- how do the suppliers need to provide or maintain a certain level of secure delivery as defined by various business units
+	
+	Other Teams
+		IT Architects and IT Decision Makers: need up to date intelligencec related to the threats on critical IT assets of the org
+		SOCs: need intelligence in machine-readable format that includes information related to lates IoCs
+		IR Teams: need intelligence on adversaries, associated campaigns, intention and attribution of threat actors, identified IOCs during forensics investigations, etc
+		Security control Administrators: need intelligence on adversary techniques, tacts and procedures
+		Vulnerability Management Teams: need intelligence related to latest IT system vulnerabilities and associated attack vectors
+		
+Intelligence Consumer Needs and Requirements
+	Strategic Users
+		- include high-level executive and management of the org such as CISOs and IT managers
+		- consume threat intelligence to understand the changing trends of cyber security
+		- neeed intelligence to understand the current business trends and make appropriate decisions regarding new technologies, security budget, and improvement of processes and sstaff
+	Tactical Users
+		- include cyber security professionals such as IT service managers, SOC staff, network operations center (NOC) staff, admins, architects, etc
+		- these consumers need timely, accurate and relevant intelligence to protect the org from any targeted attack
+	Operational Users
+		- include IR teams, network defenders, forensic analysts and fraud detection teams
+		- these consumers require detailed context about alerts and events to find if that alert or event is part of a complex attack or not
+		- they need intelligence such as analysis of malware, the breakdown of targeted attacks and TTPs of particular adversaries and attacks
+
+PRIORITY INTELLIGENCE REQUIREMENTS (PIRs)
+	- are essential for making strategic, operational or tactical changes in the organizational infrastructure to reduce the risk
+	- they helpp organizations to reach their strategic goals by providing dynamicc situational awareness about the evolving threat landscape
+	- PIRs enable orgs to answer the following questions:
+		- what types of data need to be collected?
+		- are there any gaps in the collected data?
+		- what talent and resources are needed to support the intelligence program?
+	- PIRs are in the form of a series of questions that assist in the threat intelligence team to to focus on what is important to the higher-level management
+
+Factors that incfluence the prioritization of requirements:
+	- benefit
+	- penalty
+	- cost
+	- risk
+	- dependencies
+	- time sensitivity
+	- stability
+	- regulatory/policy compliance
+	
+	
+MoSCoW Method for Prioritizing Requirements
+	- is defined as "a prioritization method that assists in prioritizing requirements based on iterative and incremental approaches"
+	- this method is about setting the requirements based on the ORDER OF PRIORITY, where the most important requirement be me first, for greater chance of success
+	- it plays a vital role in AGILE PROJECT MANAGEMENT, software development and business analytics
+Achronym For:
+(M)ust Have (compulsory)
+(S)hould Have (having high priority)
+(C)ould Have (preferred but not essential)
+(W)on't Have (can be postponed or can be suggested for future project exection)
+
+Prioritize Organizational Assets:
+	1. Personal Details
+	2. Financial Information
+	3. Intellectual Property
+	4. Sensitive Business Data
+	5. Login Details and IT System Information
+
+Scope of the Threat Intelligence Program
+	- defining the scope leads to a successful threat intelligence program
+	- all stakeholders of the organizaiton should have a common understanding of the goals, responsibilities, scope and boundaries of the intelligence program
+	- it is important to start with a well-defined scope to avoid modifications later in the pgrogram that are expensive and cconsume more time and resources
+
+	Scope of the threat intelligence program consists of:
+		- objectives of the program
+		- requirements for threat intelligence
+		- criteria for acceptance
+		- limitations of the program
+		- final threat intelligence deliverables
+		- constraints to be considered
+		- organization of intelligencce teams
+		- identified business risks
+		- timescale schedule
+		- estimation of budget
+	
+Rules of Engagement
+	ROE: is the formal permission to implement a threat intelligence program
+	Top-Level Guidance: ROE provides "top-level" guidance for implementing a threat intelligence program
+	ROE's Assistanec: ROE helps the intelligence team to overccome legal, fedaral and policcy-related restrictions to use different tactics, systems and personnel
+
+Non-Disclosure Agreements
+	- many documents and other information regarding the threat intelligence may contain criticcal information that could damage one or both parties if improperly disclosed
+	- a NDA is a security contract signed between two persons or companies for maintaining the secrecy in their mutually shared information
+	- signing an agreement guarantees that the company's information will be treated confidentially
+	- it will also provide cover for a number of other key areas such as negligence and liability in the event of something untoward happening
+	- agreements are designed to be used by both parties to protect sensitive information from disclosure
+	
+AVOID COMMON THREAT INTELLIGENCE PITFALLS
+	Unreliable Intelligence Sources
+		- orgs must be very careful while seleting threat intelligene sources
+		- relying on low-cost, free or OSINT sources can produce unreliable and useless data
+		- intelligencec sources must be selected based on the structured list of collection criteria such as transparency, currency, authority and coverage
+	Inadequate Communication
+		- intelligence information must be communicated upstream to higher management to notify them of any future risks and threats
+		- information must be documented in a universally accessible portal and intelligence feeds/news/alerts/briefs must also be communicated regularly
+	Data Without Context
+		- intelligence data without any scope and interpretation is useless for organizations
+		- with a proper context, security analysts can narrow down their search for indicators across the network
+	Lack of Standardization
+		- lack of proper standardization of formats used for representing threat intelligencce makes it difficult to interpret and cconsume data
+	Lack of Technology Capabilities
+		- intelligence is useless if a proper technology to use or consume the information is not used
+		- organizations often possess sufficient information and analysis tehniques, but they are restricted when it comes to operationalizing the information
+
+-----------------
+
+PLANNING A THREAT INTELLIGENCE PROGRAM
+
+Prepare People, Process and Technology
+	- threat intelligence is beneficial for an organziation to develop a seurity infrastructure, but this information alone cannot provide enough benefits if it is without the support of a right team of people, integrated processes, and technology
+	
+PEOPLE:
+	- an org may appoint an internal threat intelligence team or incorporate certain duties into existing roles
+	- cyber threat intelligence teams must fulfull the following responsibilities:
+		- cyber forensics
+		- malware reverse-engineering
+		- managing threat intelligence operations
+		- collaborating with all information security teams within an org
+PROCESS
+	- information secuirty processes can derive benefits from threat intelligence
+	- organization must identify a certain set of processes that requires input from threat intelligene and further understand how the intelligence must be presented for that purpose
+	- in depth analysis is required for understanding the needs and requirements of the audience for threat intellgience
+TECHNOLOGY
+	- proper utilization of threat intelligencce requires effective use of producers and consumers of threat intelligence
+	- producers and cconsumers of threat intelligence include:
+		- raw data producers
+		- threat data consumers
+		- threat intelligence cconsumers
+		- threat intelligence producers
+ORGANIZATIONS MUST SEEK TO AUTOMATE THE PROCESS OF CONSUMING AND DISTRIBUTING THREAT INTELLIGENCE TO THE SECURITY DEVICES
+
+Develiop a Collection Plan
+	- plan includes all the activities that involve the collection of data to meet the defined requirements for threat intelligence
+	- collection of data from different sources cconsume large amounts of budget due to the effort, time and cost
+	- orgs need to select appropriate data sources based on their requirement and goals of threat intelligence
+
+Identify Data Sources	
+	5 categories:
+	1. Phishing Messages
+	2. Indicators of Malware
+	3. Compromised Deviccecs
+	4. IP Reputation
+	5. Malicious Infrastructure
+
+Schedule a Threat Intelligence Program
+	- scheduling a threat intelligence program provides a way to communicate about:
+		- what ativities need to be completed?
+		- what resources will be allocated to accomplish the activities?
+		- in what timeframe they will be completed?
+
+Steps Involved in Scheduling a Threat Intelligence Program:
+	1. Review the project charter
+	2. Build a work breakdown structure (WBS)
+	3. Identify all deliverables
+	4. Define all activities
+	5. Identify the sequence of activities
+	6. Identify and estimate resources for all activities
+	7. Identify task dependencies
+	8. Estimate duration of each activity
+	9. Develop the final schedule
+	
+Plan A Budget
+	- the budget represents the combined cost of all the invidiual activities that the program must accomplish
+	- Planning the budget is important because
+		- the budget approval drives the program funding
+		- palnning the budget provides the basis for controlling the project cost
+	Six Elements are used in budget preparation:
+		1. Cost estimation of activities
+		2. Basis of estimation
+		3. Scope baseline
+		4. threat intelligence program schedule
+		5. Calendars for resource allocation
+		6. Contracts
+
+Develop a Communication Plan to Update Progress to Stakeholders
+	- when managing a threat intelligence program it is important to keep all the stakeholders informed about the progress
+	- communicate with the stakeholders either using software to inform the program status or by preparing status reports or by holding meetings on a regular basis
+	- creating an effective communication plan will help the team to know when and how each stakeholder is informed about the progress
+Elements needed to develop a communications plan:
+	1. Project background
+	2. Stakeholder analysis
+	3. Clearly defined objectives
+	4. Communication strategy
+	5. Potential risks involved
+	6. Budget allocation for communication 
+	
+=======================================
+
+MODULE 4
+
+TYPES OF THREAT INTELLIGENCE DATA COLLECTION
+	Strategic
+		- used to perform strategic analysis that is consumed by high-level strategists and senior leaders to understand and predict risks and threats for an org
+		- collection of strategic data from high level reliable feeds provides better threat intelligence and helps higher management in taking key strategic business decisions
+		- involves high-level geopolitical assessment and collection of information related to political affairs, economics, societal interactions, technology developments, etc
+		- also collected from sources like OSINT, security industry white papers, human contacts, etc
+	Operational
+		- involes the collecction of ACTIONABLE INFORMATION about any specific incoming attacks or events
+		- provides cruicial information about activity-related attacks
+		- can be acquired from social media, chatroom conversations for indications of pre-planned attacks
+		- provides cruicial information related to the attackers, attack patterns, and also can achieve information of when likely would the attack take placce
+		- orgs that are planning to perform monitoring operations to accquire operational threat intelligence data should follow legitimate legal advice and approach
+	Tactical
+		- deals with TACTICS, TECHNIQUES and PROCEDURES (TTPs) of threat groups and is most effectively used in defending an org
+		- collection consists of threat actor group reports and campaign reports and also includes a collection of incident reports
+		- also consists of collecting and evaluating malware samples to extract valuable information about threat agents and their tools
+	Technical
+		- deals with technicalities of an attackers assets and infrastructure
+		- consists of information related to the threat machine's IP address, operating systems, details about subnet, domain names of C2 headers, headers of the phishing emails, etc
+		- malware indicatorssucch as network indiccators, email indicators, etc are the main sources for technical TI data collecction
+		- is ephemeral and only valid for a short period of time
+	
+Operational Security for Data Collection
+	- refers to the risk management process where an analyst analyzes the complete operations from an adversary's point of view to provide security measures and avoid esnsitive organizational data from being exposed
+	- ensuring the operational security for data collection is important where an analyst needs to understand how to seurely collect the data and simultaneously maintain anonymity during the collection process depending on the organizational security policy to ensure privacy
+Measures to follow to provide OPSEC
+	1. Identify the possible threats from the data that you have collected and for the data you intend to collect
+	2. Use security tunneling protoccols like SSH or HTTPS to ensure reliable connection and data integrity while transfering data from online sources
+	3. Use Virtual Machines to access and download files from untrusted sources
+	4. Ensure updated and patched firewalls are in placec to block malicious incoming traffic to enter into the network while accessing the online resource
+	5. Use dark web browsers like TOR browser to collect data confidentially
+	6. Use encrypted channels like VPNs
+	
+Understanding Data Reliability
+	- analyst must ensure the reliability of data that is collected in order to achieve better TI
+	- analyst must have knowledge on various factors that affect data reliability
+Assessing the relevance of intelligence sources:
+	- the data accessed and ccollected must be from a reliable source, providing relevant and accurate data
+	- it must be ensured that this data is not altered during the collection process
+Factors affecting the credibility of an intelligence sourec:
+	- lack of authenticity of the data accessed
+	- inaccuracy of the data provided
+	- availability of incomplete or insufficient data
+Data collecction methods affecting the availability of data
+	- different methods of collecting data may bring out a certain amount of data as per the access level
+	- for example:
+		- passive methods only collect internal and open shared data
+		- active method accesses the authorized level of data only
+		- hybrid method provides the traps based collecction data
+	
+Ensuring Intelligence Collection Methods to Produce Actionable Data
+	- utilization of low cost or free sources of intelligence may introduce additional risks to the org and prompromises the quality of the decision-making process
+	- analysts need to concentrate on selecting intelligence sources that contain data that is relevant, accurate, timely and has maximum coverage
+	- analysts need to answer the following questions to ensure that the intelligence data is relevant and can produce actionable threat intelligence:
+		- does the intelligence belong to the same geographical location as the org
+		- does the intelligence support the strategic business requirements of the organization
+		- up to what extent is the information about threat actors, IoCs and TTPs are useful to the org
+		- what are the broader effects of intelligence on the org
+Validate the Quality and Reliabiliity of Third-Party Intelligence Sources
+	- threat information is only as trustworthy as the source of the data so it is essential to validate the credibility of 3rd party threat intelligencce sources
+	
+	The following should be considered while evaluating third party intelligence sources:
+	1. Whether the source refers to its own source in order to verify the conclusions independently
+	2. Who are the authors of the threat information? What rights do they have?
+	3. Who is responsible for the threat data? What is funded by another company?
+	4. Whether the third party intelligence source has an objective or any undisclosed motivation?
+	5. What is the frequenccy of publishing and updating threat data?
+	6. Whether the quality of the source meets the standards?
+
+Establish COllection Criteria for Prioritization of Intelligence Needs and Requirements
+	- prioritization of threat intelligence needs and requirements helps security analysts to develop new protection mechanisms and mitigate the evolving threats
+	- analysts need to consider the frequency or impact of a threat to prioritize threat intelligence needs and requirements
+	- Frequency:
+		- estimated frequency: how frequently is this threat relevant to the org?
+		- estimated trend: is the threat likely to be increasing or decreasing in frequency?
+	Impact
+		- functional impact: what is the potential impact of the threat on the ability of the organization to acccomplish critical services?
+		- information impact: does the threat increase the risk of sensitive information?
+		- recoverability impact (business continuity and disaster recover): how much effort does the org require to recover from the potential damage caused by the threat
+
+Building a Threat Intelligence Collection Plan
+	- a good TI collection plan can drive the intelligence collection teams to generate good results in reducing the organizational risks
+	- design a threat intelligence collection strategy
+		- understand the limitations of the area of operations
+		- understand the area of interest
+	- understand different collection sources and solutions that match your needs
+	- ensure the reliability of data and collection methods providing actionable data
+	- align the collection internal-external data and data sources to your organizational specifi intelligence analysis needs in further stages
+	- normalize the information with industry standards
+	- store the information in secure and easily accessible infrastructure
+	- share the information with other analysis teams
+	
+Threat Intelligence Feeds
+	- refer to a stream of indicators or data derivced from the various sources related to potential or evolving threats to an orgs security
+	EXTERNAL INTELLIGENCE FEEDS
+		- includes info that is acquired from globally available sources
+			- journals, groups, forums and blogs
+			- law enforcement feeds
+			- business associations
+			- security researchers
+			- underground forums
+			- hash records
+			- GEOIP stats
+		INTERNAL INTELLIGENCE FEEDS
+		- includes info that is acquired from locally available sources and from local infrastructure or systems
+			- fraud analysis
+			- security activity data
+			- mailbox misuse information
+			- human intelligence
+			- vunlerability information
+			- sandbox	
+		PROACTIVE SURVEILLANCE FEEDS
+		- includes info that is acquired using the real-time assessment of system activities and eventsw
+			- honeynets
+			- malware forensics
+			- brand monitoring
+			- P2P monitor
+			- DNS monitoring
+			- watching monitoring
+			- infrastrucutre and system logs
+			
+THREAT INTELLIGENCE SOURCES
+	OSINT
+		- collected from the publicly available sources and ananlyzed to obtain a rich useful form of intel
+			- media
+			- internet
+			- government data
+			- corporate/academic publishing
+			- literature
+		HUMINT
+			- collected from interpersonal contacts
+				- foreign defense personnel and advisors
+				- accredited diplomats
+				- NGOs
+				- POWs
+				- refugees
+				- traveler interview or debriefing
+				- Covert Human Intelligence Sources (CHIS)
+					- collected covertly from the target person by maintaining a personal or other relationship with the target person
+					- is generally referred to a person or agent under the Regulation of Investigatory Powers Act 2000 (RIPA), UK
+					- CHIS sources are the target persons from whom the information will be extracted
+		SIGINT
+			- collected by intercepting the signals
+				- communication intelligence (COMINT)
+					- obtained by through the interception of the signals
+				- electronic intelligence (ELINT)
+					- obtained from electronic sensors like radar, lidar, etc
+				- Foreign Intstrumentation Signals Intelligence (FISINT)
+					- signals detected from non-human communication systems
+		TECHINT (Technical Intelligence)
+			- information is collected from an adversary's equipment or Captured Enemy Material (CEM)
+				- foreign equipment
+				- foreign weapons systems
+				- satellites
+				- technical research papers
+				- foreign media
+				- human contacts
+		GEOINT (Geo-Spatial Intelligence)
+			- collected by exploitation and evaluation of geo-spatial information to assess the human activities on earth
+				- satellite imagery
+				- unmanned aerial vehicles imagery
+				- maps
+				- gps waypoints
+				- IMINT (Imagery Intelligence)
+				- National Geospatial Intelligence Agency (NGA)
+		IMINT (Imagery Intelligence)
+			- collected from the objects that are used to reproduce the real scenario electronically by any kind of electronic media or device
+				- visual photography
+				- infrared sensors
+				- Synthetic Aperature Radar (SAR)
+				- MASINT (Measurement and Signature Intelligence)
+					- collected from the sensors that are intended to record distinctive characteristics (signatures) of fixed or dynamic targets
+						- electro-optical
+						- radar sensors
+						- acoustic sensors 
+						- infrared
+						- spectroscopic sensors
+				- LASER
+				- electro-optics
+		FININT (Financial Intelligence)
+			- collected about the adversary's financial affairs and transactions that may involve tax evations, money laundering, etc which in turn provides information about the nature, capabilities and intentions of the adversary
+				- Financial Intelligence Unit (FIU)
+				- banks
+				- SWIFT
+				- Informal Value Transfer Systems (IVTS)
+		SOCMINT (Social Media Intelligence)
+			- collected from social networking sites
+				- facebook
+				- linkedin
+				- twitter
+				- whatsapp
+				- instagram
+				- telegram
+		CCI (Cyber CounterIntelligence)
+			- collected from proactively established security infrastructure by employing various threat manipulation techniques to lure and trap threats
+				- honeypots
+				- passive DNS monitors
+				- online web trackers
+				- sock puppets
+				- publishing false reports
+		IoCs (Indicators of Compromise)
+			- collected from network security threats and breaches on the security infrastructure which will likely indicate intrusion
+				- commercial and industrial sources
+				- free IoC specific sources
+				- online security related sources
+				- social media and news feeds
+				- IoC buckets
+
+LAB:1:
